@@ -1,5 +1,6 @@
 import {WORLD_FLOOR_BROWN} from "../constants/threeColors";
 import {useEffect, useRef} from "react";
+import {FLOOR_Y} from "../constants/dimensions";
 
 export function Floor(props) {
     const {width=10, length=10} = props;
@@ -12,7 +13,7 @@ export function Floor(props) {
         <mesh
             {...props}
             ref={ref}
-            position={[0, -0.01, 0]}
+            position={[0, FLOOR_Y, 0]}
             name="floor">
             <planeGeometry args={[width, length, 1, 1]}/>
             <meshLambertMaterial color={WORLD_FLOOR_BROWN}/>

@@ -1,19 +1,26 @@
-import {useEffect, useRef} from "react";
+import {useRef} from "react";
 import {useLoader} from "@react-three/fiber";
 import {TextureLoader} from "three";
+import {PLANT_Y} from "../constants/dimensions";
+
+function textureToUse(time, data) {
+    if (time < data.timeLine.growStart || data.timeLine.die < time) return "";
+    if (data.timeLine.flowerStart <= time && time <= data.timeLine.flowerEnd ) return data.textureWithFlower;
+    return data.textureWithoutFlower;
+}
 
 export function Plant(props) {
-    const spriteMap = useLoader(TextureLoader, "images/sprites/alium_christophii_flower.png");
+    const {data, time} = props;
+    const texture = textureToUse(time, data);
+    if (!texture) return;
+
+    const spriteMap = useLoader(TextureLoader, texture);
     const ref = useRef()
-    useEffect(() => {
-        ref.current.rotation.x = -Math.PI / 2
-        ref.current.receiveShadow = true;
-    }, [])
     return (
         <sprite
             {...props}
             ref={ref}
-            position={[0, 0.45, 0]}>
+            position={[0, PLANT_Y, 0]}>
             <spriteMaterial map={spriteMap}>
             </spriteMaterial>
         </sprite>

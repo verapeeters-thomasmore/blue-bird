@@ -5,8 +5,21 @@ import {Floor} from "./components/Floor";
 import {useState} from "react";
 import {Plant} from "./components/Plant";
 
+const plantData = {
+    textureWithoutFlower: "images/sprites/alium_christophii.png",
+    textureWithFlower: "images/sprites/alium_christophii_flower.png",
+    timeLine: {
+        growStart: 18,
+        growFinal: 21,
+        flowerStart: 22,
+        flowerEnd: 30,
+        die: 42,
+    },
+};
+
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
+    const [time, setTime] = useState(19);
     return (
         <>
             <div>
@@ -22,7 +35,7 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <Plant/>
+                <Plant data={plantData} time={time}/>
                 <OrbitControls/>
             </Canvas>
         </>
