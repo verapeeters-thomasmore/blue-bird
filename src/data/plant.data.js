@@ -12,60 +12,12 @@ import {
 } from "../constants/threeColors";
 
 let PLANT_ID = 1;
-export const PLANT_DATA1 = [
-    {
-        id: PLANT_ID++,
-        name: "Allium 'christophii'",
-        textureWithoutFlower: "images/sprites/alium_christophii.png",
-        textureWithFlower: "images/sprites/alium_christophii_flower.png",
-        flowerColor: VIOLET,
-        maxHeight: 50,
-        plantsPerM2: 2,
-        timeLine: {
-            growStart: 18,
-            growFinal: 21,
-            flowerStart: 22,
-            flowerEnd: 30,
-            die: 42,
-        },
-    },
-    {
-        id: PLANT_ID++,
-        name: "Anthericum liliago",
-        textureWithoutFlower: "images/sprites/anthericum_liliago.png",
-        textureWithFlower: "images/sprites/anthericum_liliago_flower.png",
-        flowerColor: WHITE,
-        maxHeight: 50,
-        plantsPerM2: 4,
-        timeLine: {
-            growStart: 12,
-            growFinal: 15,
-            flowerStart: 19,
-            flowerEnd: 23,
-            die: 52,
-        },
-    },
-    {
-        id: PLANT_ID++,
-        name: "Camassia leichtlinii ('Alba')",
-        textureWithoutFlower: "images/sprites/camissia.png",
-        textureWithFlower: "images/sprites/camissia_flower.png",
-        flowerColor: WHITE,
-        maxHeight: 70,
-        plantsPerM2: 3,
-        timeLine: {
-            growStart: 12,
-            growFinal: 15,
-            flowerStart: 18,
-            flowerEnd: 20,
-            die: 52,
-        },
-    }
-];
 
 
 export const PLANT_DATA = [
-{        name: "Allium 'christophii'",
+    {
+        id: PLANT_ID++,
+        name: "Allium 'christophii'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALCHRI12",
         textureWithoutFlower: "images/sprites/alium_christophii.png",
         textureWithFlower: "images/sprites/alium_christophii_flower.png",
@@ -80,7 +32,9 @@ export const PLANT_DATA = [
             die: 42,
         },
     },
-{        name: "Alium 'Gladiator'",
+    {
+        id: PLANT_ID++,
+        name: "Alium 'Gladiator'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALGLAD",
         textureWithoutFlower: "images/sprites/alium_gladiator.png",
         textureWithFlower: "images/sprites/alium_gladiator_flower.png",
@@ -95,7 +49,9 @@ export const PLANT_DATA = [
             die: 42,
         },
     },
-{        name: "Alium sphaerocephalon",
+    {
+        id: PLANT_ID++,
+        name: "Alium sphaerocephalon",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALSPHA",
         textureWithoutFlower: "images/sprites/alium_sphaerocephalon.png",
         textureWithFlower: "images/sprites/alium_sphaerocephalon_flower.png",
@@ -110,7 +66,9 @@ export const PLANT_DATA = [
             die: 42,
         },
     },
-{        name: "Anthericum liliago",
+    {
+        id: PLANT_ID++,
+        name: "Anthericum liliago",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ANLILI",
         textureWithoutFlower: "images/sprites/anthericum_liliago.png",
         textureWithFlower: "images/sprites/anthericum_liliago_flower.png",
@@ -125,7 +83,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Asclepias tuberosa subsp. interior",
+    {
+        id: PLANT_ID++,
+        name: "Asclepias tuberosa subsp. interior",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ASINTE",
         textureWithoutFlower: "images/sprites/asclepias.png",
         textureWithFlower: "images/sprites/asclepias_flower.png",
@@ -140,7 +100,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Aster JS® 'Eleven Purple' PBR",
+    {
+        id: PLANT_ID++,
+        name: "Aster JS® 'Eleven Purple' PBR",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ASEPUR",
         textureWithoutFlower: "images/sprites/aster.png",
         textureWithFlower: "images/sprites/aster_flower.png",
@@ -155,7 +117,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Calamagrostis acutiflora",
+    {
+        id: PLANT_ID++,
+        name: "Calamagrostis acutiflora",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CAWALD",
         textureWithoutFlower: "images/sprites/calamagrostis.png",
         textureWithFlower: "images/sprites/calamagrostis_flower.png",
@@ -170,7 +134,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Camassia leichtlinii ('Alba')",
+    {
+        id: PLANT_ID++,
+        name: "Camassia leichtlinii ('Alba')",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CALEIC12",
         textureWithoutFlower: "images/sprites/camissia.png",
         textureWithFlower: "images/sprites/camissia_flower.png",
@@ -185,7 +151,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Crocus tommasinianus",
+    {
+        id: PLANT_ID++,
+        name: "Crocus tommasinianus",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CRTOMM",
         textureWithoutFlower: "images/sprites/crocus.png",
         textureWithFlower: "images/sprites/crocus_flower.png",
@@ -200,7 +168,9 @@ export const PLANT_DATA = [
             die: 16,
         },
     },
-{        name: "Deschampsia cespitosa 'Tardiflora'",
+    {
+        id: PLANT_ID++,
+        name: "Deschampsia cespitosa 'Tardiflora'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=DETARD",
         textureWithoutFlower: "images/sprites/deschampsia.png",
         textureWithFlower: "images/sprites/deschampsia_flower.png",
@@ -216,7 +186,9 @@ export const PLANT_DATA = [
         },
     },
 
-{        name: "Echinacea purpurea 'Green Jewel' PBR",
+    {
+        id: PLANT_ID++,
+        name: "Echinacea purpurea 'Green Jewel' PBR",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ECGJEW",
         textureWithoutFlower: "images/sprites/echinacea_green_juwel.png",
         textureWithFlower: "images/sprites/echinacea_green_juwel_flower.png",
@@ -231,7 +203,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Echinacea purpurea 'Polar Breeze' PBR",
+    {
+        id: PLANT_ID++,
+        name: "Echinacea purpurea 'Polar Breeze' PBR",
         flowerColor: WHITE,
         textureWithoutFlower: "images/sprites/echinacea_polar_breeze.png",
         textureWithFlower: "images/sprites/echinacea_polar_breeze_flower.png",
@@ -245,7 +219,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Echinacea tennesseensis 'Rocky Top'",
+    {
+        id: PLANT_ID++,
+        name: "Echinacea tennesseensis 'Rocky Top'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ECRTOP",
         textureWithoutFlower: "images/sprites/echinacea_tennesseensis.png",
         textureWithFlower: "images/sprites/echinacea_tennesseensis_flower.png",
@@ -261,7 +237,9 @@ export const PLANT_DATA = [
         },
     },
 
-{        name: "Eremurus stenophyllus",
+    {
+        id: PLANT_ID++,
+        name: "Eremurus stenophyllus",
         flowerColor: YELLOW,
         textureWithoutFlower: "images/sprites/eremurus.png",
         textureWithFlower: "images/sprites/eremurus_flower.png",
@@ -276,7 +254,9 @@ export const PLANT_DATA = [
         },
     },
 
-{        name: "Hyacinthus multiflora 'Alba'",
+    {
+        id: PLANT_ID++,
+        name: "Hyacinthus multiflora 'Alba'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=HYMALB",
         textureWithoutFlower: "images/sprites/hyacint.png",
         textureWithFlower: "images/sprites/hyacint_flower.png",
@@ -291,7 +271,9 @@ export const PLANT_DATA = [
             die: 24,
         },
     },
-{        name: "Lilium 'Gironde'",
+    {
+        id: PLANT_ID++,
+        name: "Lilium 'Gironde'",
         textureWithoutFlower: "images/sprites/lillium_gironde.png",
         textureWithFlower: "images/sprites/lillium_gironde_flower.png",
         plantsPerM2: 1,
@@ -305,7 +287,9 @@ export const PLANT_DATA = [
             die: 35,
         },
     },
-{        name: "Lilium regale",
+    {
+        id: PLANT_ID++,
+        name: "Lilium regale",
         textureWithoutFlower: "images/sprites/lillium_regale.png",
         textureWithFlower: "images/sprites/lillium_regale_flower.png",
         plantsPerM2: 1,
@@ -319,7 +303,9 @@ export const PLANT_DATA = [
             die: 35,
         },
     },
-{        name: "Narcis",
+    {
+        id: PLANT_ID++,
+        name: "Narcis",
         textureWithoutFlower: "images/sprites/narcis.png",
         textureWithFlower: "images/sprites/narcis_flower.png",
         plantsPerM2: 5,
@@ -333,7 +319,9 @@ export const PLANT_DATA = [
             die: 17,
         },
     },
-{        name: "Nepeta racemosa 'Superba'",
+    {
+        id: PLANT_ID++,
+        name: "Nepeta racemosa 'Superba'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=NESUPE",
         textureWithoutFlower: "images/sprites/nepeta.png",
         textureWithFlower: "images/sprites/nepeta_flower.png",
@@ -348,7 +336,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Ornithogalum ponticum 'Sochi'",
+    {
+        id: PLANT_ID++,
+        name: "Ornithogalum ponticum 'Sochi'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ORSOCH",
         textureWithoutFlower: "images/sprites/ornithogalum.png",
         textureWithFlower: "images/sprites/ornithogalum_flower.png",
@@ -363,7 +353,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Sporobolus airoides",
+    {
+        id: PLANT_ID++,
+        name: "Sporobolus airoides",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=SPAIRO",
         textureWithoutFlower: "images/sprites/sporobolus.png",
         textureWithFlower: "images/sprites/sporobolus_flower.png",
@@ -378,7 +370,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Stipa tenuissima",
+    {
+        id: PLANT_ID++,
+        name: "Stipa tenuissima",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=STTENU",
         textureWithoutFlower: "images/sprites/stipa.png",
         textureWithFlower: "images/sprites/stipa_flower.png",
@@ -393,7 +387,9 @@ export const PLANT_DATA = [
             die: 52,
         },
     },
-{        name: "Tulipa 'Blue Diamond'",
+    {
+        id: PLANT_ID++,
+        name: "Tulipa 'Blue Diamond'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=TUBDIA",
         textureWithoutFlower: "images/sprites/tulip.png",
         textureWithFlower: "images/sprites/tulip_flower.png",
@@ -410,20 +406,20 @@ export const PLANT_DATA = [
     },
 
     /*not so nice - need to do something special for a bodembedekker*/
-/*{            name: "Sagina subulata",
-            textureWithoutFlower: "images/sprites/sagina_subulata.png",
-            textureWithFlower: "images/sprites/sagina_subulata_flower.png",
-            flowerColor: WHITE,
-            maxHeight: 15,
-            plantsPerM2: 10,
-        timeLine: {
-                growStart: 1,
-                growFinal: 2,
-                flowerStart: 22,
-                flowerEnd: 32,
-                die: 52,
+    /*{            name: "Sagina subulata",
+                textureWithoutFlower: "images/sprites/sagina_subulata.png",
+                textureWithFlower: "images/sprites/sagina_subulata_flower.png",
+                flowerColor: WHITE,
+                maxHeight: 15,
+                plantsPerM2: 10,
+            timeLine: {
+                    growStart: 1,
+                    growFinal: 2,
+                    flowerStart: 22,
+                    flowerEnd: 32,
+                    die: 52,
+                },
             },
-        },
-    */
+        */
 
 ];

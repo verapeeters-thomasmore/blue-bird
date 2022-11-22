@@ -8,6 +8,7 @@ import {useState} from "react";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
+import {Area} from "./components/Area";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -15,10 +16,10 @@ function MyCamera() {
         <PerspectiveCamera makeDefault position={[0, 2, 10]}/>
     );
 }
-
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
-    const [showCatalog, setShowCatalog] = useState(true);
+    const [showCatalog, setShowCatalog] = useState(false);
+    const [showAreas, setShowAreas] = useState(true);
     const [time, setTime] = useState(19);
     return (
         <>
@@ -40,6 +41,7 @@ export default function App() {
                 <Earth/>
                 <Floor/>
                 {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
+                {showAreas && <Area plant={PLANT_DATA[0]} time={time} x={0} z={0} width={2} length={2}/>}
                 <OrbitControls/>
             </Canvas>
         </>
