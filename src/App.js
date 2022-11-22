@@ -7,32 +7,7 @@ import {Floor} from "./components/Floor";
 import {useState} from "react";
 import {Plant} from "./components/Plant";
 import {Form} from "react-bootstrap";
-
-const plantDataCamissia = {
-    name: "Camassia leichtlinii ('Alba')",
-    textureWithoutFlower: "images/sprites/camissia.png",
-    textureWithFlower: "images/sprites/camissia_flower.png",
-    maxHeight: 70,
-    timeLine: {
-        growStart: 12,
-        growFinal: 15,
-        flowerStart: 18,
-        flowerEnd: 20,
-        die: 52,
-    },
-};
-const plantDataAliumC = {
-    textureWithoutFlower: "images/sprites/alium_christophii.png",
-    textureWithFlower: "images/sprites/alium_christophii_flower.png",
-    maxHeight: 50,
-    timeLine: {
-        growStart: 18,
-        growFinal: 21,
-        flowerStart: 22,
-        flowerEnd: 30,
-        die: 42,
-    },
-};
+import {PLANT_DATA} from "./data/plant.data";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -61,8 +36,9 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <Plant data={plantDataCamissia} time={time} position_x={2} position_z={2}/>
-                <Plant data={plantDataAliumC} time={time} position_x={1} position_z={1}/>
+                <Plant data={PLANT_DATA[0]} time={time} position_x={1} position_z={0}/>
+                <Plant data={PLANT_DATA[1]} time={time} position_x={1} position_z={1}/>
+                <Plant data={PLANT_DATA[2]} time={time} position_x={1} position_z={2}/>
                 <OrbitControls/>
             </Canvas>
         </>
