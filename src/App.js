@@ -25,7 +25,8 @@ function gardenEnrichedWithPlants(garden, plants) {
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
     const [showCatalog, setShowCatalog] = useState(false);
-    const [showAreas, setShowAreas] = useState(true);
+    const [showGarden, setShowGarden] = useState(true);
+    const [showAreaPlanes, setShowAreaPlanes] = useState(true);
     const [time, setTime] = useState(19);
     const areas = gardenEnrichedWithPlants(GARDEN_DATA_TWO_AREAS, PLANT_DATA);
     console.log(areas);
@@ -37,8 +38,10 @@ export default function App() {
                                 onChange={() => setShowAxes(!showAxes)}/>
                     <Form.Check type="checkbox" label="catalog" checked={showCatalog}
                                 onChange={() => setShowCatalog(!showCatalog)}/>
-                    <Form.Check type="checkbox" label="areas" checked={showAreas}
-                                onChange={() => setShowAreas(!showAreas)}/>
+                    <Form.Check type="checkbox" label="garden" checked={showGarden}
+                                onChange={() => setShowGarden(!showGarden)}/>
+                    <Form.Check type="checkbox" label="areas" checked={showAreaPlanes}
+                                onChange={() => setShowAreaPlanes(!showAreaPlanes)}/>
                     <Form.Control type="number" label="month" value={time}
                                   onChange={e => setTime(e.target.value)}/>
                 </Form>
@@ -51,7 +54,7 @@ export default function App() {
                 <Earth/>
                 <Floor/>
                 {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
-                {showAreas && <Areas time={time}
+                {showGarden && <Areas time={time} showAreaPlanes={showAreaPlanes}
                                      areas={areas}/>}
                 <OrbitControls/>
             </Canvas>
