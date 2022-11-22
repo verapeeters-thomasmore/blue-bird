@@ -8,8 +8,8 @@ export function PlantCatalogus(props) {
     return (
         <>
             {plants.map((p, i) => <Plant key={p.id} data={p} time={time}
-                                         position_x={i / COLS - FLOOR_WIDTH / 4}
-                                         position_z={i % COLS - FLOOR_WIDTH / 4}/>)}
+                                         x={i / COLS - FLOOR_WIDTH / 4}
+                                         z={i % COLS - FLOOR_WIDTH / 4}/>)}
         </>
     )
 }

@@ -41,7 +41,7 @@ export default function App() {
                 <Earth/>
                 <Floor/>
                 {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
-                {showAreas && <Area plant={PLANT_DATA[0]} time={time} x={0} z={0} width={2} length={2}/>}
+                {showAreas && <Area plant={PLANT_DATA[2]} time={time} x={3} z={3} width={2} length={2}/>}
                 <OrbitControls/>
             </Canvas>
         </>
