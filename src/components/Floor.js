@@ -1,9 +1,9 @@
 import {WORLD_FLOOR_BROWN} from "../constants/threeColors";
 import {useEffect, useRef} from "react";
-import {FLOOR_Y} from "../constants/dimensions";
+import {FLOOR_LENGTH, FLOOR_WIDTH, FLOOR_Y} from "../constants/dimensions";
 
 export function Floor(props) {
-    const {width=10, length=10} = props;
+    const {width=FLOOR_WIDTH, length=FLOOR_LENGTH} = props;
     const ref = useRef()
     useEffect(() => {
         ref.current.rotation.x = -Math.PI / 2

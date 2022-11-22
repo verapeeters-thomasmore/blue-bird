@@ -5,9 +5,9 @@ import {OrbitControls, PerspectiveCamera} from '@react-three/drei'
 import {Earth} from "./components/Earth";
 import {Floor} from "./components/Floor";
 import {useState} from "react";
-import {Plant} from "./components/Plant";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
+import {PlantCatalogus} from "./components/PlantCatalogus";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -36,9 +36,7 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <Plant data={PLANT_DATA[0]} time={time} position_x={1} position_z={0}/>
-                <Plant data={PLANT_DATA[1]} time={time} position_x={1} position_z={1}/>
-                <Plant data={PLANT_DATA[2]} time={time} position_x={1} position_z={2}/>
+                <PlantCatalogus plants={PLANT_DATA} time={time}/>
                 <OrbitControls/>
             </Canvas>
         </>
