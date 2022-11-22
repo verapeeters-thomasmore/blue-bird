@@ -33,7 +33,7 @@ export function Plant(props) {
     const ref = useRef()
     useEffect(() => {
         //default y: centre of sprite is at 0
-        ref.current.position.set(position_x, height / 2, position_z);
+        ref.current.position.set(position_x, height / 2 - 0.02, position_z);
         ref.current.scale.set(factoredMaxHeight, height, 1)
     })
 

@@ -18,6 +18,7 @@ function MyCamera() {
 
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
+    const [showCatalog, setShowCatalog] = useState(true);
     const [time, setTime] = useState(19);
     return (
         <>
@@ -25,6 +26,8 @@ export default function App() {
                 <Form>
                     <Form.Check type="checkbox" label="axes" checked={showAxes}
                                 onChange={() => setShowAxes(!showAxes)}/>
+                    <Form.Check type="checkbox" label="catalog" checked={showCatalog}
+                                onChange={() => setShowCatalog(!showCatalog)}/>
                     <Form.Control type="number" label="month" value={time}
                                   onChange={e => setTime(e.target.value)}/>
                 </Form>
@@ -36,7 +39,7 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <PlantCatalogus plants={PLANT_DATA} time={time}/>
+                {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
                 <OrbitControls/>
             </Canvas>
         </>
