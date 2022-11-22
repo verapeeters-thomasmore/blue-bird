@@ -61,10 +61,9 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <Plant data={plantDataCamissia} time={time} position_x={10} position_y={10}/>
-                <Plant data={plantDataAliumC} time={time} position_x={20} position_y={20}/>
-                <OrbitControls>
-                </OrbitControls>
+                <Plant data={plantDataCamissia} time={time} position_x={2} position_z={2}/>
+                <Plant data={plantDataAliumC} time={time} position_x={1} position_z={1}/>
+                <OrbitControls/>
             </Canvas>
         </>
     )

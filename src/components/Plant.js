@@ -20,7 +20,7 @@ function heightFactorToUse(time, data) {
 const heightFactor = 1 / 65;
 
 export function Plant(props) {
-    const {data, time} = props;
+    const {data, time, position_x, position_z} = props;
     const texture = textureToUse(time, data);
     const scaleHeight = heightFactorToUse(time, data);
     const factoredMaxHeight = data.maxHeight * heightFactor;
@@ -33,7 +33,7 @@ export function Plant(props) {
     const ref = useRef()
     useEffect(() => {
         //default y: centre of sprite is at 0
-        ref.current.position.set(0, height / 2);
+        ref.current.position.set(position_x, height / 2, position_z);
         ref.current.scale.set(factoredMaxHeight, height, 1)
     })
 
