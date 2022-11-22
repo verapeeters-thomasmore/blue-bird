@@ -8,7 +8,8 @@ import {useState} from "react";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
-import {Area} from "./components/Area";
+import {GARDEN_DATA_TWO_AREAS} from "./data/area.data";
+import {Areas} from "./components/Areas";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -16,11 +17,18 @@ function MyCamera() {
         <PerspectiveCamera makeDefault position={[0, 2, 10]}/>
     );
 }
+
+function gardenEnrichedWithPlants(garden, plants) {
+    return garden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
+}
+
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
     const [showCatalog, setShowCatalog] = useState(false);
     const [showAreas, setShowAreas] = useState(true);
     const [time, setTime] = useState(19);
+    const areas = gardenEnrichedWithPlants(GARDEN_DATA_TWO_AREAS, PLANT_DATA);
+    console.log(areas);
     return (
         <>
             <div className="m-1 p-1 bg-primary">
@@ -29,6 +37,8 @@ export default function App() {
                                 onChange={() => setShowAxes(!showAxes)}/>
                     <Form.Check type="checkbox" label="catalog" checked={showCatalog}
                                 onChange={() => setShowCatalog(!showCatalog)}/>
+                    <Form.Check type="checkbox" label="areas" checked={showAreas}
+                                onChange={() => setShowAreas(!showAreas)}/>
                     <Form.Control type="number" label="month" value={time}
                                   onChange={e => setTime(e.target.value)}/>
                 </Form>
@@ -41,7 +51,8 @@ export default function App() {
                 <Earth/>
                 <Floor/>
                 {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
-                {showAreas && <Area plant={PLANT_DATA[2]} time={time} x={3} z={3} width={2} length={2}/>}
+                {showAreas && <Areas time={time}
+                                     areas={areas}/>}
                 <OrbitControls/>
             </Canvas>
         </>

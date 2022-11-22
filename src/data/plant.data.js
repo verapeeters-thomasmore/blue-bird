@@ -17,6 +17,7 @@ let PLANT_ID = 1;
 export const PLANT_DATA = [
     {
         id: PLANT_ID++,
+        shortName: 'allium_christophii',
         name: "Allium 'christophii'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALCHRI12",
         textureWithoutFlower: "images/sprites/alium_christophii.png",
@@ -34,6 +35,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'alium_gladiator',
         name: "Alium 'Gladiator'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALGLAD",
         textureWithoutFlower: "images/sprites/alium_gladiator.png",
@@ -51,6 +53,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'alium_sphaerocephalon',
         name: "Alium sphaerocephalon",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALSPHA",
         textureWithoutFlower: "images/sprites/alium_sphaerocephalon.png",
@@ -68,6 +71,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'anthericum_liliago',
         name: "Anthericum liliago",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ANLILI",
         textureWithoutFlower: "images/sprites/anthericum_liliago.png",
@@ -85,6 +89,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'asclepias',
         name: "Asclepias tuberosa subsp. interior",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ASINTE",
         textureWithoutFlower: "images/sprites/asclepias.png",
@@ -102,6 +107,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'aster',
         name: "Aster JS® 'Eleven Purple' PBR",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ASEPUR",
         textureWithoutFlower: "images/sprites/aster.png",
@@ -119,6 +125,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'calamagrostis',
         name: "Calamagrostis acutiflora",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CAWALD",
         textureWithoutFlower: "images/sprites/calamagrostis.png",
@@ -136,6 +143,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'camissia',
         name: "Camassia leichtlinii ('Alba')",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CALEIC12",
         textureWithoutFlower: "images/sprites/camissia.png",
@@ -153,6 +161,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'crocus',
         name: "Crocus tommasinianus",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=CRTOMM",
         textureWithoutFlower: "images/sprites/crocus.png",
@@ -170,6 +179,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'deschampsia',
         name: "Deschampsia cespitosa 'Tardiflora'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=DETARD",
         textureWithoutFlower: "images/sprites/deschampsia.png",
@@ -188,6 +198,7 @@ export const PLANT_DATA = [
 
     {
         id: PLANT_ID++,
+        shortName: 'echinacea_purpurea_green_jewel',
         name: "Echinacea purpurea 'Green Jewel' PBR",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ECGJEW",
         textureWithoutFlower: "images/sprites/echinacea_green_juwel.png",
@@ -205,6 +216,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'echinacea_purpurea_polar_breeze',
         name: "Echinacea purpurea 'Polar Breeze' PBR",
         flowerColor: WHITE,
         textureWithoutFlower: "images/sprites/echinacea_polar_breeze.png",
@@ -221,6 +233,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'echinacea_tennesseensis',
         name: "Echinacea tennesseensis 'Rocky Top'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ECRTOP",
         textureWithoutFlower: "images/sprites/echinacea_tennesseensis.png",
@@ -239,6 +252,7 @@ export const PLANT_DATA = [
 
     {
         id: PLANT_ID++,
+        shortName: 'eremurus',
         name: "Eremurus stenophyllus",
         flowerColor: YELLOW,
         textureWithoutFlower: "images/sprites/eremurus.png",
@@ -256,6 +270,7 @@ export const PLANT_DATA = [
 
     {
         id: PLANT_ID++,
+        shortName: 'hyacint',
         name: "Hyacinthus multiflora 'Alba'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=HYMALB",
         textureWithoutFlower: "images/sprites/hyacint.png",
@@ -273,6 +288,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'lillium_gironde',
         name: "Lilium 'Gironde'",
         textureWithoutFlower: "images/sprites/lillium_gironde.png",
         textureWithFlower: "images/sprites/lillium_gironde_flower.png",
@@ -289,6 +305,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'lillium_regale',
         name: "Lilium regale",
         textureWithoutFlower: "images/sprites/lillium_regale.png",
         textureWithFlower: "images/sprites/lillium_regale_flower.png",
@@ -305,6 +322,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'narcis',
         name: "Narcis",
         textureWithoutFlower: "images/sprites/narcis.png",
         textureWithFlower: "images/sprites/narcis_flower.png",
@@ -321,6 +339,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'nepeta',
         name: "Nepeta racemosa 'Superba'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=NESUPE",
         textureWithoutFlower: "images/sprites/nepeta.png",
@@ -338,6 +357,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'ornithogalum',
         name: "Ornithogalum ponticum 'Sochi'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ORSOCH",
         textureWithoutFlower: "images/sprites/ornithogalum.png",
@@ -355,6 +375,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'sporobolus',
         name: "Sporobolus airoides",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=SPAIRO",
         textureWithoutFlower: "images/sprites/sporobolus.png",
@@ -372,6 +393,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'stipa',
         name: "Stipa tenuissima",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=STTENU",
         textureWithoutFlower: "images/sprites/stipa.png",
@@ -389,6 +411,7 @@ export const PLANT_DATA = [
     },
     {
         id: PLANT_ID++,
+        shortName: 'tulip',
         name: "Tulipa 'Blue Diamond'",
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=TUBDIA",
         textureWithoutFlower: "images/sprites/tulip.png",

@@ -3,7 +3,8 @@ import {useRef} from "react";
 import {Plant} from "./Plant";
 
 export function Area(props) {
-    const {plant, time, x, z, width, length} = props;
+    const {time, area} = props;
+    const {plant, x, z, width, length} = area;
     const ref = useRef()
 
     return (
