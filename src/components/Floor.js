@@ -12,7 +12,7 @@ export function Floor(props) {
         <mesh
             {...props}
             ref={ref}
-            position={[0, -0.1, 0]}
+            position={[0, -0.01, 0]}
             name="floor">
             <planeGeometry args={[width, length, 1, 1]}/>
             <meshLambertMaterial color={WORLD_FLOOR_BROWN}/>

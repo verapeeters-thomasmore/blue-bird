@@ -1,9 +1,9 @@
 import {Canvas} from '@react-three/fiber'
 import {OrbitControls} from '@react-three/drei'
-import {Box} from "./components/Box";
 import {Earth} from "./components/Earth";
 import {Floor} from "./components/Floor";
 import {useState} from "react";
+import {Plant} from "./components/Plant";
 
 export default function App() {
     const [showAxes, setShowAxes] = useState(false);
@@ -22,9 +22,7 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 <Earth/>
                 <Floor/>
-                <Box position={[-1.2, 0, 0]}/>
-                <Box position={[1.2, 0, 0]}/>
-                <Box position={[3, 0, 0]}/>
+                <Plant/>
                 <OrbitControls/>
             </Canvas>
         </>
