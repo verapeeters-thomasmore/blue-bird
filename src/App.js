@@ -82,3 +82,24 @@ export default function App() {
         </>
     )
 }
+
+
+/*
+TODO
+-- easy
+* ControlsContext
+* TimeContext
+* modal for controls
+* nice timer-slider
+* timer cyclic
+* timer autorun
+* timer autorun fast/slow
+* choose predefined garden
+* controls in localstorage
+* camera settings in localstorage
+--- bigger stories
+* plant topview
+* edit areas
+* database / storage
+* tutorial
+ */
