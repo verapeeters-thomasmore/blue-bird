@@ -7,3 +7,4 @@ function randomPoint(size) {
 export function calculatePlantPositions(nrOfPlants, width, length) {
     return [...Array(nrOfPlants).keys()].map(i => ({id: i, x: randomPoint(width), z: randomPoint(length)}));
 }
+

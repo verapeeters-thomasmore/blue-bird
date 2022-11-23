@@ -23,16 +23,18 @@ function AreaPlane(props) {
 
 
 export function Area(props) {
-    const {time, area, showAreaPlanes} = props;
-    const areaSize = area.width * area.length;
-    const [nrOfPlants, setNrOfPlants] = useState(Math.floor(areaSize * area.plant.plantsPerM2));
-    const [plantPositions, setPlantPositions] = useState(() => calculatePlantPositions(nrOfPlants, area.width, area.length));
-    console.log(area.plantName, area, areaSize, nrOfPlants, plantPositions)
+    const {time, area, showAreaPlanes=true} = props;
+    const {plant, width, length, x, z} = area;
+    const areaSize = width * length;
+    const [nrOfPlants, setNrOfPlants] = useState(Math.floor(areaSize * plant.plantsPerM2));
+    console.log(plant.shortName, area, areaSize, nrOfPlants)
+    const [plantPositions, setPlantPositions] = useState(() => calculatePlantPositions(nrOfPlants, width, length));
+    console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
 
     return (
         <>
             <AreaPlane area={area} showAreaPlanes={showAreaPlanes}/>
-            {plantPositions.map(pos => <Plant key={pos.id} data={area.plant} time={time} x={area.x+pos.x} z={area.z+pos.z}/>)}
+            {plantPositions.map(pos => <Plant key={pos.id} data={plant} time={time} x={x+pos.x} z={z+pos.z}/>)}
         </>
     )
 }

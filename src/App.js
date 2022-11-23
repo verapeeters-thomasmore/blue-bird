@@ -34,9 +34,9 @@ export default function App() {
     const [showControls, setShowControls] = useState(false);
     const [showWorld, setShowWorld] = useState(true);
     const [showFloor, setShowFloor] = useState(true);
-    const [showAxes, setShowAxes] = useState(false);
-    const [showCatalog, setShowCatalog] = useState(false);
-    const [showGarden, setShowGarden] = useState(true);
+    const [showAxes, setShowAxes] = useState(true);
+    const [showCatalog, setShowCatalog] = useState(true);
+    const [showGarden, setShowGarden] = useState(false);
     const [showAreaPlanes, setShowAreaPlanes] = useState(true);
     const [time, setTime] = useState(24);
     const areas = gardenEnrichedWithPlants(GARDEN_DATA_FEW_AREAS, PLANT_DATA);
@@ -73,7 +73,7 @@ export default function App() {
                 {showAxes && <axesHelper/>}
                 {showWorld && <World/>}
                 {showFloor && <Floor/>}
-                {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
+                {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time} showAreaPlanes={showAreaPlanes}/>}
                 {showGarden && <Areas time={time} showAreaPlanes={showAreaPlanes}
                                       areas={areas}/>}
                 <OrbitControls/>
