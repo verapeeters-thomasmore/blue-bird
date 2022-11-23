@@ -1,5 +1,5 @@
 import {AREA_Y} from "../constants/dimensions";
-import {useRef, useState} from "react";
+import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../utils/area_utils";
 
@@ -26,9 +26,8 @@ export function Area(props) {
     const {time, area, showAreaPlanes=true} = props;
     const {plant, width, length, x, z} = area;
     const areaSize = width * length;
-    const [nrOfPlants, setNrOfPlants] = useState(Math.floor(areaSize * plant.plantsPerM2));
-    console.log(plant.shortName, area, areaSize, nrOfPlants)
-    const [plantPositions, setPlantPositions] = useState(() => calculatePlantPositions(nrOfPlants, width, length));
+    const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
+    const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants, width, length), [nrOfPlants, width, length]);
     console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
 
     return (
