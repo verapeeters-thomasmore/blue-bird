@@ -13,4 +13,4 @@ export const VIOLET2 = 0xab71f7;
 export const WHITE = 0xeeeeee;
 export const WORLD_FLOOR_BROWN = 0x113511;
 export const WORLD_GRASS_GREEN = 0x115511;
-export const WORLD_SKY_BLUE = 0x8DDBE0;
+export const WORLD_SKY_BLUE = "#8DDBE0";

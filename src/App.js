@@ -10,6 +10,7 @@ import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
 import {PREDEFINED_GARDENS} from "./data/area.data";
 import {Areas} from "./components/Areas";
+import {WORLD_SKY_BLUE} from "./constants/threeColors";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -66,7 +67,7 @@ export default function App() {
                                   onChange={e => setTime(e.target.value)}/>
                 </Form>
             </div>
-            <Canvas>
+            <Canvas style={{background: WORLD_SKY_BLUE}}>
                 <MyCamera/>
                 <ambientLight intensity={2.5}/>
                 <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
