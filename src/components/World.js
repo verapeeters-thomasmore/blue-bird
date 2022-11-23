@@ -2,7 +2,7 @@ import {WORLD_GRASS_GREEN} from "../constants/threeColors";
 import {useRef} from "react";
 import {EARTH_Y} from "../constants/dimensions";
 
-export function Earth(props) {
+export function World(props) {
     const ref = useRef()
     return (
         <mesh
