@@ -39,7 +39,7 @@ export default function App() {
     const [showGarden, setShowGarden] = useState(true);
     const [showAreaPlanes, setShowAreaPlanes] = useState(false);
     const [time, setTime] = useState(24);
-    const areas = gardenEnrichedWithPlants(PREDEFINED_GARDENS[3].areas, PLANT_DATA);
+    const areas = gardenEnrichedWithPlants(PREDEFINED_GARDENS[5].areas, PLANT_DATA);
     //console.log(areas);
     return (
         <>
