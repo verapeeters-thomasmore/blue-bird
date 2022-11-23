@@ -8,13 +8,13 @@ import {useState} from "react";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
-import {GARDEN_DATA_FEW_AREAS} from "./data/area.data";
+import {PREDEFINED_GARDENS} from "./data/area.data";
 import {Areas} from "./components/Areas";
 
 function MyCamera() {
     // noinspection RequiredAttributes
     return (
-        <PerspectiveCamera makeDefault position={[0, 1.5, 3]}/>
+        <PerspectiveCamera makeDefault position={[0, 3, 20]} zoom={5}/>
     );
 }
 
@@ -34,12 +34,12 @@ export default function App() {
     const [showControls, setShowControls] = useState(false);
     const [showWorld, setShowWorld] = useState(true);
     const [showFloor, setShowFloor] = useState(true);
-    const [showAxes, setShowAxes] = useState(true);
-    const [showCatalog, setShowCatalog] = useState(true);
-    const [showGarden, setShowGarden] = useState(false);
-    const [showAreaPlanes, setShowAreaPlanes] = useState(true);
+    const [showAxes, setShowAxes] = useState(false);
+    const [showCatalog, setShowCatalog] = useState(false);
+    const [showGarden, setShowGarden] = useState(true);
+    const [showAreaPlanes, setShowAreaPlanes] = useState(false);
     const [time, setTime] = useState(24);
-    const areas = gardenEnrichedWithPlants(GARDEN_DATA_FEW_AREAS, PLANT_DATA);
+    const areas = gardenEnrichedWithPlants(PREDEFINED_GARDENS[3].areas, PLANT_DATA);
     //console.log(areas);
     return (
         <>
