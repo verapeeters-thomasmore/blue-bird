@@ -8,7 +8,7 @@ import {useState} from "react";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
-import {GARDEN_DATA_TWO_AREAS} from "./data/area.data";
+import {GARDEN_DATA_FEW_AREAS} from "./data/area.data";
 import {Areas} from "./components/Areas";
 
 function MyCamera() {
@@ -38,8 +38,8 @@ export default function App() {
     const [showCatalog, setShowCatalog] = useState(false);
     const [showGarden, setShowGarden] = useState(true);
     const [showAreaPlanes, setShowAreaPlanes] = useState(true);
-    const [time, setTime] = useState(19);
-    const areas = gardenEnrichedWithPlants(GARDEN_DATA_TWO_AREAS, PLANT_DATA);
+    const [time, setTime] = useState(24);
+    const areas = gardenEnrichedWithPlants(GARDEN_DATA_FEW_AREAS, PLANT_DATA);
     //console.log(areas);
     return (
         <>
