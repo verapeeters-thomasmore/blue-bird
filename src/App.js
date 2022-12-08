@@ -1,7 +1,7 @@
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Canvas} from '@react-three/fiber'
-import {OrbitControls, PerspectiveCamera} from '@react-three/drei'
+import {OrbitControls} from '@react-three/drei'
 import {World} from "./components/World";
 import {Floor} from "./components/Floor";
 import {useMemo, useState} from "react";
@@ -12,41 +12,21 @@ import {PREDEFINED_GARDENS} from "./data/area.data";
 import {Areas} from "./components/Areas";
 import {WORLD_SKY_BLUE} from "./constants/threeColors";
 import {
-    ControlsProvider, SHOW_AREA_PLANES,
+    ControlsProvider,
+    SHOW_AREA_PLANES,
     SHOW_AXES,
     SHOW_CATALOG,
-    SHOW_FLOOR, SHOW_GARDEN,
+    SHOW_FLOOR,
+    SHOW_GARDEN,
     SHOW_WORLD,
     useControlsContext
 } from "./contexts/ControlsContext";
-
-function MyCamera() {
-    // noinspection RequiredAttributes
-    return (
-        <PerspectiveCamera makeDefault position={[0, 3, 20]} zoom={5}/>
-    );
-}
+import {Camera} from "./components/Camera";
+import {ControlsCheckBox} from "./components/ControlsCheckBox";
+import {SimpleCheckBox} from "./components/SimpleCheckBox";
 
 function gardenEnrichedWithPlants(garden, plants) {
     return garden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
-}
-
-function MyCheckBox(props) {
-    const {title, value, setValue} = props;
-    return (
-        <Form.Check type="checkbox" label={title} checked={value}
-                    onChange={() => setValue(!value)}/>
-    );
-}
-
-function ControlsCheckBox(props) {
-    const {title, controlKey} = props;
-    const {controlValue, toggleControl} = useControlsContext();
-
-    return (
-        <Form.Check type="checkbox" label={title} checked={controlValue(controlKey)}
-                    onChange={() => toggleControl(controlKey)}/>
-    );
 }
 
 function ProvidedApp() {
@@ -60,7 +40,7 @@ function ProvidedApp() {
         <>
             <div className="m-1 p-1 bg-primary">
                 <Form>
-                    <MyCheckBox title="controls" value={showControls} setValue={setShowControls}/>
+                    <SimpleCheckBox title="controls" value={showControls} setValue={setShowControls}/>
                 </Form>
             </div>
             {showControls &&
@@ -82,7 +62,7 @@ function ProvidedApp() {
                 </Form>
             </div>
             <Canvas style={{background: WORLD_SKY_BLUE}}>
-                <MyCamera/>
+                <Camera/>
                 <ambientLight intensity={2.5}/>
                 <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
                 {controlValue(SHOW_AXES) && <axesHelper/>}
