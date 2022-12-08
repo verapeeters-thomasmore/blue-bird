@@ -4,7 +4,7 @@ import {Canvas} from '@react-three/fiber'
 import {OrbitControls, PerspectiveCamera} from '@react-three/drei'
 import {World} from "./components/World";
 import {Floor} from "./components/Floor";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {Form} from "react-bootstrap";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantCatalogus} from "./components/PlantCatalogus";
@@ -54,7 +54,7 @@ function ProvidedApp() {
     const {controlValue} = useControlsContext();
 
     const [time, setTime] = useState(24);
-    const areas = gardenEnrichedWithPlants(PREDEFINED_GARDENS[5].areas, PLANT_DATA);
+    const areas = useMemo(() => gardenEnrichedWithPlants(PREDEFINED_GARDENS[5].areas, PLANT_DATA), []);
     //console.log(areas);
     return (
         <>
