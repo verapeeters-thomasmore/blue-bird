@@ -2,6 +2,7 @@ import {useEffect, useRef} from "react";
 import {useLoader} from "@react-three/fiber";
 import {TextureLoader} from "three";
 import {PLANT_ANTI_FLOAT_CORRECTION_Y} from "../constants/dimensions";
+import {useTimeContext} from "../contexts/TimeContext";
 
 function textureToUse(time, data) {
     if (time < data.timeLine.growStart || data.timeLine.die < time) return "";
@@ -21,7 +22,9 @@ function getScaleFromTime(time, data) {
 the sprites are squares (65x65)
  */
 export function Plant(props) {
-    const {data, time, x, z} = props;
+    const {data, x, z} = props;
+    const {time} = useTimeContext();
+
     const texture = textureToUse(time, data);
     const scaleFromTime = getScaleFromTime(time, data);
     const heightToDisplayInMeter = data.maxHeight / 100;

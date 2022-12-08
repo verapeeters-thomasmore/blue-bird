@@ -26,7 +26,7 @@ function AreaPlane(props) {
 
 
 export function Area(props) {
-    const {time, area = true} = props;
+    const {area} = props;
     const {plant, width, length, x, z} = area;
     const areaSize = width * length;
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
@@ -36,7 +36,7 @@ export function Area(props) {
     return (
         <>
             <AreaPlane area={area}/>
-            {plantPositions.map(pos => <Plant key={pos.id} data={plant} time={time} x={x + pos.x} z={z + pos.z}/>)}
+            {plantPositions.map(pos => <Plant key={pos.id} data={plant} x={x + pos.x} z={z + pos.z}/>)}
         </>
     )
 }

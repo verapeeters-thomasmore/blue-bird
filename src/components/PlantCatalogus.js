@@ -5,10 +5,10 @@ import {Area} from "./Area";
 const COLS = 5;
 
 export function PlantCatalogusOLD(props) {
-    const {plants, time} = props;
+    const {plants} = props;
     return (
         <>
-            {plants.map((p, i) => <Plant key={p.id} data={p} time={time}
+            {plants.map((p, i) => <Plant key={p.id} data={p}
                                          x={i / COLS - FLOOR_WIDTH / 4}
                                          z={i % COLS - FLOOR_WIDTH / 4}/>)}
         </>
@@ -16,12 +16,12 @@ export function PlantCatalogusOLD(props) {
 }
 
 export function PlantCatalogus(props) {
-    const {plants, time} = props;
+    const {plants} = props;
 
     return (
         <>
             {plants.map((p, i) =>
-                <Area key={p.id} time={time}
+                <Area key={p.id}
                       area={{
                           plant: p,
                           width: 1,
