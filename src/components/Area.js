@@ -2,11 +2,14 @@ import {AREA_Y} from "../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../utils/area_utils";
+import {SHOW_AREA_PLANES, useControlsContext} from "../contexts/ControlsContext";
 
 function AreaPlane(props) {
-    const {area, showAreaPlanes} = props;
+    const {area} = props;
+    const {controlValue} = useControlsContext();
+
     const {plant, x, z, width, length} = area;
-    if (!showAreaPlanes) return;
+    if (!controlValue(SHOW_AREA_PLANES)) return;
     const ref = useRef()
     return (
         <mesh
@@ -23,7 +26,7 @@ function AreaPlane(props) {
 
 
 export function Area(props) {
-    const {time, area, showAreaPlanes=true} = props;
+    const {time, area = true} = props;
     const {plant, width, length, x, z} = area;
     const areaSize = width * length;
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
@@ -32,8 +35,8 @@ export function Area(props) {
 
     return (
         <>
-            <AreaPlane area={area} showAreaPlanes={showAreaPlanes}/>
-            {plantPositions.map(pos => <Plant key={pos.id} data={plant} time={time} x={x+pos.x} z={z+pos.z}/>)}
+            <AreaPlane area={area}/>
+            {plantPositions.map(pos => <Plant key={pos.id} data={plant} time={time} x={x + pos.x} z={z + pos.z}/>)}
         </>
     )
 }

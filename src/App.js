@@ -88,9 +88,8 @@ function ProvidedApp() {
                 {controlValue(SHOW_AXES) && <axesHelper/>}
                 {controlValue(SHOW_WORLD) && <World/>}
                 {controlValue(SHOW_FLOOR) && <Floor/>}
-                {controlValue(SHOW_CATALOG) && <PlantCatalogus plants={PLANT_DATA} time={time} showAreaPlanes={controlValue(SHOW_AREA_PLANES)}/>}
-                {controlValue(SHOW_GARDEN) && <Areas time={time} showAreaPlanes={controlValue(SHOW_AREA_PLANES)}
-                                      areas={areas}/>}
+                {controlValue(SHOW_CATALOG) && <PlantCatalogus plants={PLANT_DATA} time={time}/>}
+                {controlValue(SHOW_GARDEN) && <Areas time={time} areas={areas}/>}
                 <OrbitControls/>
             </Canvas>
         </>

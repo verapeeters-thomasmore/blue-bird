@@ -16,11 +16,12 @@ export function PlantCatalogusOLD(props) {
 }
 
 export function PlantCatalogus(props) {
-    const {plants, time, showAreaPlanes} = props;
+    const {plants, time} = props;
+
     return (
         <>
             {plants.map((p, i) =>
-                <Area key={p.id} time={time} showAreaPlanes={showAreaPlanes}
+                <Area key={p.id} time={time}
                       area={{
                           plant: p,
                           width: 1,
