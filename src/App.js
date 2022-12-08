@@ -11,6 +11,14 @@ import {PlantCatalogus} from "./components/PlantCatalogus";
 import {PREDEFINED_GARDENS} from "./data/area.data";
 import {Areas} from "./components/Areas";
 import {WORLD_SKY_BLUE} from "./constants/threeColors";
+import {
+    ControlsProvider, SHOW_AREA_PLANES,
+    SHOW_AXES,
+    SHOW_CATALOG,
+    SHOW_FLOOR, SHOW_GARDEN,
+    SHOW_WORLD,
+    useControlsContext
+} from "./contexts/ControlsContext";
 
 function MyCamera() {
     // noinspection RequiredAttributes
@@ -31,14 +39,20 @@ function MyCheckBox(props) {
     );
 }
 
-export default function App() {
+function ControlsCheckBox(props) {
+    const {title, controlKey} = props;
+    const {controlValue, toggleControl} = useControlsContext();
+
+    return (
+        <Form.Check type="checkbox" label={title} checked={controlValue(controlKey)}
+                    onChange={() => toggleControl(controlKey)}/>
+    );
+}
+
+function ProvidedApp() {
     const [showControls, setShowControls] = useState(false);
-    const [showWorld, setShowWorld] = useState(true);
-    const [showFloor, setShowFloor] = useState(true);
-    const [showAxes, setShowAxes] = useState(false);
-    const [showCatalog, setShowCatalog] = useState(false);
-    const [showGarden, setShowGarden] = useState(true);
-    const [showAreaPlanes, setShowAreaPlanes] = useState(false);
+    const {controlValue} = useControlsContext();
+
     const [time, setTime] = useState(24);
     const areas = gardenEnrichedWithPlants(PREDEFINED_GARDENS[5].areas, PLANT_DATA);
     //console.log(areas);
@@ -52,12 +66,12 @@ export default function App() {
             {showControls &&
                 <div className="m-1 p-1 bg-primary">
                     <Form>
-                        <MyCheckBox title="axes" value={showAxes} setValue={setShowAxes}/>
-                        <MyCheckBox title="world" value={showWorld} setValue={setShowWorld}/>
-                        <MyCheckBox title="floor" value={showFloor} setValue={setShowFloor}/>
-                        <MyCheckBox title="catalog" value={showCatalog} setValue={setShowCatalog}/>
-                        <MyCheckBox title="garden" value={showGarden} setValue={setShowGarden}/>
-                        <MyCheckBox title="areas" value={showAreaPlanes} setValue={setShowAreaPlanes}/>
+                        <ControlsCheckBox title="axes" controlKey={SHOW_AXES}/>
+                        <ControlsCheckBox title="world" controlKey={SHOW_WORLD}/>
+                        <ControlsCheckBox title="floor" controlKey={SHOW_FLOOR}/>
+                        <ControlsCheckBox title="catalog" controlKey={SHOW_CATALOG}/>
+                        <ControlsCheckBox title="garden" controlKey={SHOW_GARDEN}/>
+                        <ControlsCheckBox title="areas" controlKey={SHOW_AREA_PLANES}/>
                     </Form>
                 </div>
             }
@@ -71,11 +85,11 @@ export default function App() {
                 <MyCamera/>
                 <ambientLight intensity={2.5}/>
                 <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
-                {showAxes && <axesHelper/>}
-                {showWorld && <World/>}
-                {showFloor && <Floor/>}
-                {showCatalog && <PlantCatalogus plants={PLANT_DATA} time={time} showAreaPlanes={showAreaPlanes}/>}
-                {showGarden && <Areas time={time} showAreaPlanes={showAreaPlanes}
+                {controlValue(SHOW_AXES) && <axesHelper/>}
+                {controlValue(SHOW_WORLD) && <World/>}
+                {controlValue(SHOW_FLOOR) && <Floor/>}
+                {controlValue(SHOW_CATALOG) && <PlantCatalogus plants={PLANT_DATA} time={time} showAreaPlanes={controlValue(SHOW_AREA_PLANES)}/>}
+                {controlValue(SHOW_GARDEN) && <Areas time={time} showAreaPlanes={controlValue(SHOW_AREA_PLANES)}
                                       areas={areas}/>}
                 <OrbitControls/>
             </Canvas>
@@ -83,11 +97,20 @@ export default function App() {
     )
 }
 
+export default function App() {
+    return (
+        <ControlsProvider>
+            <ProvidedApp/>
+        </ControlsProvider>
+    )
+
+}
+
 
 /*
 TODO
 -- easy
-* ControlsContext
+* use controlsContext deeper?
 * TimeContext
 * modal for controls
 * nice timer-slider

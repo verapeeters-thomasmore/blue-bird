@@ -28,7 +28,7 @@ export function Area(props) {
     const areaSize = width * length;
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
     const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants, width, length), [nrOfPlants, width, length]);
-    console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
+    // console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
 
     return (
         <>
