@@ -6,8 +6,8 @@ import {PREDEFINED_GARDENS} from "./data/area.data";
 import {ControlsProvider} from "./contexts/ControlsContext";
 import {GardenCanvas} from "./components/GardenCanvas";
 import {Timer} from "./components/Timer";
-import {Controls} from "./components/Controls";
 import {TimeProvider} from "./contexts/TimeContext";
+import {GardenNavbar} from "./components/GardenNavbar";
 
 function gardenEnrichedWithPlants(garden, plants) {
     return garden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
@@ -20,7 +20,7 @@ function ProvidedApp() {
 
     return (
         <>
-            <Controls/>
+            <GardenNavbar/>
             <Timer/>
             <GardenCanvas areas={areas}/>
         </>
@@ -49,6 +49,7 @@ TODO
 * timer autorun
 * timer autorun fast/slow
 * width/height of world depending on width/height window
+* color scheme
 * choose predefined garden
 * controls in localstorage
 * camera settings in localstorage

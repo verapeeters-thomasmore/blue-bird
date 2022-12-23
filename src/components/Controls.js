@@ -9,6 +9,8 @@ import {
     SHOW_GARDEN,
     SHOW_WORLD
 } from "../contexts/ControlsContext";
+import {TbSettings} from "react-icons/tb";
+import {ICON_SIZE} from "../constants/uiSizes";
 
 function ControlsCheckBoxCol(props) {
     return <Col xs="6" sm="4" className="p-1">
@@ -38,8 +40,12 @@ export function Controls() {
 
     return (
         <>
-            <div className="m-1 p-1 bg-primary">
-                <Button onClick={() => setShowControls(true)}>controls</Button>
+            <div>
+                <Button variant="outline-primary"
+                        className="m-2 border-0"
+                        onClick={() => setShowControls(true)}>
+                    <TbSettings size={ICON_SIZE}/>
+                </Button>
             </div>
             <Modal show={showControls}
                    onHide={() => setShowControls(showControls => !showControls)}>
