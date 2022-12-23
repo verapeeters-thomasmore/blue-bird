@@ -23,10 +23,11 @@ export function TimeProvider(props) {
         }
     }, [intervalID, incrementTime]);
 
+    const isTimerRunning = useMemo(() => !!intervalID, [intervalID]);
 
     const api = useMemo(() => ({
-        time, setTime, toggleTimer
-    }), [time, setTime, toggleTimer]);
+        time, setTime, toggleTimer, isTimerRunning
+    }), [time, setTime, toggleTimer, isTimerRunning]);
 
     return <TimeContext.Provider value={api}>
         {props.children}

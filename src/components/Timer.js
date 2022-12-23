@@ -1,11 +1,11 @@
 import {Button, Form} from "react-bootstrap";
 import {useTimeContext} from "../contexts/TimeContext";
-import {FaPlay} from 'react-icons/fa';
+import {FaPlay, FaPause} from 'react-icons/fa';
 import {UI_WHITE} from "../constants/uiColors";
 import RangeSlider from 'react-bootstrap-range-slider';
 
 export function Timer() {
-    const {time, setTime, toggleTimer} = useTimeContext();
+    const {time, setTime, toggleTimer, isTimerRunning} = useTimeContext();
     return (
         <>
             <Form className="border m-0 p-0"
@@ -14,7 +14,7 @@ export function Timer() {
                     <Button variant="outline-primary"
                             className="my-0 mx-1 p-0 border-0"
                             onClick={toggleTimer}>
-                        <FaPlay size={25}/>
+                        {isTimerRunning ? <FaPause size={25}/> : <FaPlay size={25}/>}
                     </Button>
                     <div className="my-0 mx-1 p-0 flex-grow-1">
                         <RangeSlider
