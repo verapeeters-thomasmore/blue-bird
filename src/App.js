@@ -1,5 +1,6 @@
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import {useMemo} from "react";
 import {PLANT_DATA} from "./data/plant.data";
 import {PREDEFINED_GARDENS} from "./data/area.data";
