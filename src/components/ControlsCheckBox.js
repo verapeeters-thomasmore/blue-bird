@@ -6,7 +6,9 @@ export function ControlsCheckBox(props) {
     const {controlValue, toggleControl} = useControlsContext();
 
     return (
-        <Form.Check type="checkbox" label={title} checked={controlValue(controlKey)}
+        <Form.Check type="checkbox"
+                    label={title}
+                    checked={controlValue(controlKey)}
                     onChange={() => toggleControl(controlKey)}/>
     );
 }

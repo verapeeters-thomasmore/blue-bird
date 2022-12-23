@@ -1,6 +1,5 @@
 import {useState} from "react";
-import {Form} from "react-bootstrap";
-import {SimpleCheckBox} from "./SimpleCheckBox";
+import {Button, Col, Form, Modal, Row} from "react-bootstrap";
 import {ControlsCheckBox} from "./ControlsCheckBox";
 import {
     SHOW_AREA_PLANES,
@@ -11,28 +10,46 @@ import {
     SHOW_WORLD
 } from "../contexts/ControlsContext";
 
+function ControlsCheckBoxCol(props) {
+    return <Col xs="6" sm="4" className="p-1">
+        <ControlsCheckBox {...props}/>
+    </Col>
+}
+
+function ControlsContent() {
+    return (
+        <div className="m-1 p-1">
+            <Form>
+                <Row>
+                    <ControlsCheckBoxCol title="axes" controlKey={SHOW_AXES}/>
+                    <ControlsCheckBoxCol title="world" controlKey={SHOW_WORLD}/>
+                    <ControlsCheckBoxCol title="floor" controlKey={SHOW_FLOOR}/>
+                    <ControlsCheckBoxCol title="catalog" controlKey={SHOW_CATALOG}/>
+                    <ControlsCheckBoxCol title="garden" controlKey={SHOW_GARDEN}/>
+                    <ControlsCheckBoxCol title="areas" controlKey={SHOW_AREA_PLANES}/>
+                </Row>
+            </Form>
+        </div>
+    )
+}
+
 export function Controls() {
     const [showControls, setShowControls] = useState(false);
 
     return (
         <>
             <div className="m-1 p-1 bg-primary">
-                <Form>
-                    <SimpleCheckBox title="controls" value={showControls} setValue={setShowControls}/>
-                </Form>
+                <Button onClick={() => setShowControls(true)}>controls</Button>
             </div>
-            {showControls &&
-                <div className="m-1 p-1 bg-primary">
-                    <Form>
-                        <ControlsCheckBox title="axes" controlKey={SHOW_AXES}/>
-                        <ControlsCheckBox title="world" controlKey={SHOW_WORLD}/>
-                        <ControlsCheckBox title="floor" controlKey={SHOW_FLOOR}/>
-                        <ControlsCheckBox title="catalog" controlKey={SHOW_CATALOG}/>
-                        <ControlsCheckBox title="garden" controlKey={SHOW_GARDEN}/>
-                        <ControlsCheckBox title="areas" controlKey={SHOW_AREA_PLANES}/>
-                    </Form>
-                </div>
-            }
+            <Modal show={showControls}
+                   onHide={() => setShowControls(showControls => !showControls)}>
+                <Modal.Header closeButton>
+                    <h3 className="ms-2">Controls</h3>
+                </Modal.Header>
+                <Modal.Body>
+                    {<ControlsContent/>}
+                </Modal.Body>
+            </Modal>
         </>
     )
 }
