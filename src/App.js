@@ -43,17 +43,13 @@ export default function App() {
 /*
 TODO
 -- easy
-* use controlsContext deeper?
-* modal for controls
-* nice timer-slider
-* timer cyclic
-* timer autorun
-* timer autorun fast/slow
 * width/height of world depending on width/height window
 * color scheme
 * choose predefined garden
 * controls in localstorage
+* time in localstorage
 * camera settings in localstorage
+* timer autorun fast/slow
 --- bigger stories
 * plant topview
 * edit areas
