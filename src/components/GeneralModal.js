@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {createContext, useContext, useState} from "react";
 import {ShowModalButton} from "./ShowModalButton";
 import {Modal} from "react-bootstrap";
 
@@ -24,12 +24,14 @@ export function GeneralModal(props) {
     )
 }
 
+const GeneralModalContext = createContext();
+
 export function GeneralModalNew(props) {
-    const {icon, title, content} = props;
+    const {icon, title, children} = props;
     const [show, setShow] = useState(false);
 
     return (
-        <>
+        <GeneralModalContext.Provider value={setShow}>
             <ShowModalButton onShowModal={() => setShow(true)}>
                 {icon}
             </ShowModalButton>
@@ -39,9 +41,12 @@ export function GeneralModalNew(props) {
                     <h3 className="ms-2">{title}</h3>
                 </Modal.Header>
                 <Modal.Body>
-                    {content({...props, onHideModal: () => setShow(false)})}
+                    {children}
                 </Modal.Body>
             </Modal>
-        </>
+        </GeneralModalContext.Provider>
     )
 }
+
+export const useGeneralModalContext = () => useContext(GeneralModalContext);
+
