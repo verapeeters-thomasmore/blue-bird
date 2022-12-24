@@ -20,11 +20,13 @@ function ProvidedApp() {
     //console.log(areas);
 
     return (
-        <>
+        <div className="d-flex flex-column h-100">
             <GardenNavbar/>
             <Timer/>
-            <GardenCanvas areas={areas}/>
-        </>
+            <div className="flex-grow-1">
+                <GardenCanvas areas={areas}/>
+            </div>
+        </div>
     )
 }
 
@@ -43,7 +45,6 @@ export default function App() {
 /*
 TODO
 -- easy
-* width/height of world depending on width/height window --> avoid scrollbar
 * color scheme
 * choose predefined garden
 * controls in localstorage

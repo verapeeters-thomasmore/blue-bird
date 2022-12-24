@@ -21,7 +21,8 @@ export function GardenCanvas(props) {
     const {controlValue} = useControlsContext();
 
     return (
-        <Canvas style={{background: WORLD_SKY_BLUE}}>
+        <Canvas style={{background: WORLD_SKY_BLUE}}
+                resize={{scroll: false}}>
             <Camera/>
             <ambientLight intensity={2.5}/>
             <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
