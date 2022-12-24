@@ -1,5 +1,4 @@
-import {useState} from "react";
-import {Col, Form, Modal, Row} from "react-bootstrap";
+import {Col, Form, Row} from "react-bootstrap";
 import {ControlsCheckBox} from "./ControlsCheckBox";
 import {
     SHOW_AREA_PLANES,
@@ -11,7 +10,7 @@ import {
 } from "../contexts/ControlsContext";
 import {TbSettings} from "react-icons/tb";
 import {ICON_SIZE} from "../constants/uiSizes";
-import {ShowModalButton} from "./ShowModalButton";
+import {GeneralModal} from "./GeneralModal";
 
 function ControlsCheckBoxCol(props) {
     return <Col xs="6" sm="4" className="p-1">
@@ -36,23 +35,11 @@ function ControlsContent() {
     )
 }
 
-export function Controls() {
-    const [showControls, setShowControls] = useState(false);
-
+export function ControlsModal() {
     return (
-        <>
-            <ShowModalButton onShowModal={() => setShowControls(true)}>
-                <TbSettings size={ICON_SIZE}/>
-            </ShowModalButton>
-            <Modal show={showControls}
-                   onHide={() => setShowControls(showControls => !showControls)}>
-                <Modal.Header closeButton>
-                    <h3 className="ms-2">Controls</h3>
-                </Modal.Header>
-                <Modal.Body>
-                    {<ControlsContent/>}
-                </Modal.Body>
-            </Modal>
-        </>
+        <GeneralModal icon={<TbSettings size={ICON_SIZE}/>}
+                      title="Controls">
+            <ControlsContent/>
+        </GeneralModal>
     )
 }

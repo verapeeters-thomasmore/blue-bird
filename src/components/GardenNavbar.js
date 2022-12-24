@@ -1,5 +1,5 @@
 import {Container, Navbar} from "react-bootstrap";
-import {Controls} from "./Controls";
+import {ControlsModal} from "./ControlsModal";
 import {BsFlower1} from "react-icons/bs";
 import {BRAND_ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
@@ -19,7 +19,7 @@ export function GardenNavbar() {
             </Container>
             <CameraViewpoints/>
             <GardenSelector/>
-            <Controls/>
+            <ControlsModal/>
         </Navbar>
     );
 
