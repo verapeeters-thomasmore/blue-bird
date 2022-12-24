@@ -41,7 +41,6 @@ TODO
 * controls in localstorage
 * time in localstorage
 * camera settings in localstorage
-* boundaries for orbit controls
 * timer autorun fast/slow
 --- bigger stories
 * plant topview
