@@ -1,4 +1,5 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const ControlsContext = createContext();
 
@@ -19,7 +20,7 @@ const INITIAL_CONTROLS = {
 };
 
 export function ControlsProvider(props) {
-    const [controls, setControls] = useState(INITIAL_CONTROLS)
+    const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
 
     console.log(controls);
 
