@@ -25,6 +25,7 @@ function CameraViewpointsModalContent(props) {
     )
 }
 
+//een beetje raar dat ik die CameraViewpointModalContent meegeef als functie-naam terwijl die er verder uitziet als een gewone component is
 export function CameraViewpointsModal() {
     return (
         <GeneralModalNew icon={<BsCameraVideo size={ICON_SIZE}/>}
