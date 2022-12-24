@@ -1,6 +1,7 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const GardenSelectorContext = createContext();
 
@@ -9,7 +10,7 @@ function gardenEnrichedWithPlants(garden, plants) {
 }
 
 export function GardenSelectorProvider(props) {
-    const [indexSelectedGarden, setIndexSelectedGardenInternal] = useState(1);
+    const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
 
     const areasSelectedGarden = useMemo(() =>
             gardenEnrichedWithPlants(PREDEFINED_GARDENS[indexSelectedGarden].areas, PLANT_DATA),
