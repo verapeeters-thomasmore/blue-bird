@@ -1,8 +1,8 @@
 import {useEffect, useRef} from "react";
 import {useLoader} from "@react-three/fiber";
 import {TextureLoader} from "three";
-import {PLANT_ANTI_FLOAT_CORRECTION_Y} from "../constants/dimensions";
-import {useTimeContext} from "../contexts/TimeContext";
+import {PLANT_ANTI_FLOAT_CORRECTION_Y} from "../../constants/dimensions";
+import {useTimeContext} from "../../contexts/TimeContext";
 
 function textureToUse(time, data) {
     if (time < data.timeLine.growStart || data.timeLine.die < time) return "";

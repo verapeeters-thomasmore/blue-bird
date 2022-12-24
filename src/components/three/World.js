@@ -1,6 +1,6 @@
-import {WORLD_GRASS_GREEN} from "../constants/threeColors";
+import {WORLD_GRASS_GREEN} from "../../constants/threeColors";
 import {useRef} from "react";
-import {WORLD_DIAMETER, WORLD_Y} from "../constants/dimensions";
+import {WORLD_DIAMETER, WORLD_Y} from "../../constants/dimensions";
 
 export function World(props) {
     const ref = useRef()

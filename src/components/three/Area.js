@@ -1,8 +1,8 @@
-import {AREA_Y} from "../constants/dimensions";
+import {AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
-import {calculatePlantPositions} from "../utils/area_utils";
-import {SHOW_AREA_PLANES, useControlsContext} from "../contexts/ControlsContext";
+import {calculatePlantPositions} from "../../utils/area_utils";
+import {SHOW_AREA_PLANES, useControlsContext} from "../../contexts/ControlsContext";
 
 function AreaPlane(props) {
     const {area} = props;

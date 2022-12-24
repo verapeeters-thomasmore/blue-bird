@@ -5,7 +5,7 @@ import {useMemo} from "react";
 import {PLANT_DATA} from "./data/plant.data";
 import {PREDEFINED_GARDENS} from "./data/area.data";
 import {ControlsProvider} from "./contexts/ControlsContext";
-import {GardenCanvas} from "./components/GardenCanvas";
+import {GardenCanvas} from "./components/three/GardenCanvas";
 import {Timer} from "./components/Timer";
 import {TimeProvider} from "./contexts/TimeContext";
 import {GardenNavbar} from "./components/GardenNavbar";

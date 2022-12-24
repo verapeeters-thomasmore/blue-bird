@@ -1,6 +1,6 @@
-import {WORLD_FLOOR_BROWN} from "../constants/threeColors";
+import {WORLD_FLOOR_BROWN} from "../../constants/threeColors";
 import {useEffect, useRef} from "react";
-import {FLOOR_LENGTH, FLOOR_WIDTH, FLOOR_Y} from "../constants/dimensions";
+import {FLOOR_LENGTH, FLOOR_WIDTH, FLOOR_Y} from "../../constants/dimensions";
 
 export function Floor(props) {
     const {width=FLOOR_WIDTH, length=FLOOR_LENGTH} = props;
