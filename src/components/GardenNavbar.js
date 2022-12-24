@@ -3,7 +3,7 @@ import {ControlsModal} from "./ControlsModal";
 import {BsFlower1} from "react-icons/bs";
 import {BRAND_ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
-import {GardenSelector} from "./GardenSelector";
+import {GardenSelectionModal} from "./GardenSelectionModal";
 import {CameraViewpointsModal} from "./CameraViewpointsModal";
 
 function GardenIcon() {
@@ -18,7 +18,7 @@ export function GardenNavbar() {
                 <Navbar.Brand href="#home"><GardenIcon/></Navbar.Brand>
             </Container>
             <CameraViewpointsModal/>
-            <GardenSelector/>
+            <GardenSelectionModal/>
             <ControlsModal/>
         </Navbar>
     );
