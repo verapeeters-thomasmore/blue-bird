@@ -1,8 +1,12 @@
 import {PerspectiveCamera} from "@react-three/drei";
+import {useCameraViewpointContext} from "../../contexts/CameraViewpointContext";
 
 export function Camera() {
+    const {cameraViewpoint} = useCameraViewpointContext();
+
+    const {x, y, z} = cameraViewpoint?.position;
     // noinspection RequiredAttributes
     return (
-        <PerspectiveCamera makeDefault position={[0, 3, 20]} zoom={5}/>
+        <PerspectiveCamera makeDefault position={[x, y, z]} zoom={5}/>
     );
 }

@@ -7,6 +7,7 @@ import {Timer} from "./components/Timer";
 import {TimeProvider} from "./contexts/TimeContext";
 import {GardenNavbar} from "./components/GardenNavbar";
 import {GardenSelectorProvider} from "./contexts/GardenSelectorContext";
+import {CameraViewpointProvider} from "./contexts/CameraViewpointContext";
 
 function ProvidedApp() {
     return (
@@ -25,7 +26,9 @@ export default function App() {
         <TimeProvider>
             <ControlsProvider>
                 <GardenSelectorProvider>
-                    <ProvidedApp/>
+                    <CameraViewpointProvider>
+                        <ProvidedApp/>
+                    </CameraViewpointProvider>
                 </GardenSelectorProvider>
             </ControlsProvider>
         </TimeProvider>
@@ -38,6 +41,7 @@ export default function App() {
 TODO
 -- easy
 * color scheme
+* fixed camera settings
 * camera settings in localstorage
 * timer autorun fast/slow
 --- bigger stories
