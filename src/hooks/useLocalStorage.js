@@ -24,11 +24,11 @@ export function useLocalStorage(key, initialValue) {
     // ... persists the new value to localStorage.
     const setValue = (value) => {
         try {
-            // Allow value to be a function so we have same API as useState
-            const valueToStore =
-                value instanceof Function ? value(storedValue) : value;
             // Save state
-            setStoredValue(valueToStore);
+            setStoredValue(currentValue => {
+                // Allow value to be a function so we have same API as useState
+                return value instanceof Function ? value(currentValue) : value;
+            });
             // Save to local storage
             if (typeof window !== "undefined") {
                 window.localStorage.setItem(key, JSON.stringify(valueToStore));

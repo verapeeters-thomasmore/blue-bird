@@ -7,15 +7,18 @@ export function TimeProvider(props) {
     const [time, setTimeInternal] = useLocalStorage("time", 22);
     const [intervalID, setIntervalID] = useState();
 
-    const setTime = useCallback((newTime) => {
+    const setTime = useCallback(newTime => {
         if (newTime < 1 || newTime > 52) return;
         setTimeInternal(newTime);
-    });
+    }, []);
 
-    const incrementTime = useCallback(() => setTime(time => time < 52 ? time + 1 : 1), []);
+    const incrementTime = useCallback(() => {
+        setTimeInternal(time => {
+            return time < 52 ? 1 + Number(time) : 1
+        })
+    }, []);
 
     const toggleTimer = useCallback(() => {
-        console.log("toggleTimer ")
         if (intervalID) { //running
             clearInterval(intervalID);
             setIntervalID();
