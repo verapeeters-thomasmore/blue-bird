@@ -18,7 +18,7 @@ function ControlsCheckBoxCol(props) {
     </Col>
 }
 
-function ControlsContent() {
+function ControlsModalContent() {
     return (
         <div className="m-1 p-1">
             <Form>
@@ -39,7 +39,7 @@ export function ControlsModal() {
     return (
         <GeneralModal icon={<TbSettings size={ICON_SIZE}/>}
                       title="Controls">
-            <ControlsContent/>
+            <ControlsModalContent/>
         </GeneralModal>
     )
 }
