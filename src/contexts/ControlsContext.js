@@ -22,8 +22,6 @@ const INITIAL_CONTROLS = {
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
 
-    console.log(controls);
-
     const controlValue = useCallback(key => controls[key], [controls]);
     const toggleControl = useCallback(key => setControls(controls => ({...controls, [key]: !controls[key]})));
 

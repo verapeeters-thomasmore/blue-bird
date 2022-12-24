@@ -40,8 +40,9 @@ export default function App() {
 /*
 TODO
 -- easy
+* fix: save selected garden in localstorage niet meer ok
+* refactor de modals
 * color scheme
-* fixed camera settings
 * camera settings in localstorage
 * timer autorun fast/slow
 --- bigger stories

@@ -1,6 +1,7 @@
-//code from https://usehooks.com/useLocalStorage/
+//code originally from https://usehooks.com/useLocalStorage/
+// but it contained a bug when using setValue with a function - so not much remains of original code
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export function useLocalStorage(key, initialValue) {
     // State to store our value
@@ -20,23 +21,13 @@ export function useLocalStorage(key, initialValue) {
             return initialValue;
         }
     });
-    // Return a wrapped version of useState's setter function that ...
-    // ... persists the new value to localStorage.
-    const setValue = (value) => {
-        try {
-            // Save state
-            setStoredValue(currentValue => {
-                // Allow value to be a function so we have same API as useState
-                return value instanceof Function ? value(currentValue) : value;
-            });
-            // Save to local storage
-            if (typeof window !== "undefined" && typeof valueToStore !== "undefined") {
-                window.localStorage.setItem(key, JSON.stringify(valueToStore));
-            }
-        } catch (error) {
-            // A more advanced implementation would handle the error case
-            console.log(error);
+
+    useEffect(() => {
+        // Save to local storage
+        if (typeof window !== "undefined" && typeof storedValue !== "undefined") {
+            window.localStorage.setItem(key, JSON.stringify(storedValue));
         }
-    };
-    return [storedValue, setValue];
+    }, [storedValue]);
+
+    return [storedValue, setStoredValue];
 }

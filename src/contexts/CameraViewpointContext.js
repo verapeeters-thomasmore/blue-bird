@@ -17,7 +17,6 @@ export function CameraViewpointProvider(props) {
     }, []);
 
     const cameraViewpoint = useMemo(() => PREDEFINED_VIEWPOINTS[cameraViewpointIndex], [cameraViewpointIndex]);
-    console.log(`CameraViewpointProvider `, cameraViewpoint)
 
     const api = useMemo(() => ({
         cameraViewpoint, setCameraViewpoint, viewpoints: PREDEFINED_VIEWPOINTS
