@@ -39,7 +39,6 @@ TODO
 -- easy
 * color scheme
 * controls in localstorage
-* time in localstorage
 * camera settings in localstorage
 * timer autorun fast/slow
 --- bigger stories

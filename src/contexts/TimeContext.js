@@ -1,9 +1,10 @@
 import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const TimeContext = createContext();
 
 export function TimeProvider(props) {
-    const [time, setTimeInternal] = useState(24);
+    const [time, setTimeInternal] = useLocalStorage("time", 22);
     const [intervalID, setIntervalID] = useState();
 
     const setTime = useCallback((newTime) => {
