@@ -6,17 +6,15 @@ import {GardenCanvas} from "./components/three/GardenCanvas";
 import {Timer} from "./components/Timer";
 import {TimeProvider} from "./contexts/TimeContext";
 import {GardenNavbar} from "./components/GardenNavbar";
-import {GardenSelectorProvider, useGardenSelectorContext} from "./contexts/GardenSelectorContext";
+import {GardenSelectorProvider} from "./contexts/GardenSelectorContext";
 
 function ProvidedApp() {
-    const {areasSelectedGarden} = useGardenSelectorContext();
-
     return (
         <div className="d-flex flex-column h-100">
             <GardenNavbar/>
             <Timer/>
             <div className="flex-grow-1">
-                <GardenCanvas areas={areasSelectedGarden}/>
+                <GardenCanvas/>
             </div>
         </div>
     )

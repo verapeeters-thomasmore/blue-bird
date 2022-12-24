@@ -15,9 +15,10 @@ import {PlantCatalogue} from "./PlantCatalogue";
 import {PLANT_DATA} from "../../data/plant.data";
 import {Areas} from "./Areas";
 import {OrbitControls} from "@react-three/drei";
+import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
 
-export function GardenCanvas(props) {
-    const {areas} = props;
+export function GardenCanvas() {
+    const {areasSelectedGarden} = useGardenSelectorContext();
     const {controlValue} = useControlsContext();
 
     return (
@@ -30,7 +31,7 @@ export function GardenCanvas(props) {
             {controlValue(SHOW_WORLD) && <World/>}
             {controlValue(SHOW_FLOOR) && <Floor/>}
             {controlValue(SHOW_CATALOG) && <PlantCatalogue plants={PLANT_DATA}/>}
-            {controlValue(SHOW_GARDEN) && <Areas areas={areas}/>}
+            {controlValue(SHOW_GARDEN) && <Areas areas={areasSelectedGarden}/>}
             <OrbitControls/>
         </Canvas>
     )
