@@ -2,7 +2,7 @@ import {Button} from "react-bootstrap";
 import {BsCameraVideo} from "react-icons/bs";
 import {ICON_SIZE} from "../constants/uiSizes";
 import {useCameraViewpointContext} from "../contexts/CameraViewpointContext";
-import {GeneralModalNew, useGeneralModalContext} from "./GeneralModal";
+import {GeneralModal, useGeneralModalContext} from "./GeneralModal";
 
 function CameraViewpointsModalContent() {
     const onHideModal = useGeneralModalContext();
@@ -27,9 +27,9 @@ function CameraViewpointsModalContent() {
 
 export function CameraViewpointsModal() {
     return (
-        <GeneralModalNew icon={<BsCameraVideo size={ICON_SIZE}/>}
-                         title="Predefined Camera Viewpoints">
+        <GeneralModal icon={<BsCameraVideo size={ICON_SIZE}/>}
+                      title="Predefined Camera Viewpoints">
             <CameraViewpointsModalContent/>
-        </GeneralModalNew>
+        </GeneralModal>
     )
 }

@@ -3,7 +3,7 @@ import {FaRegFolderOpen} from "react-icons/fa";
 import {ICON_SIZE} from "../constants/uiSizes";
 import {PREDEFINED_GARDENS} from "../data/area.data";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
-import {GeneralModalNew, useGeneralModalContext} from "./GeneralModal";
+import {GeneralModal, useGeneralModalContext} from "./GeneralModal";
 
 function GardenSelectionModalContent() {
     const onHideModal = useGeneralModalContext();
@@ -28,9 +28,9 @@ function GardenSelectionModalContent() {
 
 export function GardenSelectionModal() {
     return (
-        <GeneralModalNew icon={<FaRegFolderOpen size={ICON_SIZE}/>}
-                         title="Predefined Gardens">
+        <GeneralModal icon={<FaRegFolderOpen size={ICON_SIZE}/>}
+                      title="Predefined Gardens">
             <GardenSelectionModalContent/>
-        </GeneralModalNew>
+        </GeneralModal>
     )
 }
