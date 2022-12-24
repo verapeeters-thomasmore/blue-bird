@@ -39,14 +39,19 @@ export default function App() {
 
 /*
 TODO
--- easy
-* refactor de modals
+* edit areas
+** select area
+** show data of area
+** modify data of area
+** modify area in-canvas
+
+--- bigger stories
+* plant topview
+* database / storage
+* tutorial
+
+-- easy - later
 * color scheme
 * camera settings in localstorage
 * timer autorun fast/slow
---- bigger stories
-* plant topview
-* edit areas
-* database / storage
-* tutorial
  */
