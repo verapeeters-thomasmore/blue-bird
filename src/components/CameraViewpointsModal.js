@@ -4,7 +4,8 @@ import {ICON_SIZE} from "../constants/uiSizes";
 import {useCameraViewpointContext} from "../contexts/CameraViewpointContext";
 import {GeneralModal, GeneralModalNew} from "./GeneralModal";
 
-const CameraViewpointsModalContent = (onHideModal) => function (props) {
+function CameraViewpointsModalContent(props) {
+    const {onHideModal} = props;
     const {viewpoints, setCameraViewpoint} = useCameraViewpointContext();
     return (
         <>
@@ -29,15 +30,6 @@ export function CameraViewpointsModal() {
         <GeneralModalNew icon={<BsCameraVideo size={ICON_SIZE}/>}
                          title="Predefined Camera Viewpoints"
                          content={CameraViewpointsModalContent}>
-        </GeneralModalNew>
-    )
-}
-
-export function CameraViewpointsModalOLD() {
-    return (
-        <GeneralModalNew icon={<BsCameraVideo size={ICON_SIZE}/>}
-                         title="Predefined Camera Viewpoints">
-            {CameraViewpointsModalContent({onHideModal: () => setShowCameraViewpoints(false)})}
         </GeneralModalNew>
     )
 }

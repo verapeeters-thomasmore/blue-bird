@@ -39,7 +39,7 @@ export function GeneralModalNew(props) {
                     <h3 className="ms-2">{title}</h3>
                 </Modal.Header>
                 <Modal.Body>
-                    {content(() => setShow(false))()}
+                    {content({...props, onHideModal: () => setShow(false)})}
                 </Modal.Body>
             </Modal>
         </>
