@@ -11,7 +11,7 @@ export function World(props) {
             position={[0, WORLD_Y, 0]}
             rotation-x={-Math.PI / 2}
             name="earth">
-            <circleGeometry args={[WORLD_DIAMETER, 10, 0, 2 * Math.PI]}/>
+            <circleGeometry args={[WORLD_DIAMETER, 40, 0, 2 * Math.PI]}/>
             <meshLambertMaterial color={WORLD_GRASS_GREEN}/>
         </mesh>
     )

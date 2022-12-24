@@ -43,12 +43,13 @@ export default function App() {
 /*
 TODO
 -- easy
-* width/height of world depending on width/height window
+* width/height of world depending on width/height window --> avoid scrollbar
 * color scheme
 * choose predefined garden
 * controls in localstorage
 * time in localstorage
 * camera settings in localstorage
+* boundaries for orbit controls
 * timer autorun fast/slow
 --- bigger stories
 * plant topview
