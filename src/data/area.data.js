@@ -1,12 +1,14 @@
 let gardenAreaIdGenerator = 1;
 
 export const GARDEN_ONE_AREA = {
+    name: "only 1 area",
     areas: [
         {id: gardenAreaIdGenerator++, "x": 0, "z": 0, "width": 2, "length": 2, "plantName": "camissia"},
     ]
 };
 
 export const GARDEN_JUST_A_FEW_AREAS = {
+    name: "just a few areas",
     areas: [
         {id: gardenAreaIdGenerator++, "x": 1.5, "z": 0, "width": 1, "length": 1, "plantName": "camissia"},
         {id: gardenAreaIdGenerator++, "x": 0, "z": 0, "width": 1, "length": 1, "plantName": "eremurus"},
@@ -15,6 +17,7 @@ export const GARDEN_JUST_A_FEW_AREAS = {
 };
 
 export const GARDEN_PLENTY = {
+    name: "plenty",
     areas: [
         {id: gardenAreaIdGenerator++, "x": -1.40, "z": 2.04, "width": 4.00, "length": 2.00, "plantName": "crocus"},
         {id: gardenAreaIdGenerator++, "x": 1.10, "z": 0, "width": 1.00, "length": .80, "plantName": "narcis"},
@@ -201,6 +204,7 @@ export const GARDEN_PLENTY = {
 }
 
 export const GARDEN_WHITE = {
+    name: "white",
     areas: [
         {id: gardenAreaIdGenerator++, "x": 1.40, "z": -1.50, "width": 2.00, "length": 2.00, "plantName": "hyacint"},
         {id: gardenAreaIdGenerator++, "x": -1.80, "z": 1.70, "width": 1.00, "length": 2.00, "plantName": "hyacint"},
@@ -423,6 +427,7 @@ export const GARDEN_WHITE = {
 }
 
 const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
+    name: "a little bit of orange",
     areas: [
         {id: gardenAreaIdGenerator++, "x": 1.63, "z": -1.63, "width": 2.85, "length": 1.27, "plantName": "sporobolus"},
         {id: gardenAreaIdGenerator++, "x": .17, "z": 2.30, "width": 1.37, "length": 1.00, "plantName": "stipa"},
@@ -522,6 +527,7 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
     ],
 }
 export const GARDEN_AUTUMN = {
+    name: "autumn",
     areas: [
         {id: gardenAreaIdGenerator++, "x":  1.06, "z": 1.62, "width": 1.52, "length": .70, "plantName": "eremurus"},
         {id: gardenAreaIdGenerator++, "x":  -.56, "z": 1.50, "width": 1.00, "length": 1.00, "plantName": "eremurus"},
@@ -555,6 +561,8 @@ export const GARDEN_AUTUMN = {
         {id: gardenAreaIdGenerator++, "x":  -2.17, "z": -1.51, "width": 3.08, "length": .92, "plantName": "sporobolus"}
     ]
 }
+
+//assumption: name of the predefined gardens is unique for each garden
 export const PREDEFINED_GARDENS = [
     GARDEN_ONE_AREA,
     GARDEN_JUST_A_FEW_AREAS,
