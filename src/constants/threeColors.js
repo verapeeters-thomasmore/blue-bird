@@ -1,16 +1,19 @@
-export const BLUEPURPLE = 0x8000b0;
-export const BORDEAU = 0x800010;
-export const GREEN = 0x337733;
-export const GREENJUWEL = 0xc3f533;
-export const LILA = 0x7070ff;
-export const ORANGE = 0xed8d1a;
-export const PINK = 0xdd0080;
-export const PURPLE = 0xa000a0;
-export const YELLOW = 0xeeee00;
-export const YELLOWGREEN = 0xa0a030;
-export const VIOLET = 0xc09dee;
-export const VIOLET2 = 0xab71f7;
-export const WHITE = 0xeeeeee;
-export const WORLD_FLOOR_BROWN = 0x113511;
-export const WORLD_GRASS_GREEN = 0x115511;
+//flower colors
+export const BLUEPURPLE = "#8000B0";
+export const BORDEAU = "#800010";
+export const GREEN = "#337733";
+export const GREENJUWEL = "#C3F533";
+export const LILA = "#7070FF";
+export const ORANGE = "#ED8D1A";
+export const PINK = "#DD0080";
+export const PURPLE = "#A000A0";
+export const YELLOW = "#EEEE00";
+export const YELLOWGREEN = "#A0A030";
+export const VIOLET = "#C09DEE";
+export const VIOLET2 = "#AB71F7";
+export const WHITE = "#EEEEEE";
+
+//world colors
+export const WORLD_FLOOR_BROWN = "#113511";
+export const WORLD_GRASS_GREEN = "#115511";
 export const WORLD_SKY_BLUE = "#8DDBE0";

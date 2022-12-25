@@ -5,6 +5,7 @@ import {BRAND_ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
 import {GardenSelectionModal} from "./GardenSelectionModal";
 import {CameraViewpointsModal} from "./CameraViewpointsModal";
+import {GardenAreaListModal} from "./GardenAreaListModal";
 
 function GardenIcon() {
     return <BsFlower1 size={BRAND_ICON_SIZE} className="text-info my-2 ms-0"/>;
@@ -17,6 +18,7 @@ export function GardenNavbar() {
             <Container>
                 <Navbar.Brand href="#home"><GardenIcon/></Navbar.Brand>
             </Container>
+            <GardenAreaListModal/>
             <CameraViewpointsModal/>
             <GardenSelectionModal/>
             <ControlsModal/>

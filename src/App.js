@@ -49,8 +49,13 @@ TODO
 ** modify data of area
 ** modify area in-canvas
 
--- bugs
+-- ideeën nog af te checken
+* plantlist/arealist in react-router page
+
+-- issues
 * logo
+* proptypes voor area en plant
+* alle afmetingen *100?
 
 --- bigger stories
 * plant topview
