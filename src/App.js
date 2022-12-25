@@ -39,6 +39,13 @@ export default function App() {
 
 /*
 TODO
+* logo
+
+* show plantlist
+* useLocalStorage: listen for changes
+* show/hide flowers
+* show areas for 1 plant in plantlist
+* show plant details
 * edit areas
 ** select area
 ** show data of area
