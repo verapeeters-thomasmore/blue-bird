@@ -5,8 +5,8 @@ import {Modal} from "react-bootstrap";
 const GeneralModalContext = createContext();
 
 export function GeneralModal(props) {
-    const {icon, title, children} = props;
-    const [show, setShow] = useState(false);
+    const {icon, title, isDefaultOpen = false, children} = props;
+    const [show, setShow] = useState(isDefaultOpen);
 
     return (
         <GeneralModalContext.Provider value={setShow}>
