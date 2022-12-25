@@ -2,15 +2,17 @@ import {AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
-import {SHOW_AREA_PLANES, SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
+import {SHOW_AREA_ID, SHOW_AREA_PLANES, SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
 
 function AreaPlane(props) {
     const {area} = props;
-    const {controlValue} = useControlsContext();
-
+    const {controlValue, controlValueInCollection} = useControlsContext();
     const {plant, x, z, width, length} = area;
-    if (!controlValue(SHOW_AREA_PLANES)) return;
     const ref = useRef()
+
+    if (!controlValue(SHOW_AREA_PLANES) &&
+        !controlValueInCollection(SHOW_AREA_ID, area.id)) return;
+
     return (
         <mesh
             {...props}
@@ -27,7 +29,6 @@ function AreaPlane(props) {
 
 export function Area(props) {
     const {area} = props;
-
     const {plant, width, length, x, z} = area;
     const areaSize = width * length;
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
@@ -38,7 +39,9 @@ export function Area(props) {
     return (
         <>
             <AreaPlane area={area}/>
-            {controlValue(SHOW_PLANTS) && plantPositions.map(pos => <Plant key={pos.id} data={plant} x={x + pos.x} z={z + pos.z}/>)}
+            {controlValue(SHOW_PLANTS) && plantPositions.map(pos =>
+                <Plant key={pos.id} data={plant}
+                       x={x + pos.x} z={z + pos.z}/>)}
         </>
     )
 }
