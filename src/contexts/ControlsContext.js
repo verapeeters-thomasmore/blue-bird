@@ -1,6 +1,8 @@
 import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {useLocalStorage} from "../hooks/useLocalStorage";
 
+
+
 const ControlsContext = createContext();
 
 export const SHOW_WORLD = "showWorld";
@@ -9,6 +11,7 @@ export const SHOW_AXES = "showAxes";
 export const SHOW_CATALOG = "showCatalog";
 export const SHOW_GARDEN = "showGarden";
 export const SHOW_AREA_PLANES = "showAreaPlanes";
+export const SHOW_PLANTS = "showPlants";
 
 const INITIAL_CONTROLS = {
     [SHOW_WORLD]: true,
@@ -16,7 +19,8 @@ const INITIAL_CONTROLS = {
     [SHOW_AXES]: false,
     [SHOW_CATALOG]: false,
     [SHOW_GARDEN]: true,
-    [SHOW_AREA_PLANES]: false
+    [SHOW_AREA_PLANES]: false,
+    [SHOW_PLANTS]: true,
 };
 
 export function ControlsProvider(props) {

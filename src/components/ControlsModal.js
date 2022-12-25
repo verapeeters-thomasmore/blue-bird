@@ -2,6 +2,7 @@ import {Col, Form, Row} from "react-bootstrap";
 import {ControlsCheckBox} from "./ControlsCheckBox";
 import {
     SHOW_AREA_PLANES,
+    SHOW_PLANTS,
     SHOW_AXES,
     SHOW_CATALOG,
     SHOW_FLOOR,
@@ -29,6 +30,7 @@ function ControlsModalContent() {
                     <ControlsCheckBoxCol title="catalog" controlKey={SHOW_CATALOG}/>
                     <ControlsCheckBoxCol title="garden" controlKey={SHOW_GARDEN}/>
                     <ControlsCheckBoxCol title="areas" controlKey={SHOW_AREA_PLANES}/>
+                    <ControlsCheckBoxCol title="plants" controlKey={SHOW_PLANTS}/>
                 </Row>
             </Form>
         </div>

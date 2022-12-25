@@ -39,11 +39,8 @@ export default function App() {
 
 /*
 TODO
-* logo
-
 * show plantlist
 * useLocalStorage: listen for changes
-* show/hide flowers
 * show areas for 1 plant in plantlist
 * show plant details
 * edit areas
@@ -51,6 +48,9 @@ TODO
 ** show data of area
 ** modify data of area
 ** modify area in-canvas
+
+-- bugs
+* logo
 
 --- bigger stories
 * plant topview
