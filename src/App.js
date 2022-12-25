@@ -51,6 +51,7 @@ TODO
 * tutorial
 
 -- easy - later
+* timer: show month as info
 * color scheme
 * camera settings in localstorage
 * timer autorun fast/slow

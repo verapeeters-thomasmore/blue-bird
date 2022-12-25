@@ -27,7 +27,7 @@ export function Plant(props) {
 
     const texture = textureToUse(time, data);
     const scaleFromTime = getScaleFromTime(time, data);
-    const heightToDisplayInMeter = data.maxHeight / 100;
+    const heightToDisplayInMeter = data.maxHeight / 50;
     const heightToDisplayScaledForTime = heightToDisplayInMeter * scaleFromTime;
     if (!texture) return;
 
