@@ -51,13 +51,15 @@ export default function App() {
 
 /*
 TODO
-* view-button in arealist: toggle
-* show plantlist
-* show areas for 1 plant in plantlist
+* all areas: means traverse all areas
+* OK -- view-button in arealist: toggle
+* OK -- show plantlist
+* open arealist for 1 plant
+* OK -- show areas for 1 plant in plantlist
 * show plant details
 * edit areas
 ** select area
-** show data of area
+** OK -- show data of area
 ** modify data of area
 ** modify area in-canvas
 
