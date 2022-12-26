@@ -52,7 +52,6 @@ export default function App() {
 /*
 TODO
 * view-button in arealist: toggle
-* useLocalStorage: listen for changes
 * show plantlist
 * show areas for 1 plant in plantlist
 * show plant details
@@ -61,9 +60,6 @@ TODO
 ** show data of area
 ** modify data of area
 ** modify area in-canvas
-
--- ideeën nog af te checken
-* plantlist/arealist in react-router page
 
 -- issues
 * logo
