@@ -15,7 +15,7 @@ export function useLocalStorage(key, initialValue) {
 
     useEffect(() => {
         // Save to local storage
-        console.log(`save value ${key}: `, value)
+        // console.log(`save value ${key}: `, value)
         if (typeof window !== "undefined" && typeof value !== "undefined") {
             window.localStorage.setItem(key, JSON.stringify(value));
         }
