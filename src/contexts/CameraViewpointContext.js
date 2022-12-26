@@ -1,4 +1,5 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const CameraViewpointContext = createContext();
 
@@ -9,7 +10,7 @@ const PREDEFINED_VIEWPOINTS = [
 ];
 
 export function CameraViewpointProvider(props) {
-    const [cameraViewpointIndex, setCameraViewpointIndex] = useState(0);
+    const [cameraViewpointIndex, setCameraViewpointIndex] = useLocalStorage("cameraViewPoint", 0);
 
     const setCameraViewpoint = useCallback(nameNewCameraViewpoint => {
         setCameraViewpointIndex(cameraViewpoint =>
