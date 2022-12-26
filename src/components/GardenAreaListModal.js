@@ -41,7 +41,7 @@ export function GardenAreaListModal() {
     return (
         <GeneralModal icon={<BsCardList size={ICON_SIZE}/>}
                       title="Area list"
-                      isDefaultOpen={true}>
+                      isDefaultOpen={false}>
             <GardenAreaListModalContent/>
         </GeneralModal>
     )
