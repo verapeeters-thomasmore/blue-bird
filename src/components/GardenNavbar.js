@@ -1,14 +1,23 @@
 import {Container, Navbar} from "react-bootstrap";
-import {ControlsModal} from "./ControlsModal";
 import {BsFlower1} from "react-icons/bs";
-import {BRAND_ICON_SIZE} from "../constants/uiSizes";
+import {BRAND_ICON_SIZE, ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
 import {GardenSelectionModal} from "./GardenSelectionModal";
 import {CameraViewpointsModal} from "./CameraViewpointsModal";
 import {GardenAreaListModal} from "./GardenAreaListModal";
+import {Link} from "react-router-dom";
+import {TbSettings} from "react-icons/tb";
 
 function GardenIcon() {
     return <BsFlower1 size={BRAND_ICON_SIZE} className="text-info my-2 ms-0"/>;
+}
+
+function GardenNavbarLink(props) {
+    const {to, children} = props;
+
+    return <Link to={to} className="px-2">
+        {children}
+    </Link>
 }
 
 export function GardenNavbar() {
@@ -16,12 +25,12 @@ export function GardenNavbar() {
         <Navbar
             style={{maxHeight: '35px', backgroundColor: UI_WHITE}}>
             <Container>
-                <Navbar.Brand href="#home"><GardenIcon/></Navbar.Brand>
+                <Navbar.Brand><Link to="/"><GardenIcon/></Link></Navbar.Brand>
             </Container>
             <GardenAreaListModal/>
             <CameraViewpointsModal/>
             <GardenSelectionModal/>
-            <ControlsModal/>
+            <GardenNavbarLink to="/controls"><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
         </Navbar>
     );
 

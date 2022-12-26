@@ -2,21 +2,25 @@ import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import {ControlsProvider} from "./contexts/ControlsContext";
-import {GardenCanvas} from "./components/three/GardenCanvas";
-import {Timer} from "./components/Timer";
 import {TimeProvider} from "./contexts/TimeContext";
 import {GardenNavbar} from "./components/GardenNavbar";
 import {GardenSelectorProvider} from "./contexts/GardenSelectorContext";
 import {CameraViewpointProvider} from "./contexts/CameraViewpointContext";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {NoMatchPage} from "./pages/NoMatchPage";
+import {HomePage} from "./pages/HomePage";
+import {ControlsPage} from "./pages/ControlsPage";
 
 function ProvidedApp() {
     return (
         <div className="d-flex flex-column h-100">
             <GardenNavbar/>
-            <Timer/>
-            <div className="flex-grow-1">
-                <GardenCanvas/>
-            </div>
+            <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/controls" element={<ControlsPage/>}/>
+                <Route path="*" element={<NoMatchPage/>}/>
+            </Routes>
+
         </div>
     )
 }
@@ -27,7 +31,9 @@ export default function App() {
             <ControlsProvider>
                 <GardenSelectorProvider>
                     <CameraViewpointProvider>
-                        <ProvidedApp/>
+                        <BrowserRouter>
+                            <ProvidedApp/>
+                        </BrowserRouter>
                     </CameraViewpointProvider>
                 </GardenSelectorProvider>
             </ControlsProvider>
