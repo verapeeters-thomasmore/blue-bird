@@ -11,6 +11,7 @@ import {NoMatchPage} from "./pages/NoMatchPage";
 import {HomePage} from "./pages/HomePage";
 import {ControlsPage} from "./pages/ControlsPage";
 import {GardenSelectionPage} from "./pages/GardenSelectionPage";
+import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 
 function ProvidedApp() {
     return (
@@ -20,6 +21,7 @@ function ProvidedApp() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
+                <Route path="/gardenarealist" element={<GardenAreaListPage/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 
@@ -47,8 +49,9 @@ export default function App() {
 
 /*
 TODO
-* show plantlist
+* view-button in arealist: toggle
 * useLocalStorage: listen for changes
+* show plantlist
 * show areas for 1 plant in plantlist
 * show plant details
 * edit areas
