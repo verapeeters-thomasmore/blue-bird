@@ -28,3 +28,25 @@ export function GeneralModal(props) {
 
 export const useGeneralModalContext = () => useContext(GeneralModalContext);
 
+/* usage: */
+//
+// function GardenAreaListModalContent() {
+//     const onHideModal = useGeneralModalContext();
+//
+//     return (
+//         <>
+//             {/* content here */}
+//             {/* use function onHideModal to close the modal in an eventHandler */}
+//         </>
+//     )
+// }
+//
+// export function GardenAreaListModal() {
+//     return (
+//         <GeneralModal icon={<BsCardList size={ICON_SIZE}/>}
+//                       title="Area list"
+//                       isDefaultOpen={false}>
+//             <GardenAreaListModalContent/>
+//         </GeneralModal>
+//     )
+// }

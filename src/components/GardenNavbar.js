@@ -1,8 +1,8 @@
 import {Container, Navbar} from "react-bootstrap";
 import {BsFlower1} from "react-icons/bs";
+import {FaRegFolderOpen} from "react-icons/fa";
 import {BRAND_ICON_SIZE, ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
-import {GardenSelectionModal} from "./GardenSelectionModal";
 import {CameraViewpointsModal} from "./CameraViewpointsModal";
 import {GardenAreaListModal} from "./GardenAreaListModal";
 import {Link} from "react-router-dom";
@@ -29,7 +29,7 @@ export function GardenNavbar() {
             </Container>
             <GardenAreaListModal/>
             <CameraViewpointsModal/>
-            <GardenSelectionModal/>
+            <GardenNavbarLink to="/gardenselection"><FaRegFolderOpen size={ICON_SIZE}/></GardenNavbarLink>
             <GardenNavbarLink to="/controls"><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
         </Navbar>
     );

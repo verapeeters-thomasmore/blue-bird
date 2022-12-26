@@ -10,6 +10,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {NoMatchPage} from "./pages/NoMatchPage";
 import {HomePage} from "./pages/HomePage";
 import {ControlsPage} from "./pages/ControlsPage";
+import {GardenSelectionPage} from "./pages/GardenSelectionPage";
 
 function ProvidedApp() {
     return (
@@ -18,6 +19,7 @@ function ProvidedApp() {
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
+                <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 
