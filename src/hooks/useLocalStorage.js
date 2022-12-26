@@ -1,33 +1,33 @@
 //code originally from https://usehooks.com/useLocalStorage/
 // but it contained a bug when using setValue with a function - so not much remains of original code
 
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
+
 
 export function useLocalStorage(key, initialValue) {
-    // State to store our value
-    // Pass initial state function to useState so logic is only executed once
-    const [storedValue, setStoredValue] = useState(() => {
-        if (typeof window === "undefined") {
-            return initialValue;
-        }
-        try {
-            // Get from local storage by key
-            const item = window.localStorage.getItem(key);
-            // Parse stored json or if none return initialValue
-            return item ? JSON.parse(item) : initialValue;
-        } catch (error) {
-            // If error also return initialValue
-            console.log(error);
-            return initialValue;
-        }
-    });
+
+    const readFromLocalStorage = useCallback(() => {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+    }, [initialValue, key]);
+
+    const [value, setValue] = useState(readFromLocalStorage);
 
     useEffect(() => {
         // Save to local storage
-        if (typeof window !== "undefined" && typeof storedValue !== "undefined") {
-            window.localStorage.setItem(key, JSON.stringify(storedValue));
+        console.log(`save value ${key}: `, value)
+        if (typeof window !== "undefined" && typeof value !== "undefined") {
+            window.localStorage.setItem(key, JSON.stringify(value));
         }
-    }, [storedValue]);
+    }, [value]);
 
-    return [storedValue, setStoredValue];
+    useEffect(() => {
+        //console.log("useEffect");
+        const listener = e => (e.key === key) && setValue(readFromLocalStorage());
+        window.addEventListener('storage', listener);
+        return () => window.removeEventListener('storage', listener);
+    }, [key, readFromLocalStorage]);
+
+    return [value, setValue];
 }
+
