@@ -12,6 +12,7 @@ import {HomePage} from "./pages/HomePage";
 import {ControlsPage} from "./pages/ControlsPage";
 import {GardenSelectionPage} from "./pages/GardenSelectionPage";
 import {GardenAreaListPage} from "./pages/GardenAreaListPage";
+import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
 
 function ProvidedApp() {
     return (
@@ -20,6 +21,7 @@ function ProvidedApp() {
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
+                <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
                 <Route path="/gardenarealist" element={<GardenAreaListPage/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>

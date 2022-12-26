@@ -1,9 +1,8 @@
 import {Container, Navbar} from "react-bootstrap";
-import {BsCardList, BsFlower1} from "react-icons/bs";
+import {BsCameraVideo, BsCardList, BsFlower1} from "react-icons/bs";
 import {FaRegFolderOpen} from "react-icons/fa";
 import {BRAND_ICON_SIZE, ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
-import {CameraViewpointsModal} from "./CameraViewpointsModal";
 import {Link} from "react-router-dom";
 import {TbSettings} from "react-icons/tb";
 
@@ -27,7 +26,7 @@ export function GardenNavbar() {
                 <Navbar.Brand><Link to="/"><GardenIcon/></Link></Navbar.Brand>
             </Container>
             <GardenNavbarLink to="/gardenarealist"><BsCardList size={ICON_SIZE}/></GardenNavbarLink>
-            <CameraViewpointsModal/>
+            <GardenNavbarLink to="/cameraviewpoints"><BsCameraVideo size={ICON_SIZE}/></GardenNavbarLink>
             <GardenNavbarLink to="/gardenselection"><FaRegFolderOpen size={ICON_SIZE}/></GardenNavbarLink>
             <GardenNavbarLink to="/controls"><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
         </Navbar>
