@@ -11,8 +11,11 @@ export const GARDEN_JUST_A_FEW_AREAS = {
     name: "just a few areas",
     areas: [
         {id: gardenAreaIdGenerator++, "x": 1.5, "z": 0, "width": 1, "length": 1, "plantName": "camissia"},
+        {id: gardenAreaIdGenerator++, "x": 1.5, "z": 1.5, "width": 1, "length": 1, "plantName": "camissia"},
         {id: gardenAreaIdGenerator++, "x": 0, "z": 0, "width": 1, "length": 1, "plantName": "eremurus"},
+        {id: gardenAreaIdGenerator++, "x": 0, "z": 1.5, "width": 1, "length": 1, "plantName": "eremurus"},
         {id: gardenAreaIdGenerator++, "x": -1.5, "z": 0, "width": 1, "length": 1, "plantName": "nepeta"},
+        {id: gardenAreaIdGenerator++, "x": -1.5, "z": 1.5, "width": 1, "length": 1, "plantName": "nepeta"},
     ]
 };
 
@@ -529,36 +532,113 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
 export const GARDEN_AUTUMN = {
     name: "autumn",
     areas: [
-        {id: gardenAreaIdGenerator++, "x":  1.06, "z": 1.62, "width": 1.52, "length": .70, "plantName": "eremurus"},
-        {id: gardenAreaIdGenerator++, "x":  -.56, "z": 1.50, "width": 1.00, "length": 1.00, "plantName": "eremurus"},
-        {id: gardenAreaIdGenerator++, "x":  1.80, "z": 1.68, "width": 1.00, "length": 1.00, "plantName": "echinacea_tennesseensis"},
-        {id: gardenAreaIdGenerator++, "x":  -1.71, "z": 2.28, "width": 1.00, "length": 1.00, "plantName": "echinacea_tennesseensis"},
-        {id: gardenAreaIdGenerator++, "x":  1.76, "z": 2.64, "width": 2.76, "length": .85, "plantName": "stipa"},
-        {id: gardenAreaIdGenerator++, "x":  -2.25, "z": 2.42, "width": 1.70, "length": .70, "plantName": "stipa"},
-        {id: gardenAreaIdGenerator++, "x":  -.77, "z": 1.57, "width": 1.00, "length": 3.82, "plantName": "stipa"},
-        {id: gardenAreaIdGenerator++, "x":  2.53, "z": 3.08, "width": 1.00, "length": .74, "plantName": "echinacea_purpurea_polar_breeze"},
-        {id: gardenAreaIdGenerator++, "x":  -1.74, "z": 3.12, "width": 1.00, "length": .74, "plantName": "echinacea_purpurea_polar_breeze"},
-        {id: gardenAreaIdGenerator++, "x":  -2.32, "z": 2.52, "width": 1.00, "length": .74, "plantName": "echinacea_purpurea_polar_breeze"},
-        {id: gardenAreaIdGenerator++, "x":  2.84, "z": 1.84, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
-        {id: gardenAreaIdGenerator++, "x":  -2.43, "z": .81, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
-        {id: gardenAreaIdGenerator++, "x":  -.63, "z": -.54, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
-        {id: gardenAreaIdGenerator++, "x":  2.95, "z": .13, "width": 1.00, "length": 1.00, "plantName": "calamagrostis"},
-        {id: gardenAreaIdGenerator++, "x":  -2.15, "z": -.25, "width": 1.00, "length": 1.00, "plantName": "calamagrostis"},
-        {id: gardenAreaIdGenerator++, "x":  .32, "z": 1.14, "width": 1.17, "length": .50, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  -3.25, "z": 2.57, "width": .95, "length": 2.44, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  1.63, "z": 3.34, "width": 1.17, "length": .50, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  1.27, "z": 1.03, "width": 1.17, "length": 1.05, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  .29, "z": 2.20, "width": 1.45, "length": 1.58, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  -2.48, "z": -2.59, "width": 3.08, "length": 1.05, "plantName": "sporobolus"},
-        {id: gardenAreaIdGenerator++, "x":  1.19, "z": -1.45, "width": 3.08, "length": 1.30, "plantName": "sporobolus"},
-        {id: gardenAreaIdGenerator++, "x":  -1.97, "z": 1.33, "width": 1.00, "length": 1.34, "plantName": "aster"},
-        {id: gardenAreaIdGenerator++, "x":  -2.88, "z": 1.08, "width": 1.00, "length": 1.65, "plantName": "anthericum_liliago"},
-        {id: gardenAreaIdGenerator++, "x":  2.35, "z": 1.06, "width": 1.00, "length": 1.65, "plantName": "anthericum_liliago"},
-        {id: gardenAreaIdGenerator++, "x":  -2.18, "z": 2.64, "width": 1.00, "length": 1.65, "plantName": "anthericum_liliago"},
-        {id: gardenAreaIdGenerator++, "x":  -1.20, "z": 1.80, "width": 1.53, "length": 1.26, "plantName": "lillium_regale"},
-        {id: gardenAreaIdGenerator++, "x":  1.62, "z": .74, "width": 2.29, "length": 1.00, "plantName": "lillium_regale"},
-        {id: gardenAreaIdGenerator++, "x":  1.59, "z": -.08, "width": 2.68, "length": .78, "plantName": "sporobolus"},
-        {id: gardenAreaIdGenerator++, "x":  -2.17, "z": -1.51, "width": 3.08, "length": .92, "plantName": "sporobolus"}
+        {id: gardenAreaIdGenerator++, "x": 1.06, "z": 1.62, "width": 1.52, "length": .70, "plantName": "eremurus"},
+        {id: gardenAreaIdGenerator++, "x": -.56, "z": 1.50, "width": 1.00, "length": 1.00, "plantName": "eremurus"},
+        {
+            id: gardenAreaIdGenerator++,
+            "x": 1.80,
+            "z": 1.68,
+            "width": 1.00,
+            "length": 1.00,
+            "plantName": "echinacea_tennesseensis"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -1.71,
+            "z": 2.28,
+            "width": 1.00,
+            "length": 1.00,
+            "plantName": "echinacea_tennesseensis"
+        },
+        {id: gardenAreaIdGenerator++, "x": 1.76, "z": 2.64, "width": 2.76, "length": .85, "plantName": "stipa"},
+        {id: gardenAreaIdGenerator++, "x": -2.25, "z": 2.42, "width": 1.70, "length": .70, "plantName": "stipa"},
+        {id: gardenAreaIdGenerator++, "x": -.77, "z": 1.57, "width": 1.00, "length": 3.82, "plantName": "stipa"},
+        {
+            id: gardenAreaIdGenerator++,
+            "x": 2.53,
+            "z": 3.08,
+            "width": 1.00,
+            "length": .74,
+            "plantName": "echinacea_purpurea_polar_breeze"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -1.74,
+            "z": 3.12,
+            "width": 1.00,
+            "length": .74,
+            "plantName": "echinacea_purpurea_polar_breeze"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -2.32,
+            "z": 2.52,
+            "width": 1.00,
+            "length": .74,
+            "plantName": "echinacea_purpurea_polar_breeze"
+        },
+        {id: gardenAreaIdGenerator++, "x": 2.84, "z": 1.84, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
+        {id: gardenAreaIdGenerator++, "x": -2.43, "z": .81, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
+        {id: gardenAreaIdGenerator++, "x": -.63, "z": -.54, "width": 1.00, "length": 1.10, "plantName": "deschampsia"},
+        {id: gardenAreaIdGenerator++, "x": 2.95, "z": .13, "width": 1.00, "length": 1.00, "plantName": "calamagrostis"},
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -2.15,
+            "z": -.25,
+            "width": 1.00,
+            "length": 1.00,
+            "plantName": "calamagrostis"
+        },
+        {id: gardenAreaIdGenerator++, "x": .32, "z": 1.14, "width": 1.17, "length": .50, "plantName": "aster"},
+        {id: gardenAreaIdGenerator++, "x": -3.25, "z": 2.57, "width": .95, "length": 2.44, "plantName": "aster"},
+        {id: gardenAreaIdGenerator++, "x": 1.63, "z": 3.34, "width": 1.17, "length": .50, "plantName": "aster"},
+        {id: gardenAreaIdGenerator++, "x": 1.27, "z": 1.03, "width": 1.17, "length": 1.05, "plantName": "aster"},
+        {id: gardenAreaIdGenerator++, "x": .29, "z": 2.20, "width": 1.45, "length": 1.58, "plantName": "aster"},
+        {id: gardenAreaIdGenerator++, "x": -2.48, "z": -2.59, "width": 3.08, "length": 1.05, "plantName": "sporobolus"},
+        {id: gardenAreaIdGenerator++, "x": 1.19, "z": -1.45, "width": 3.08, "length": 1.30, "plantName": "sporobolus"},
+        {id: gardenAreaIdGenerator++, "x": -1.97, "z": 1.33, "width": 1.00, "length": 1.34, "plantName": "aster"},
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -2.88,
+            "z": 1.08,
+            "width": 1.00,
+            "length": 1.65,
+            "plantName": "anthericum_liliago"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": 2.35,
+            "z": 1.06,
+            "width": 1.00,
+            "length": 1.65,
+            "plantName": "anthericum_liliago"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -2.18,
+            "z": 2.64,
+            "width": 1.00,
+            "length": 1.65,
+            "plantName": "anthericum_liliago"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": -1.20,
+            "z": 1.80,
+            "width": 1.53,
+            "length": 1.26,
+            "plantName": "lillium_regale"
+        },
+        {
+            id: gardenAreaIdGenerator++,
+            "x": 1.62,
+            "z": .74,
+            "width": 2.29,
+            "length": 1.00,
+            "plantName": "lillium_regale"
+        },
+        {id: gardenAreaIdGenerator++, "x": 1.59, "z": -.08, "width": 2.68, "length": .78, "plantName": "sporobolus"},
+        {id: gardenAreaIdGenerator++, "x": -2.17, "z": -1.51, "width": 3.08, "length": .92, "plantName": "sporobolus"}
     ]
 }
 
