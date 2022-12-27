@@ -2,14 +2,17 @@ import {FaEye} from "react-icons/fa";
 import {RxTriangleDown, RxTriangleRight} from "react-icons/rx";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
-import {SHOW_AREA_ID, useControlsContext} from "../contexts/ControlsContext";
+import {SHOW_AREA_ID, SHOW_AREA_PLANES, useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {useMemo, useState} from "react";
 
 function SmallButton(props) {
     const {onClick, children} = props;
     return (
-        <Button size="sm" variant="outline-primary" className="border-0 px-0" onClick={onClick}>
+        <Button size="sm"
+                variant="outline-primary"
+                className="border-0 px-0"
+                onClick={onClick}>
             {children}
         </Button>
     )
@@ -104,15 +107,28 @@ function AreaInfoGroupedByPlant(props) {
 
 export function GardenAreaListPage() {
     const [showAllAreaInfos, setShowAllAreaInfos] = useState(false);
+    const {toggleControlValue} = useControlsContext();
 
     return (
-        <Container>
-            <h3 className="">plants:
-                <SmallButton onClick={() => setShowAllAreaInfos(showAllAreaInfos => !showAllAreaInfos)}>
-                    {showAllAreaInfos ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
-                </SmallButton>
-            </h3>
-            <AreaInfoGroupedByPlant showAllAreaInfos={showAllAreaInfos}/>
+        <Container className="flex-column">
+            <Row>
+                <Col className="d-flex">
+                    <h3 className="container">plants:</h3>
+                </Col>
+            </Row>
+            <Row className="mx-1 px-0">
+                <Col className="mx-0 px-0">
+                    <SmallButton onClick={() => setShowAllAreaInfos(showAllAreaInfos => !showAllAreaInfos)}>
+                        {showAllAreaInfos ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
+                    </SmallButton>
+                    <SmallButton onClick={() => toggleControlValue(SHOW_AREA_PLANES)}>
+                        <FaEye size={ICON_SIZE_SMALL}/>
+                    </SmallButton>
+                </Col>
+            </Row>
+            <Row>
+                <AreaInfoGroupedByPlant showAllAreaInfos={showAllAreaInfos}/>
+            </Row>
         </Container>
     )
 }
