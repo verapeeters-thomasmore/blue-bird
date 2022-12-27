@@ -29,8 +29,7 @@ export function ControlsProvider(props) {
     const getControlValue = useCallback(key => controls[key], [controls]);
     const toggleControlValue = useCallback(key => setControls(controls => ({...controls, [key]: !controls[key]})));
 
-    //TODO rename: getControlValueInCollection
-    const controlValueInCollection = useCallback((key, keyInCollection) =>
+    const getControlValueInCollection = useCallback((key, keyInCollection) =>
             controls[key]?.[keyInCollection],
         [controls]);
 
@@ -38,7 +37,7 @@ export function ControlsProvider(props) {
     const toggleControlInCollection = useCallback((key, keyInCollection) =>
         setControls(controls => ({
             ...controls,
-            [key]: {...controls[key] ?? {}, [keyInCollection]: !controlValueInCollection(key, keyInCollection)}
+            [key]: {...controls[key] ?? {}, [keyInCollection]: !getControlValueInCollection(key, keyInCollection)}
         })));
 
     //TODO rename: setOneControlValue
@@ -52,10 +51,10 @@ export function ControlsProvider(props) {
                 getControlValue,
                 setOneControl,
                 toggleControlValue,
-                controlValueInCollection,
+                getControlValueInCollection,
                 toggleControlInCollection,
             }),
-        [getControlValue, setOneControl, toggleControlValue, controlValueInCollection, toggleControlInCollection]);
+        [getControlValue, setOneControl, toggleControlValue, getControlValueInCollection, toggleControlInCollection]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}

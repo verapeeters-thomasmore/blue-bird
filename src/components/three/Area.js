@@ -6,12 +6,12 @@ import {SHOW_AREA_ID, SHOW_AREA_PLANES, SHOW_PLANTS, useControlsContext} from ".
 
 function AreaPlane(props) {
     const {area} = props;
-    const {getControlValue, controlValueInCollection} = useControlsContext();
+    const {getControlValue, getControlValueInCollection} = useControlsContext();
     const {plant, x, z, width, length} = area;
     const ref = useRef()
 
     if (!getControlValue(SHOW_AREA_PLANES) &&
-        !controlValueInCollection(SHOW_AREA_ID, area.id)) return;
+        !getControlValueInCollection(SHOW_AREA_ID, area.id)) return;
 
     return (
         <mesh
