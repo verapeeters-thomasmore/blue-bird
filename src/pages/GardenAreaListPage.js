@@ -4,7 +4,7 @@ import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 function SmallButton(props) {
     const {onClick, children} = props;
@@ -33,7 +33,10 @@ function ExpandButton(props) {
     const {show, setShow} = props;
     return (
         <SmallButton
-            onClick={() => setShow(show => !show)}>
+            onClick={() => {
+                console.log("onClick", show)
+                setShow(show => !show)
+            }}>
             {show ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
         </SmallButton>
     )
@@ -57,12 +60,21 @@ function AreaInfo(props) {
 
 function PlantWithAreas(props) {
     const {plantWithAreas, showAllAreaInfos} = props;
+    const [showThisAreaInfo, setShowThisAreaInfo] = useState(false);
+
+    useEffect(() => {
+        console.log("useEffect", plantWithAreas.plantName, showAllAreaInfos, showThisAreaInfo)
+        setShowThisAreaInfo(showAllAreaInfos)
+    }, [showAllAreaInfos]);
+
+    console.log("PlantWithAreas render", plantWithAreas.plantName, showAllAreaInfos, showThisAreaInfo)
 
     return (
         <Container className=""
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
             <Row className="bg-white p-1">
-                <Col xs={1} className="">
+                <Col xs={2} className="">
+                    <ExpandButton show={showThisAreaInfo} setShow={setShowThisAreaInfo}/>
                     <EyeButton areas={plantWithAreas.areas}/>
                 </Col>
                 <Col className="">
@@ -70,7 +82,7 @@ function PlantWithAreas(props) {
                 </Col>
             </Row>
             <Row className="bg-white p-1">
-                {showAllAreaInfos &&
+                {(showThisAreaInfo) &&
                     <Col className="">
                         {plantWithAreas.areas.map(a => <AreaInfo key={a.id} area={a}/>)}
                     </Col>
