@@ -55,7 +55,6 @@ TODO
 * OK -- view-button in arealist: toggle
 * OK -- show plantlist
 * OK -- show areas for 1 plant in plantlist
-* catalog always show areas? -- catalog is simply special kind of garden (limited - no edits)
 * open arealist for 1 plant
 * show plant details
 * edit areas
@@ -71,6 +70,7 @@ TODO
 
 --- bigger stories
 * plant topview
+* catalog always show areas? -- catalog is simply special kind of garden (limited - no edits)
 * database / storage
 * tutorial
 
