@@ -26,23 +26,54 @@ const INITIAL_CONTROLS = {
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
 
-    const getControlValue = useCallback(key => controls[key], [controls]);
-    const toggleControlValue = useCallback(key => setControls(controls => ({...controls, [key]: !controls[key]})));
-
-    const getControlValueInCollection = useCallback((key, keyInCollection) =>
-            controls[key]?.[keyInCollection],
+    const getControlValue = useCallback(
+        key => controls[key],
         [controls]);
 
-    const toggleControlValueInCollection = useCallback((key, keyInCollection) =>
-        setControls(controls => ({
-            ...controls,
-            [key]: {...controls[key] ?? {}, [keyInCollection]: !getControlValueInCollection(key, keyInCollection)}
-        })));
+    const toggleControlValue = useCallback(
+        key => setControls(controls => ({...controls, [key]: !controls[key]})),
+        [controls]);
 
-    const setOneControlValue = useCallback((key, newValue) =>
-        setControls(controls => ({
-            ...controls, [key]: newValue
-        })));
+    const getControlValueInCollection = useCallback(
+        (key, keyInCollection) => controls[key]?.[keyInCollection],
+        [controls]);
+
+    const toggleControlValueInCollection = useCallback(
+        (key, keyInCollection) => setControls(controls =>
+            ({
+                ...controls,
+                [key]: {...controls[key] ?? {}, [keyInCollection]: !getControlValueInCollection(key, keyInCollection)}
+            })),
+        [controls, getControlValueInCollection]);
+
+    const setOneControlValue = useCallback(
+        (key, newValue) =>
+            setControls(controls => ({
+                ...controls, [key]: newValue
+            })),
+        [controls]);
+
+    const toggleSomeAreas = useCallback(
+        areasToToggle => {
+            const idsOfAreasToToggle = areasToToggle.map(a => a.id);
+            const currentAreaIdControls = getControlValue(SHOW_AREA_ID) ?? {};
+            const foundOneTrue = idsOfAreasToToggle.some(id => currentAreaIdControls[id]);
+            const toggledAreaIdControls = idsOfAreasToToggle.reduce(
+                (tempResult, k) => ({
+                    ...tempResult, [k]: !foundOneTrue
+                }), {});
+            const newAreaIdControls = {...currentAreaIdControls, ...toggledAreaIdControls};
+            setOneControlValue(SHOW_AREA_ID, newAreaIdControls);
+        },
+        [getControlValue, setOneControlValue]);
+
+    const areSomeAreasVisible = useMemo(
+        () => {
+            const currentAreaIdControls = getControlValue(SHOW_AREA_ID) ?? {};
+            return Object.values(currentAreaIdControls).some(v => v);
+        },
+        [getControlValue]
+    );
 
     const api = useMemo(() =>
             ({
@@ -51,8 +82,10 @@ export function ControlsProvider(props) {
                 toggleControlValue,
                 getControlValueInCollection,
                 toggleControlValueInCollection,
+                toggleSomeAreas,
+                areSomeAreasVisible
             }),
-        [getControlValue, setOneControlValue, toggleControlValue, getControlValueInCollection, toggleControlValueInCollection]);
+        [getControlValue, setOneControlValue, toggleControlValue, getControlValueInCollection, toggleControlValueInCollection, toggleSomeAreas, areSomeAreasVisible]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}

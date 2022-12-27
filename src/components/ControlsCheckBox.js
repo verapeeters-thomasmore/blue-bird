@@ -12,3 +12,14 @@ export function ControlsCheckBox(props) {
                     onChange={() => toggleControlValue(controlKey)}/>
     );
 }
+
+export function ControlsCheckBoxSpecialAction(props) {
+    const {title, isChecked, onChange} = props;
+
+    return (
+        <Form.Check type="checkbox"
+                    label={title}
+                    checked={!!isChecked}
+                    onChange={onChange}/>
+    );
+}

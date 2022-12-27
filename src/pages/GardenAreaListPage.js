@@ -37,20 +37,9 @@ function AreaInfo(props) {
     );
 }
 
-function toggleSomeAreas(areasToToggle, getControlValue, setOneControlValue) {
-    const idsOfAreasToToggle = areasToToggle.map(a => a.id);
-    const currentAreaIdControls = getControlValue(SHOW_AREA_ID) ?? {};
-    const foundOneTrue = idsOfAreasToToggle.some(id => currentAreaIdControls[id]);
-    const toggledAreaIdControls = idsOfAreasToToggle.reduce((tempResult, k) => ({
-        ...tempResult, [k]: !foundOneTrue
-    }), {});
-    const newAreaIdControls = {...currentAreaIdControls, ...toggledAreaIdControls};
-    setOneControlValue(SHOW_AREA_ID, newAreaIdControls);
-}
-
 function PlantWithAreas(props) {
     const {plantWithAreas, showAllAreaInfos} = props;
-    const {getControlValue, setOneControlValue,} = useControlsContext();
+    const {toggleSomeAreas} = useControlsContext();
 
     return (
         <Container className=""
@@ -58,7 +47,7 @@ function PlantWithAreas(props) {
             <Row className="bg-white p-1">
                 <Col xs={1} className="">
                     <SmallButton
-                        onClick={() => toggleSomeAreas(plantWithAreas.areas, getControlValue, setOneControlValue)}>
+                        onClick={() => toggleSomeAreas(plantWithAreas.areas)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
@@ -107,7 +96,7 @@ function AreaInfoGroupedByPlant(props) {
 
 export function GardenAreaListPage() {
     const [showAllAreaInfos, setShowAllAreaInfos] = useState(false);
-    const {getControlValue, setOneControlValue,} = useControlsContext();
+    const {toggleSomeAreas} = useControlsContext();
     const {areasSelectedGarden} = useGardenSelectorContext();
 
     return (
@@ -124,7 +113,7 @@ export function GardenAreaListPage() {
                         {showAllAreaInfos ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
                     </SmallButton>
                     <SmallButton
-                        onClick={() => toggleSomeAreas(areasSelectedGarden, getControlValue, setOneControlValue)}>
+                        onClick={() => toggleSomeAreas(areasSelectedGarden)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>

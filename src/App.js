@@ -51,7 +51,7 @@ export default function App() {
 
 /*
 TODO
-* all areas: means traverse all areas
+* all areas: means traverse all areas -- do not save showAreaPlanes anymore
 * OK -- view-button in arealist: toggle
 * OK -- show plantlist
 * open arealist for 1 plant
