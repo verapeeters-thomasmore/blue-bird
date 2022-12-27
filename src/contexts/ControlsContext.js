@@ -26,10 +26,8 @@ const INITIAL_CONTROLS = {
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
 
-    //TODO rename: getControlValue
     const getControlValue = useCallback(key => controls[key], [controls]);
-    //TODO rename: toggleControlValue
-    const toggleControl = useCallback(key => setControls(controls => ({...controls, [key]: !controls[key]})));
+    const toggleControlValue = useCallback(key => setControls(controls => ({...controls, [key]: !controls[key]})));
 
     //TODO rename: getControlValueInCollection
     const controlValueInCollection = useCallback((key, keyInCollection) =>
@@ -53,11 +51,11 @@ export function ControlsProvider(props) {
             ({
                 getControlValue,
                 setOneControl,
-                toggleControl,
+                toggleControlValue,
                 controlValueInCollection,
                 toggleControlInCollection,
             }),
-        [getControlValue, setOneControl, toggleControl, controlValueInCollection, toggleControlInCollection]);
+        [getControlValue, setOneControl, toggleControlValue, controlValueInCollection, toggleControlInCollection]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}

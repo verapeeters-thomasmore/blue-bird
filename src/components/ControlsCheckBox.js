@@ -3,12 +3,12 @@ import {Form} from "react-bootstrap";
 
 export function ControlsCheckBox(props) {
     const {title, controlKey} = props;
-    const {getControlValue, toggleControl} = useControlsContext();
+    const {getControlValue, toggleControlValue} = useControlsContext();
 
     return (
         <Form.Check type="checkbox"
                     label={title}
                     checked={getControlValue(controlKey)}
-                    onChange={() => toggleControl(controlKey)}/>
+                    onChange={() => toggleControlValue(controlKey)}/>
     );
 }
