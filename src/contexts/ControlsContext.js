@@ -8,7 +8,6 @@ export const SHOW_FLOOR = "showFloor";
 export const SHOW_AXES = "showAxes";
 export const SHOW_CATALOG = "showCatalog";
 export const SHOW_GARDEN = "showGarden";
-export const SHOW_AREA_PLANES = "showAreaPlanes";
 export const SHOW_PLANTS = "showPlants";
 export const SHOW_AREA_ID = "showAreaId";
 
@@ -18,7 +17,6 @@ const INITIAL_CONTROLS = {
     [SHOW_AXES]: false,
     [SHOW_CATALOG]: false,
     [SHOW_GARDEN]: true,
-    [SHOW_AREA_PLANES]: false,
     [SHOW_PLANTS]: true,
     [SHOW_AREA_ID]: {},
 };

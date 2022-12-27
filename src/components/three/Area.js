@@ -2,16 +2,15 @@ import {AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
-import {SHOW_AREA_ID, SHOW_AREA_PLANES, SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
+import {SHOW_AREA_ID, SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
 
 function AreaPlane(props) {
     const {area} = props;
-    const {getControlValue, getControlValueInCollection} = useControlsContext();
+    const {getControlValueInCollection} = useControlsContext();
     const {plant, x, z, width, length} = area;
     const ref = useRef()
 
-    if (!getControlValue(SHOW_AREA_PLANES) &&
-        !getControlValueInCollection(SHOW_AREA_ID, area.id)) return;
+    if (!getControlValueInCollection(SHOW_AREA_ID, area.id)) return;
 
     return (
         <mesh
