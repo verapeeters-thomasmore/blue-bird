@@ -17,12 +17,12 @@ function SmallButton(props) {
 
 function AreaInfo(props) {
     const {area} = props;
-    const {toggleControlInCollection} = useControlsContext();
+    const {toggleControlValueInCollection} = useControlsContext();
 
     return (
         <Row className="ms-1">
             <Col xs="1" className="">
-                <SmallButton onClick={() => toggleControlInCollection(SHOW_AREA_ID, area.id)}>
+                <SmallButton onClick={() => toggleControlValueInCollection(SHOW_AREA_ID, area.id)}>
                     <FaEye size={ICON_SIZE_SMALL}/>
                 </SmallButton>
             </Col>
@@ -34,7 +34,7 @@ function AreaInfo(props) {
     );
 }
 
-function toggleAreas(plantWithAreas, getControlValue, setOneControl) {
+function toggleAreas(plantWithAreas, getControlValue, setOneControlValue) {
     const idsOfAreasToToggle = plantWithAreas.areas.map(a => a.id);
     const currentAreaIdControls = getControlValue(SHOW_AREA_ID) ?? {};
     const foundOneTrue = idsOfAreasToToggle.some(id => currentAreaIdControls[id]);
@@ -42,12 +42,12 @@ function toggleAreas(plantWithAreas, getControlValue, setOneControl) {
         ...tempResult, [k]: !foundOneTrue
     }), {});
     const newAreaIdControls = {...currentAreaIdControls, ...toggledAreaIdControls};
-    setOneControl(SHOW_AREA_ID, newAreaIdControls);
+    setOneControlValue(SHOW_AREA_ID, newAreaIdControls);
 }
 
 function PlantWithAreas(props) {
     const {plantWithAreas, showAllAreaInfos} = props;
-    const {getControlValue, setOneControl,} = useControlsContext();
+    const {getControlValue, setOneControlValue,} = useControlsContext();
 
     return (
         <Container className=""
@@ -55,7 +55,7 @@ function PlantWithAreas(props) {
             <Row className="bg-white p-1">
                 <Col xs={1} className="">
                     <SmallButton
-                        onClick={() => toggleAreas(plantWithAreas, getControlValue, setOneControl)}>
+                        onClick={() => toggleAreas(plantWithAreas, getControlValue, setOneControlValue)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
