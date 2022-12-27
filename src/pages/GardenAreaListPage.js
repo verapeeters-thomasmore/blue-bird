@@ -2,7 +2,7 @@ import {FaEye} from "react-icons/fa";
 import {RxTriangleDown, RxTriangleRight} from "react-icons/rx";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
-import {SHOW_AREA_ID, SHOW_AREA_PLANES, useControlsContext} from "../contexts/ControlsContext";
+import {SHOW_AREA_ID, useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {useMemo, useState} from "react";
 
@@ -37,8 +37,8 @@ function AreaInfo(props) {
     );
 }
 
-function toggleAreas(plantWithAreas, getControlValue, setOneControlValue) {
-    const idsOfAreasToToggle = plantWithAreas.areas.map(a => a.id);
+function toggleSomeAreas(areasToToggle, getControlValue, setOneControlValue) {
+    const idsOfAreasToToggle = areasToToggle.map(a => a.id);
     const currentAreaIdControls = getControlValue(SHOW_AREA_ID) ?? {};
     const foundOneTrue = idsOfAreasToToggle.some(id => currentAreaIdControls[id]);
     const toggledAreaIdControls = idsOfAreasToToggle.reduce((tempResult, k) => ({
@@ -58,7 +58,7 @@ function PlantWithAreas(props) {
             <Row className="bg-white p-1">
                 <Col xs={1} className="">
                     <SmallButton
-                        onClick={() => toggleAreas(plantWithAreas, getControlValue, setOneControlValue)}>
+                        onClick={() => toggleSomeAreas(plantWithAreas.areas, getControlValue, setOneControlValue)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
@@ -89,12 +89,12 @@ function getPlantsWithAreas(areasSelectedGarden) {
 function AreaInfoGroupedByPlant(props) {
     const {showAllAreaInfos} = props;
     const {areasSelectedGarden} = useGardenSelectorContext();
-    const plantsWithAreas = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
+    const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
 
     return (
         <Container className="mx-auto">
             <Row className="m-0">
-                {plantsWithAreas.map(p =>
+                {areaInfoGroupedByPlant.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
                         <PlantWithAreas plantWithAreas={p}
                                         showAllAreaInfos={showAllAreaInfos}/>
@@ -107,7 +107,8 @@ function AreaInfoGroupedByPlant(props) {
 
 export function GardenAreaListPage() {
     const [showAllAreaInfos, setShowAllAreaInfos] = useState(false);
-    const {toggleControlValue} = useControlsContext();
+    const {getControlValue, setOneControlValue,} = useControlsContext();
+    const {areasSelectedGarden} = useGardenSelectorContext();
 
     return (
         <Container className="flex-column">
@@ -118,10 +119,12 @@ export function GardenAreaListPage() {
             </Row>
             <Row className="mx-1 px-0">
                 <Col className="mx-0 px-0">
-                    <SmallButton onClick={() => setShowAllAreaInfos(showAllAreaInfos => !showAllAreaInfos)}>
+                    <SmallButton
+                        onClick={() => setShowAllAreaInfos(showAllAreaInfos => !showAllAreaInfos)}>
                         {showAllAreaInfos ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
                     </SmallButton>
-                    <SmallButton onClick={() => toggleControlValue(SHOW_AREA_PLANES)}>
+                    <SmallButton
+                        onClick={() => toggleSomeAreas(areasSelectedGarden, getControlValue, setOneControlValue)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
