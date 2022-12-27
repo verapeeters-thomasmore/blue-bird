@@ -64,8 +64,8 @@ const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext)
 function PlantWithAreas(props) {
     const {plantWithAreas} = props;
     const {plant, areas} = plantWithAreas;
-    const {getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant} = useGardenAreaListPageContext();
-    const showPlantInfo = useMemo(() => getShowPlantInfoForOnePlant(plant.id), [plantWithAreas, getShowPlantInfoForOnePlant]);
+    const {isItemShown, toggleShowForOneItem} = useGardenAreaListPageContext();
+    const showPlantInfo = useMemo(() => isItemShown(plant.id), [plantWithAreas, isItemShown]);
 
     return (
         <Container className=""
@@ -73,7 +73,7 @@ function PlantWithAreas(props) {
             <Row className="bg-white p-1">
                 <Col xs={2} className="">
                     <ExpandButtonNew show={showPlantInfo}
-                                     toggleShow={() => toggleShowPlantInfoForOnePlant(plant.id)}/>
+                                     toggleShow={() => toggleShowForOneItem(plant.id)}/>
 
                     <EyeButton areas={areas}/>
                 </Col>
@@ -118,40 +118,35 @@ function AreaInfoGroupedByPlant(props) {
 }
 
 function useShowItemToggle(allItems) {
-    const ShowItemToggleContext = useMemo(() => createContext(), []);
+    const [shownItems, setShownItems] = useState([])
 
-    const [showPlantInfos, setShowPlantInfos] = useState([])
+    const isItemShown = useCallback(
+        (itemId) => shownItems.find(id => id === itemId),
+        [shownItems]);
 
-    const getShowPlantInfoForOnePlant = useCallback(
-        (plantId) => showPlantInfos.find(id => id === plantId),
-        [showPlantInfos]);
+    const toggleShowForOneItem = useCallback(
+        itemId =>
+            setShownItems(shownItems.find(id => id === itemId)
+                ? shownItems.filter(id => id !== itemId)
+                : [...shownItems, itemId]),
+        [shownItems]);
 
-    const toggleShowPlantInfoForOnePlant = useCallback(
-        plantId =>
-            setShowPlantInfos(showPlantInfos.find(id => id === plantId)
-                ? showPlantInfos.filter(id => id !== plantId)
-                : [...showPlantInfos, plantId]),
-        [showPlantInfos]);
+    const isAtLeastOneItemShown = useCallback(
+        () => !!shownItems.length
+        , [shownItems]);
 
-    const isAtLeastOnePlantInfoShown = useCallback(
-        () => !!showPlantInfos.length
-        , [showPlantInfos]);
-
-    const toggleAllShownPlantInfos = useCallback(
+    const toggleAllShownItems = useCallback(
         () => {
-            setShowPlantInfos(!!showPlantInfos.length ? [] : [...allItems])
-        }, [showPlantInfos]);
-
-    const useShowItemToggleContext = useCallback(() => useContext(ShowItemToggleContext), [ShowItemToggleContext]);
+            setShownItems(!!shownItems.length ? [] : [...allItems])
+        }, [shownItems]);
 
     return useMemo(() => ({
-            getShowPlantInfoForOnePlant,
-            toggleShowPlantInfoForOnePlant,
-            isAtLeastOnePlantInfoShown,
-            toggleAllShownPlantInfos,
-            useShowItemToggleContext,
+            isItemShown,
+            toggleShowForOneItem,
+            isAtLeastOneItemShown,
+            toggleAllShownItems,
         }),
-        [getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant, isAtLeastOnePlantInfoShown, toggleAllShownPlantInfos, useShowItemToggleContext]);
+        [isItemShown, toggleShowForOneItem, isAtLeastOneItemShown, toggleAllShownItems]);
 }
 
 export function GardenAreaListPage() {
@@ -159,7 +154,7 @@ export function GardenAreaListPage() {
     const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
     const plantIds = useMemo(() => areaInfoGroupedByPlant.map(plantInfo => plantInfo.plant.id), [areaInfoGroupedByPlant]);
     const showItemToggleApi = useShowItemToggle(plantIds);
-    const {isAtLeastOnePlantInfoShown, toggleAllShownPlantInfos} = showItemToggleApi;
+    const {isAtLeastOneItemShown, toggleAllShownItems} = showItemToggleApi;
 
     return (
         <Container className="flex-column">
@@ -170,7 +165,7 @@ export function GardenAreaListPage() {
             </Col></Row>
             <Row className="mx-1 px-0">
                 <Col className="mx-0 px-0">
-                    <ExpandButtonNew show={isAtLeastOnePlantInfoShown()} toggleShow={toggleAllShownPlantInfos}/>
+                    <ExpandButtonNew show={isAtLeastOneItemShown()} toggleShow={toggleAllShownItems}/>
                     <EyeButton areas={areasSelectedGarden}/>
                 </Col>
             </Row>
