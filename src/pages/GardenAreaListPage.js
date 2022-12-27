@@ -29,6 +29,16 @@ function EyeButton(props) {
     )
 }
 
+function ExpandButton(props) {
+    const {show, setShow} = props;
+    return (
+        <SmallButton
+            onClick={() => setShow(show => !show)}>
+            {show ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
+        </SmallButton>
+    )
+}
+
 function AreaInfo(props) {
     const {area} = props;
 
@@ -104,19 +114,14 @@ export function GardenAreaListPage() {
 
     return (
         <Container className="flex-column">
-            <Row>
-                <Col className="d-flex">
-                    <h3 className="container">
-                        plants:
-                    </h3>
-                </Col>
-            </Row>
+            <Row><Col className="d-flex">
+                <h3 className="container">
+                    plants:
+                </h3>
+            </Col></Row>
             <Row className="mx-1 px-0">
                 <Col className="mx-0 px-0">
-                    <SmallButton
-                        onClick={() => setShowAllAreaInfos(showAllAreaInfos => !showAllAreaInfos)}>
-                        {showAllAreaInfos ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
-                    </SmallButton>
+                    <ExpandButton show={showAllAreaInfos} setShow={setShowAllAreaInfos}/>
                     <EyeButton areas={areasSelectedGarden}/>
                 </Col>
             </Row>
