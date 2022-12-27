@@ -4,7 +4,9 @@ import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
-import {createContext, useCallback, useContext, useMemo, useState} from "react";
+import {createContext, useContext, useMemo} from "react";
+import {useShowItemToggle} from "../hooks/useShowItemToggle";
+
 
 function SmallButton(props) {
     const {onClick, children} = props;
@@ -115,38 +117,6 @@ function AreaInfoGroupedByPlant(props) {
             </Row>
         </Container>
     );
-}
-
-function useShowItemToggle(allItems) {
-    const [shownItems, setShownItems] = useState([])
-
-    const isItemShown = useCallback(
-        (itemId) => shownItems.find(id => id === itemId),
-        [shownItems]);
-
-    const toggleShowForOneItem = useCallback(
-        itemId =>
-            setShownItems(shownItems.find(id => id === itemId)
-                ? shownItems.filter(id => id !== itemId)
-                : [...shownItems, itemId]),
-        [shownItems]);
-
-    const isAtLeastOneItemShown = useCallback(
-        () => !!shownItems.length
-        , [shownItems]);
-
-    const toggleAllShownItems = useCallback(
-        () => {
-            setShownItems(!!shownItems.length ? [] : [...allItems])
-        }, [shownItems]);
-
-    return useMemo(() => ({
-            isItemShown,
-            toggleShowForOneItem,
-            isAtLeastOneItemShown,
-            toggleAllShownItems,
-        }),
-        [isItemShown, toggleShowForOneItem, isAtLeastOneItemShown, toggleAllShownItems]);
 }
 
 export function GardenAreaListPage() {
