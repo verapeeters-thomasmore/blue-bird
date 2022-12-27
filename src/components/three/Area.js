@@ -6,11 +6,11 @@ import {SHOW_AREA_ID, SHOW_AREA_PLANES, SHOW_PLANTS, useControlsContext} from ".
 
 function AreaPlane(props) {
     const {area} = props;
-    const {controlValue, controlValueInCollection} = useControlsContext();
+    const {getControlValue, controlValueInCollection} = useControlsContext();
     const {plant, x, z, width, length} = area;
     const ref = useRef()
 
-    if (!controlValue(SHOW_AREA_PLANES) &&
+    if (!getControlValue(SHOW_AREA_PLANES) &&
         !controlValueInCollection(SHOW_AREA_ID, area.id)) return;
 
     return (
@@ -34,12 +34,12 @@ export function Area(props) {
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
     const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants, width, length), [nrOfPlants, width, length]);
     // console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
-    const {controlValue} = useControlsContext();
+    const {getControlValue} = useControlsContext();
 
     return (
         <>
             <AreaPlane area={area}/>
-            {controlValue(SHOW_PLANTS) && plantPositions.map(pos =>
+            {getControlValue(SHOW_PLANTS) && plantPositions.map(pos =>
                 <Plant key={pos.id} data={plant}
                        x={x + pos.x} z={z + pos.z}/>)}
         </>

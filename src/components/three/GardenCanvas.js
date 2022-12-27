@@ -19,7 +19,7 @@ import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
 
 export function GardenCanvas() {
     const {areasSelectedGarden} = useGardenSelectorContext();
-    const {controlValue} = useControlsContext();
+    const {getControlValue} = useControlsContext();
 
     return (
         <Canvas style={{background: WORLD_SKY_BLUE}}
@@ -27,11 +27,11 @@ export function GardenCanvas() {
             <Camera/>
             <ambientLight intensity={2.5}/>
             <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
-            {controlValue(SHOW_AXES) && <axesHelper/>}
-            {controlValue(SHOW_WORLD) && <World/>}
-            {controlValue(SHOW_FLOOR) && <Floor/>}
-            {controlValue(SHOW_CATALOG) && <PlantCatalogue plants={PLANT_DATA}/>}
-            {controlValue(SHOW_GARDEN) && <Areas areas={areasSelectedGarden}/>}
+            {getControlValue(SHOW_AXES) && <axesHelper/>}
+            {getControlValue(SHOW_WORLD) && <World/>}
+            {getControlValue(SHOW_FLOOR) && <Floor/>}
+            {getControlValue(SHOW_CATALOG) && <PlantCatalogue plants={PLANT_DATA}/>}
+            {getControlValue(SHOW_GARDEN) && <Areas areas={areasSelectedGarden}/>}
             <OrbitControls maxPolarAngle={Math.PI / 2 - 0.03}/>
         </Canvas>
     )

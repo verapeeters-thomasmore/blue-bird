@@ -47,7 +47,7 @@ function toggleAreas(plantWithAreas, getControlValue, setOneControl) {
 
 function PlantWithAreas(props) {
     const {plantWithAreas, showAllAreaInfos} = props;
-    const {controlValue, setOneControl,} = useControlsContext();
+    const {getControlValue, setOneControl,} = useControlsContext();
 
     return (
         <Container className=""
@@ -55,7 +55,7 @@ function PlantWithAreas(props) {
             <Row className="bg-white p-1">
                 <Col xs={1} className="">
                     <SmallButton
-                        onClick={() => toggleAreas(plantWithAreas, controlValue, setOneControl)}>
+                        onClick={() => toggleAreas(plantWithAreas, getControlValue, setOneControl)}>
                         <FaEye size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
