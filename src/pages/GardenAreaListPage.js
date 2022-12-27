@@ -117,12 +117,14 @@ function AreaInfoGroupedByPlant(props) {
     );
 }
 
-export function GardenAreaListPage() {
-    const [showPlantInfos, setShowPlantInfos] = useState([])
-    const {areasSelectedGarden} = useGardenSelectorContext();
-    const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
+function useShowItemToggle(allItems) {
+    const ShowItemToggleContext = useMemo(() => createContext(), []);
 
-    console.log("GardenAreaListPage", showPlantInfos);
+    const [showPlantInfos, setShowPlantInfos] = useState([])
+
+    const getShowPlantInfoForOnePlant = useCallback(
+        (plantId) => showPlantInfos.find(id => id === plantId),
+        [showPlantInfos]);
 
     const toggleShowPlantInfoForOnePlant = useCallback(
         plantId =>
@@ -137,18 +139,27 @@ export function GardenAreaListPage() {
 
     const toggleAllShownPlantInfos = useCallback(
         () => {
-            setShowPlantInfos(!!showPlantInfos.length
-                ? []
-                : areaInfoGroupedByPlant.map(p => p.plant.id))
-        }, [showPlantInfos, areaInfoGroupedByPlant]);
+            setShowPlantInfos(!!showPlantInfos.length ? [] : [...allItems])
+        }, [showPlantInfos]);
 
-    const getShowPlantInfoForOnePlant = useCallback(
-        (plantId) => showPlantInfos.find(id => id === plantId),
-        [showPlantInfos]);
+    const useShowItemToggleContext = useCallback(() => useContext(ShowItemToggleContext), [ShowItemToggleContext]);
 
-    const api = useMemo(() => ({
-        getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant
-    }), [getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant]);
+    return useMemo(() => ({
+            getShowPlantInfoForOnePlant,
+            toggleShowPlantInfoForOnePlant,
+            isAtLeastOnePlantInfoShown,
+            toggleAllShownPlantInfos,
+            useShowItemToggleContext,
+        }),
+        [getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant, isAtLeastOnePlantInfoShown, toggleAllShownPlantInfos, useShowItemToggleContext]);
+}
+
+export function GardenAreaListPage() {
+    const {areasSelectedGarden} = useGardenSelectorContext();
+    const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
+    const plantIds = useMemo(() => areaInfoGroupedByPlant.map(plantInfo => plantInfo.plant.id), [areaInfoGroupedByPlant]);
+    const showItemToggleApi = useShowItemToggle(plantIds);
+    const {isAtLeastOnePlantInfoShown, toggleAllShownPlantInfos} = showItemToggleApi;
 
     return (
         <Container className="flex-column">
@@ -164,7 +175,7 @@ export function GardenAreaListPage() {
                 </Col>
             </Row>
             <Row>
-                <GardenAreaListPageContext.Provider value={api}>
+                <GardenAreaListPageContext.Provider value={showItemToggleApi}>
                     <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areaInfoGroupedByPlant}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
