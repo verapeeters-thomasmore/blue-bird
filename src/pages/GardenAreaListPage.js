@@ -4,7 +4,7 @@ import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
-import {useEffect, useMemo, useState} from "react";
+import {createContext, useCallback, useContext, useMemo, useState} from "react";
 
 function SmallButton(props) {
     const {onClick, children} = props;
@@ -29,15 +29,15 @@ function EyeButton(props) {
     )
 }
 
-function ExpandButton(props) {
-    const {show, setShow} = props;
+function ExpandButtonNew(props) {
+    //show is an array of area-ids - if it contains
+    const {show, toggleShow} = props;
     return (
-        <SmallButton
-            onClick={() => {
-                console.log("onClick", show)
-                setShow(show => !show)
-            }}>
-            {show ? <RxTriangleDown size={ICON_SIZE}/> : <RxTriangleRight size={ICON_SIZE}/>}
+        <SmallButton onClick={() => toggleShow()}>
+            {show
+                ? <RxTriangleDown size={ICON_SIZE}/>
+                : <RxTriangleRight size={ICON_SIZE}/>
+            }
         </SmallButton>
     )
 }
@@ -58,33 +58,33 @@ function AreaInfo(props) {
     );
 }
 
+const GardenAreaListPageContext = createContext();
+const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
+
 function PlantWithAreas(props) {
-    const {plantWithAreas, showAllAreaInfos} = props;
-    const [showThisAreaInfo, setShowThisAreaInfo] = useState(false);
-
-    useEffect(() => {
-        console.log("useEffect", plantWithAreas.plantName, showAllAreaInfos, showThisAreaInfo)
-        setShowThisAreaInfo(showAllAreaInfos)
-    }, [showAllAreaInfos]);
-
-    console.log("PlantWithAreas render", plantWithAreas.plantName, showAllAreaInfos, showThisAreaInfo)
+    const {plantWithAreas} = props;
+    const {plant, areas} = plantWithAreas;
+    const {getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant} = useGardenAreaListPageContext();
+    const showPlantInfo = useMemo(() => getShowPlantInfoForOnePlant(plant.id), [plantWithAreas, getShowPlantInfoForOnePlant]);
 
     return (
         <Container className=""
-                   style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
+                   style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
             <Row className="bg-white p-1">
                 <Col xs={2} className="">
-                    <ExpandButton show={showThisAreaInfo} setShow={setShowThisAreaInfo}/>
-                    <EyeButton areas={plantWithAreas.areas}/>
+                    <ExpandButtonNew show={showPlantInfo}
+                                     toggleShow={() => toggleShowPlantInfoForOnePlant(plant.id)}/>
+
+                    <EyeButton areas={areas}/>
                 </Col>
                 <Col className="">
-                    {plantWithAreas.plant.name}
+                    {plant.name}
                 </Col>
             </Row>
             <Row className="bg-white p-1">
-                {(showThisAreaInfo) &&
+                {(showPlantInfo) &&
                     <Col className="">
-                        {plantWithAreas.areas.map(a => <AreaInfo key={a.id} area={a}/>)}
+                        {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
                     </Col>
                 }
             </Row>
@@ -102,17 +102,14 @@ function getPlantsWithAreas(areasSelectedGarden) {
 }
 
 function AreaInfoGroupedByPlant(props) {
-    const {showAllAreaInfos} = props;
-    const {areasSelectedGarden} = useGardenSelectorContext();
-    const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
+    const {areaInfoGroupedByPlant} = props;
 
     return (
         <Container className="mx-auto">
             <Row className="m-0">
                 {areaInfoGroupedByPlant.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
-                        <PlantWithAreas plantWithAreas={p}
-                                        showAllAreaInfos={showAllAreaInfos}/>
+                        <PlantWithAreas plantWithAreas={p}/>
                     </Col>
                 )}
             </Row>
@@ -121,8 +118,37 @@ function AreaInfoGroupedByPlant(props) {
 }
 
 export function GardenAreaListPage() {
-    const [showAllAreaInfos, setShowAllAreaInfos] = useState(false);
+    const [showPlantInfos, setShowPlantInfos] = useState([])
     const {areasSelectedGarden} = useGardenSelectorContext();
+    const areaInfoGroupedByPlant = useMemo(() => getPlantsWithAreas(areasSelectedGarden), [areasSelectedGarden]);
+
+    console.log("GardenAreaListPage", showPlantInfos);
+
+    const toggleShowPlantInfoForOnePlant = useCallback(
+        plantId =>
+            setShowPlantInfos(showPlantInfos.find(id => id === plantId)
+                ? showPlantInfos.filter(id => id !== plantId)
+                : [...showPlantInfos, plantId]),
+        [showPlantInfos]);
+
+    const isAtLeastOnePlantInfoShown = useCallback(
+        () => !!showPlantInfos.length
+        , [showPlantInfos]);
+
+    const toggleAllShownPlantInfos = useCallback(
+        () => {
+            setShowPlantInfos(!!showPlantInfos.length
+                ? []
+                : areaInfoGroupedByPlant.map(p => p.plant.id))
+        }, [showPlantInfos, areaInfoGroupedByPlant]);
+
+    const getShowPlantInfoForOnePlant = useCallback(
+        (plantId) => showPlantInfos.find(id => id === plantId),
+        [showPlantInfos]);
+
+    const api = useMemo(() => ({
+        getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant
+    }), [getShowPlantInfoForOnePlant, toggleShowPlantInfoForOnePlant]);
 
     return (
         <Container className="flex-column">
@@ -133,13 +159,18 @@ export function GardenAreaListPage() {
             </Col></Row>
             <Row className="mx-1 px-0">
                 <Col className="mx-0 px-0">
-                    <ExpandButton show={showAllAreaInfos} setShow={setShowAllAreaInfos}/>
+                    <ExpandButtonNew show={isAtLeastOnePlantInfoShown()} toggleShow={toggleAllShownPlantInfos}/>
                     <EyeButton areas={areasSelectedGarden}/>
                 </Col>
             </Row>
             <Row>
-                <AreaInfoGroupedByPlant showAllAreaInfos={showAllAreaInfos}/>
+                <GardenAreaListPageContext.Provider value={api}>
+                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areaInfoGroupedByPlant}/>
+                </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
     )
 }
+
+//TODO: areasSelectedGarden if selectedGarden changes?
+//TODO Controls SHOW_AREA_I and here showAreaInfo: both array or both object?
