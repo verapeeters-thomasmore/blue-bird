@@ -95,8 +95,8 @@ function AreaInfoGroupedByPlant(props) {
         <Container className="mx-auto">
             <Row className="m-0">
                 {plantsWithAreas.map(p =>
-                    <Col xs={12} md={6} lg={4} xl={3} className="p-1">
-                        <PlantWithAreas key={p.plant.id} plantWithAreas={p}
+                    <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
+                        <PlantWithAreas plantWithAreas={p}
                                         showAllAreaInfos={showAllAreaInfos}/>
                     </Col>
                 )}
