@@ -68,6 +68,7 @@ TODO
 * logo
 * proptypes voor area en plant
 * alle afmetingen *100?
+* gardenarealist - meerdere cards/row is niet ok want cards zijn niet even hoog - zie https://www.npmjs.com/package/react-masonry-css
 
 --- bigger stories
 * plant topview

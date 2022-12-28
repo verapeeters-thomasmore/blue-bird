@@ -104,14 +104,12 @@ function PlantFiche(props) {
     )
 }
 
-function PlantInfoWithAreas(props) {
-    const {plantWithAreas} = props;
+function PlantInfoHeader(props) {
+    const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
-    const {isItemShown, toggleShowForOneItem} = useGardenAreaListPageContext();
-    const showPlantInfo = useMemo(() => isItemShown(plant.id), [plantWithAreas, isItemShown]);
+    const {toggleShowForOneItem} = useGardenAreaListPageContext();
 
     return (
-        <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
             <Row className="bg-white p-1">
                 <Col xs="auto" className="">
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
@@ -124,6 +122,16 @@ function PlantInfoWithAreas(props) {
                     <PlantPicture plant={plant}/>
                 </Col>
             </Row>
+    );
+}
+function PlantInfoWithAreas(props) {
+    const {plantWithAreas} = props;
+    const {isItemShown} = useGardenAreaListPageContext();
+    const showPlantInfo = useMemo(() => isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
+
+    return (
+        <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
+            <PlantInfoHeader plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
             <PlantFiche plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
         </Container>
     );
