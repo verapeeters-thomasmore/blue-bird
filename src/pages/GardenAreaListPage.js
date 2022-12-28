@@ -1,4 +1,4 @@
-import {FaEye} from "react-icons/fa";
+import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {RxTriangleDown, RxTriangleRight} from "react-icons/rx";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
@@ -20,15 +20,18 @@ function SmallButton(props) {
     )
 }
 
-//todo show/noshow?
 function EyeButton(props) {
     const {areas} = props;
     const {showAreasToggleApi} = useControlsContext();
-    const {toggleShowForSomeItems} =showAreasToggleApi;
+    const {isAtLeastOneOfTheseItemsShown, toggleShowForSomeItems} = showAreasToggleApi;
+    const areaIds = useMemo(() => areas.map(a => a.id), [areas]);
     return (
         <SmallButton
-            onClick={() => toggleShowForSomeItems(areas.map(a=>a.id))}>
-            <FaEye size={ICON_SIZE_SMALL}/>
+            onClick={() => toggleShowForSomeItems(areaIds)}>
+            {isAtLeastOneOfTheseItemsShown(areas.map(a => a.id))
+                ? <FaEye size={ICON_SIZE_SMALL}/>
+                : <FaEyeSlash size={ICON_SIZE_SMALL}/>
+            }
         </SmallButton>
     )
 }
@@ -52,7 +55,7 @@ function AreaInfo(props) {
     return (
         <Row className="ms-1">
             <Col xs="1" className="">
-                <EyeButton areas={[area]} />
+                <EyeButton areas={[area]}/>
             </Col>
             <Col xs="2">{area.x.toFixed(2)}</Col>
             <Col xs="2">{area.z.toFixed(2)}</Col>
@@ -110,7 +113,11 @@ function AreaInfoGroupedByPlant(props) {
 }
 
 export function GardenAreaListPage() {
-    const {areasSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden} = useGardenSelectorContext();
+    const {
+        areasSelectedGarden,
+        areasSelectedGardenGroupedByPlants,
+        plantIdsForSelectedGarden
+    } = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
 
