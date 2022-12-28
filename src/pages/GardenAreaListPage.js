@@ -87,7 +87,7 @@ function PlantWithAreas(props) {
             </Row>
             <Row className="bg-white p-1">
                 {showPlantInfo &&
-                    <Col>
+                    <Col className="ms-3">
                         {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
                     </Col>
                 }
