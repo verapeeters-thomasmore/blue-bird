@@ -38,7 +38,7 @@ export function ControlsPage() {
                 <ControlsCheckBoxCol title="catalog" controlKey={SHOW_CATALOG}/>
                 <ControlsCheckBoxCol title="garden" controlKey={SHOW_GARDEN}/>
                 <ControlsCheckBoxSpecialActionCol title="areas"
-                                                  isChecked={isAtLeastOneItemShown()}
+                                                  isChecked={isAtLeastOneItemShown}
                                                   onChange={() => toggleShowForSomeItems(areasSelectedGarden.map(a => a.id))}/>
                 <ControlsCheckBoxCol title="plants" controlKey={SHOW_PLANTS}/>
             </Row>

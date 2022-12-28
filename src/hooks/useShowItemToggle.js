@@ -27,10 +27,9 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
         },
         [shownItems]);
 
-    //TODO moet useMemo zijn
-    const isAtLeastOneItemShown = useCallback(
-        () => !!shownItems.length
-        , [shownItems]);
+    const isAtLeastOneItemShown = useMemo(
+        () => shownItems.some(id => allItems.includes(id))
+        , [shownItems, allItems]);
 
     const toggleAllShownItems = useCallback(
         () => {
@@ -44,5 +43,5 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
             toggleShowForSomeItems,
             toggleAllShownItems,
         }),
-        [isItemShown, isAtLeastOneItemShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems]);
+        [isItemShown, isAtLeastOneItemShown, isAtLeastOneItemShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems]);
 }

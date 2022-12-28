@@ -122,7 +122,7 @@ export function GardenAreaListPage() {
                 </h3>
             </Col></Row>
             <Row className="mx-1 px-0"><Col className="mx-0 px-0">
-                <ExpandButton show={isAtLeastOneItemShown()} toggleShow={toggleAllShownItems}/>
+                <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
                 <EyeButton areas={areasSelectedGarden}/>
             </Col></Row>
             <Row>
