@@ -2,15 +2,16 @@ import {AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
-import {SHOW_AREA_ID, SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
+import {SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
 
 function AreaPlane(props) {
     const {area} = props;
-    const {getControlValueInCollection} = useControlsContext();
+    const {showAreasToggleApi} = useControlsContext();
+    const {isItemShown} = showAreasToggleApi;
     const {plant, x, z, width, length} = area;
     const ref = useRef()
 
-    if (!getControlValueInCollection(SHOW_AREA_ID, area.id)) return;
+    if (!isItemShown(area.id)) return;
 
     return (
         <mesh

@@ -20,12 +20,14 @@ function SmallButton(props) {
     )
 }
 
+//todo show/noshow?
 function EyeButton(props) {
     const {areas} = props;
-    const {toggleSomeAreas} = useControlsContext();
+    const {showAreasToggleApi} = useControlsContext();
+    const {toggleShowForSomeItems} =showAreasToggleApi;
     return (
         <SmallButton
-            onClick={() => toggleSomeAreas(areas)}>
+            onClick={() => toggleShowForSomeItems(areas.map(a=>a.id))}>
             <FaEye size={ICON_SIZE_SMALL}/>
         </SmallButton>
     )
@@ -50,7 +52,7 @@ function AreaInfo(props) {
     return (
         <Row className="ms-1">
             <Col xs="1" className="">
-                <EyeButton areas={[area]}/>
+                <EyeButton areas={[area]} />
             </Col>
             <Col xs="2">{area.x.toFixed(2)}</Col>
             <Col xs="2">{area.z.toFixed(2)}</Col>
@@ -121,8 +123,8 @@ export function GardenAreaListPage() {
     const {areasSelectedGarden} = useGardenSelectorContext();
     const areaInfoGroupedByPlants = useMemo(() => groupByPlants(areasSelectedGarden), [areasSelectedGarden]);
     const plantIds = useMemo(() => areaInfoGroupedByPlants.map(plantInfo => plantInfo.plant.id), [areaInfoGroupedByPlants]);
-    const showItemToggleApi = useShowItemToggle(plantIds);
-    const {isAtLeastOneItemShown, toggleAllShownItems} = showItemToggleApi;
+    const showPlantInfoToggleApi = useShowItemToggle(plantIds, "showPlantInfo");
+    const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
 
     return (
         <Container className="flex-column">
@@ -136,7 +138,7 @@ export function GardenAreaListPage() {
                 <EyeButton areas={areasSelectedGarden}/>
             </Col></Row>
             <Row>
-                <GardenAreaListPageContext.Provider value={showItemToggleApi}>
+                <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areaInfoGroupedByPlants}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
@@ -144,4 +146,7 @@ export function GardenAreaListPage() {
     )
 }
 
+
 //TODO Controls SHOW_AREA_ID and here showAreaInfo: both array or both object?
+//TODO get  areaInfoGroupedByPlants and plantIds and areaIds from selectedGardenContext
+//TODO toggleAreaInfo ook in local storage

@@ -34,15 +34,15 @@ function ProvidedApp() {
 export default function App() {
     return (
         <TimeProvider>
-            <ControlsProvider>
-                <GardenSelectorProvider>
+            <GardenSelectorProvider>
+                <ControlsProvider>
                     <CameraViewpointProvider>
                         <BrowserRouter>
                             <ProvidedApp/>
                         </BrowserRouter>
                     </CameraViewpointProvider>
-                </GardenSelectorProvider>
-            </ControlsProvider>
+                </ControlsProvider>
+            </GardenSelectorProvider>
         </TimeProvider>
     )
 

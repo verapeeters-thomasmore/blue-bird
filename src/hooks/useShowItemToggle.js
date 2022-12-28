@@ -1,8 +1,10 @@
-import {useCallback, useMemo, useState} from "react";
+import {useCallback, useMemo} from "react";
+import {useLocalStorage} from "./useLocalStorage";
 
-export function useShowItemToggle(allItems) {
-    const [shownItems, setShownItems] = useState([])
+export function useShowItemToggle(allItems, keyInLocalStorage) {
+    const [shownItems, setShownItems] = useLocalStorage(keyInLocalStorage, []);
 
+    console.log("useShowItemToggle", keyInLocalStorage, shownItems)
     const isItemShown = useCallback(
         (itemId) => shownItems.find(id => id === itemId),
         [shownItems]);
@@ -14,6 +16,18 @@ export function useShowItemToggle(allItems) {
                 : [...shownItems, itemId]),
         [shownItems]);
 
+    //result is that all itemIds are shown - or all itemIds are not shown
+    const toggleShowForSomeItems = useCallback(
+        itemIds => {
+            const foundOneTrue = itemIds.some(id => shownItems.includes(id));
+            const newShownItems = foundOneTrue
+                ? shownItems.filter(id => !itemIds.includes(id))
+                : [...new Set([...shownItems, ...itemIds])];
+            setShownItems(newShownItems);
+        },
+        [shownItems]);
+
+    //TODO moet useMemo zijn
     const isAtLeastOneItemShown = useCallback(
         () => !!shownItems.length
         , [shownItems]);
@@ -25,9 +39,10 @@ export function useShowItemToggle(allItems) {
 
     return useMemo(() => ({
             isItemShown,
-            toggleShowForOneItem,
             isAtLeastOneItemShown,
+            toggleShowForOneItem,
+            toggleShowForSomeItems,
             toggleAllShownItems,
         }),
-        [isItemShown, toggleShowForOneItem, isAtLeastOneItemShown, toggleAllShownItems]);
+        [isItemShown, isAtLeastOneItemShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems]);
 }
