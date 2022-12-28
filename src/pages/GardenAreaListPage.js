@@ -6,6 +6,7 @@ import {useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {createContext, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
+import {UI_SKY_BLUE} from "../constants/uiColors";
 
 
 function SmallButton(props) {
@@ -68,7 +69,42 @@ function AreaInfo(props) {
 const GardenAreaListPageContext = createContext();
 const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
 
-function PlantWithAreas(props) {
+function PlantPicture(props) {
+    const {plant} = props;
+
+    return (
+        <>
+            <div className="p-1 rounded-circle ms-auto"
+                 style={{backgroundColor: UI_SKY_BLUE, width: 50, height: 50}}>
+                <img src={`${plant.textureWithFlower}`}
+                     alt={plant.plantName}
+                     width={50}
+                     height={50}
+                />
+            </div>
+        </>
+    )
+}
+
+function PlantFiche(props) {
+    const {plantWithAreas, showPlantInfo} = props;
+    const {areas} = plantWithAreas;
+
+    if (!showPlantInfo) return;
+    return (
+        <>
+            <Row className="bg-white p-1 d-flex justify-content-end">
+            </Row>
+            <Row className="bg-white p-1">
+                <Col className="ms-3">
+                    {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
+                </Col>
+            </Row>
+        </>
+    )
+}
+
+function PlantInfoWithAreas(props) {
     const {plantWithAreas} = props;
     const {plant, areas} = plantWithAreas;
     const {isItemShown, toggleShowForOneItem} = useGardenAreaListPageContext();
@@ -77,21 +113,18 @@ function PlantWithAreas(props) {
     return (
         <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
             <Row className="bg-white p-1">
-                <Col xs={2} className="">
+                <Col xs="auto" className="">
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
                 </Col>
-                <Col className="">
+                <Col xs="auto" className="">
                     {plant.name}
                 </Col>
+                <Col>
+                    <PlantPicture plant={plant}/>
+                </Col>
             </Row>
-            <Row className="bg-white p-1">
-                {showPlantInfo &&
-                    <Col className="ms-3">
-                        {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
-                    </Col>
-                }
-            </Row>
+            <PlantFiche plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
         </Container>
     );
 }
@@ -104,7 +137,7 @@ function AreaInfoGroupedByPlant(props) {
             <Row className="m-0">
                 {areaInfoGroupedByPlant.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
-                        <PlantWithAreas plantWithAreas={p}/>
+                        <PlantInfoWithAreas plantWithAreas={p}/>
                     </Col>
                 )}
             </Row>
@@ -140,4 +173,3 @@ export function GardenAreaListPage() {
         </Container>
     )
 }
-

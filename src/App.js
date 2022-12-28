@@ -55,7 +55,7 @@ TODO
 * OK -- view-button in arealist: toggle
 * OK -- show plantlist
 * OK -- show areas for 1 plant in plantlist
-* open arealist for 1 plant
+* OK open arealist for 1 plant
 * show plant details
 * edit areas
 ** select area
@@ -64,6 +64,7 @@ TODO
 ** modify area in-canvas
 
 -- issues
+* deploy routes don't work (refresh)
 * logo
 * proptypes voor area en plant
 * alle afmetingen *100?
