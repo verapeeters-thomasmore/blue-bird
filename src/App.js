@@ -57,8 +57,9 @@ TODO
 * OK -- show areas for 1 plant in plantlist
 * OK open arealist for 1 plant
 * show plant details
+* order plantinfo
 * edit areas
-** select area
+** select area / EDIT
 ** OK -- show data of area
 ** modify data of area
 ** modify area in-canvas
@@ -69,6 +70,8 @@ TODO
 * proptypes voor area en plant
 * alle afmetingen *100?
 * gardenarealist - meerdere cards/row is niet ok want cards zijn niet even hoog - zie https://www.npmjs.com/package/react-masonry-css
+* gardenarealist - buttons and text not on same line
+* gardenselectionpage: which garden is selected? - is it edited?
 
 --- bigger stories
 * plant topview
