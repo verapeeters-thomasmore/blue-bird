@@ -110,7 +110,7 @@ function AreaInfoGroupedByPlant(props) {
 }
 
 export function GardenAreaListPage() {
-    const {areasSelectedGarden, areaInfoGroupedByPlants, plantIdsForSelectedGarden} = useGardenSelectorContext();
+    const {areasSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden} = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
 
@@ -127,7 +127,7 @@ export function GardenAreaListPage() {
             </Col></Row>
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areaInfoGroupedByPlants}/>
+                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areasSelectedGardenGroupedByPlants}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>

@@ -5,11 +5,11 @@ import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const GardenSelectorContext = createContext();
 
-function gardenEnrichedWithPlants(garden, plants) {
-    return garden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
+function getGardenEnrichedWithPlants(selectedGarden, plants) {
+    return selectedGarden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
 }
 
-function groupByPlants(areasSelectedGarden) {
+function getGardenGroupedByPlants(areasSelectedGarden) {
     const uniquePlantNames = [...new Set(areasSelectedGarden.map(a => a.plantName))];
     return uniquePlantNames.map(p => ({
         plantName: p,
@@ -18,19 +18,38 @@ function groupByPlants(areasSelectedGarden) {
     }));
 }
 
+function getPlantIds(areasSelectedGarden) {
+    const plantIds = [...new Set(areasSelectedGarden.map(a => a.plant.id))];
+    console.log("getPlantIds", plantIds);
+    return plantIds;
+}
+
 export function GardenSelectorProvider(props) {
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
 
-    const areasSelectedGarden = useMemo(
-        () =>
-            gardenEnrichedWithPlants(PREDEFINED_GARDENS[indexSelectedGarden].areas, PLANT_DATA),
-        [indexSelectedGarden]);
+    //array of areas
+    //contains no plantinfo, only short plantName
+    const selectedGarden = useMemo(
+        () => PREDEFINED_GARDENS[indexSelectedGarden].areas,
+        [indexSelectedGarden]
+    );
 
-    const areaInfoGroupedByPlants = useMemo(
-        () => groupByPlants(areasSelectedGarden),
+    //array of areas
+    //contains plantinfo for each area
+    const areasSelectedGarden = useMemo(
+        () => getGardenEnrichedWithPlants(selectedGarden, PLANT_DATA),
+        [selectedGarden]);
+
+    //array of objects for each plant in this garden
+    //each object contains plantName, plant (plantinfo), areas
+    const areasSelectedGardenGroupedByPlants = useMemo(
+        () => getGardenGroupedByPlants(areasSelectedGarden),
         [areasSelectedGarden]);
 
-    const plantIdsForSelectedGarden = useMemo(() => areaInfoGroupedByPlants.map(plantInfo => plantInfo.plant.id), [areaInfoGroupedByPlants]);
+    //array of ids of each plant in this garde
+    const plantIdsForSelectedGarden = useMemo(
+        () => getPlantIds(areasSelectedGarden),
+        [areasSelectedGarden]);
 
     const selectGarden = useCallback(
         gardenNameToSelect => {
@@ -41,9 +60,13 @@ export function GardenSelectorProvider(props) {
 
     const api = useMemo(
         () => ({
-            areasSelectedGarden, indexSelectedGarden, areaInfoGroupedByPlants, plantIdsForSelectedGarden, selectGarden,
+            areasSelectedGarden,
+            indexSelectedGarden,
+            areasSelectedGardenGroupedByPlants,
+            plantIdsForSelectedGarden,
+            selectGarden,
         }),
-        [areasSelectedGarden, indexSelectedGarden, areaInfoGroupedByPlants, plantIdsForSelectedGarden, selectGarden,]);
+        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, selectGarden,]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}

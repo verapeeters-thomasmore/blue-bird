@@ -4,7 +4,7 @@ import {useLocalStorage} from "./useLocalStorage";
 export function useShowItemToggle(allItems, keyInLocalStorage) {
     const [shownItems, setShownItems] = useLocalStorage(keyInLocalStorage, []);
 
-    console.log("useShowItemToggle", keyInLocalStorage, shownItems)
+    console.log("useShowItemToggle hook", keyInLocalStorage, shownItems)
     const isItemShown = useCallback(
         (itemId) => shownItems.find(id => id === itemId),
         [shownItems]);
