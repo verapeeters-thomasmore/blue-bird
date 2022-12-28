@@ -93,7 +93,6 @@ function PlantWithAreas(props) {
     );
 }
 
-
 function AreaInfoGroupedByPlant(props) {
     const {areaInfoGroupedByPlant} = props;
 
@@ -110,20 +109,9 @@ function AreaInfoGroupedByPlant(props) {
     );
 }
 
-function groupByPlants(areasSelectedGarden) {
-    const uniquePlantNames = [...new Set(areasSelectedGarden.map(a => a.plantName))];
-    return uniquePlantNames.map(p => ({
-        plantName: p,
-        plant: areasSelectedGarden.find(a => a.plantName === p).plant,
-        areas: areasSelectedGarden.filter(a => a.plantName === p)
-    }));
-}
-
 export function GardenAreaListPage() {
-    const {areasSelectedGarden} = useGardenSelectorContext();
-    const areaInfoGroupedByPlants = useMemo(() => groupByPlants(areasSelectedGarden), [areasSelectedGarden]);
-    const plantIds = useMemo(() => areaInfoGroupedByPlants.map(plantInfo => plantInfo.plant.id), [areaInfoGroupedByPlants]);
-    const showPlantInfoToggleApi = useShowItemToggle(plantIds, "showPlantInfo");
+    const {areasSelectedGarden, areaInfoGroupedByPlants, plantIdsForSelectedGarden} = useGardenSelectorContext();
+    const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
 
     return (
@@ -146,7 +134,3 @@ export function GardenAreaListPage() {
     )
 }
 
-
-//TODO Controls SHOW_AREA_ID and here showAreaInfo: both array or both object?
-//TODO get  areaInfoGroupedByPlants and plantIds and areaIds from selectedGardenContext
-//TODO toggleAreaInfo ook in local storage
