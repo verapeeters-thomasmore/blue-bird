@@ -57,7 +57,7 @@ TODO
 ** modify area in-canvas
 
 -- issues
-* deploy routes don't work (refresh)
+* OK deploy routes don't work (refresh) - fixed on render
 * logo
 * proptypes voor area en plant
 * alle afmetingen *100?

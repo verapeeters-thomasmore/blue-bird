@@ -5,7 +5,6 @@ import {
     SHOW_CATALOG,
     SHOW_FLOOR,
     SHOW_GARDEN,
-    SHOW_PLANTS,
     SHOW_WORLD,
     useControlsContext
 } from "../contexts/ControlsContext";
@@ -25,8 +24,9 @@ function ControlsCheckBoxSpecialActionCol(props) {
 
 export function ControlsPage() {
     const {areasSelectedGarden} = useGardenSelectorContext();
-    const {showAreasToggleApi} = useControlsContext();
-    const {isAtLeastOneItemShown, toggleShowForSomeItems} = showAreasToggleApi;
+    const {showAreasToggleApi, showPlantsToggleApi} = useControlsContext();
+    const {isAtLeastOneItemShown: isAtLeastOneAreaItemShown, toggleShowForSomeItems: toggleShowForSomeAreaItems} = showAreasToggleApi;
+    const {isAtLeastOneItemShown: isAtLeastOnePlantsItemShown, toggleShowForSomeItems: toggleShowForSomePlantItems} = showPlantsToggleApi;
 
     return (
         <Container>
@@ -38,9 +38,11 @@ export function ControlsPage() {
                 <ControlsCheckBoxCol title="catalog" controlKey={SHOW_CATALOG}/>
                 <ControlsCheckBoxCol title="garden" controlKey={SHOW_GARDEN}/>
                 <ControlsCheckBoxSpecialActionCol title="areas"
-                                                  isChecked={isAtLeastOneItemShown}
-                                                  onChange={() => toggleShowForSomeItems(areasSelectedGarden.map(a => a.id))}/>
-                <ControlsCheckBoxCol title="plants" controlKey={SHOW_PLANTS}/>
+                                                  isChecked={isAtLeastOneAreaItemShown}
+                                                  onChange={() => toggleShowForSomeAreaItems(areasSelectedGarden.map(a => a.id))}/>
+                <ControlsCheckBoxSpecialActionCol title="plants"
+                                                  isChecked={isAtLeastOnePlantsItemShown}
+                                                  onChange={() => toggleShowForSomePlantItems(areasSelectedGarden.map(a => a.id))}/>
             </Row>
         </Container>
     )

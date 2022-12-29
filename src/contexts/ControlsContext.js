@@ -10,7 +10,6 @@ export const SHOW_FLOOR = "showFloor";
 export const SHOW_AXES = "showAxes";
 export const SHOW_CATALOG = "showCatalog";
 export const SHOW_GARDEN = "showGarden";
-export const SHOW_PLANTS = "showPlants";
 
 const INITIAL_CONTROLS = {
     [SHOW_WORLD]: true,
@@ -18,7 +17,6 @@ const INITIAL_CONTROLS = {
     [SHOW_AXES]: false,
     [SHOW_CATALOG]: false,
     [SHOW_GARDEN]: true,
-    [SHOW_PLANTS]: true,
 };
 
 export function ControlsProvider(props) {
@@ -26,6 +24,7 @@ export function ControlsProvider(props) {
     const {areasSelectedGarden} = useGardenSelectorContext();
     const areaIds = useMemo(() => areasSelectedGarden.map(a => a.id), []);
     const showAreasToggleApi = useShowItemToggle(areaIds, "showAreas");
+    const showPlantsToggleApi = useShowItemToggle(areaIds, "showPlants");
 
     const getControlValue = useCallback(
         key => controls[key],
@@ -39,9 +38,10 @@ export function ControlsProvider(props) {
             ({
                 getControlValue,
                 toggleControlValue,
-                showAreasToggleApi
+                showAreasToggleApi,
+                showPlantsToggleApi
             }),
-        [getControlValue, toggleControlValue, showAreasToggleApi]);
+        [getControlValue, toggleControlValue, showAreasToggleApi, showPlantsToggleApi]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}

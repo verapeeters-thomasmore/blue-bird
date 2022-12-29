@@ -23,6 +23,7 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
             const newShownItems = foundOneTrue
                 ? shownItems.filter(id => !itemIds.includes(id))
                 : [...new Set([...shownItems, ...itemIds])];
+            console.log("toggleShowForSomeItems", itemIds, shownItems, newShownItems);
             setShownItems(newShownItems);
         },
         [shownItems]);
@@ -33,7 +34,7 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
 
     const isAtLeastOneOfTheseItemsShown = useCallback(
         (itemIds) => {
-            console.log("isAtLeastOneOfTheseItemsShown", itemIds, shownItems)
+            // console.log("isAtLeastOneOfTheseItemsShown", itemIds, shownItems)
             return shownItems.some(id => itemIds.includes(id))
         }
         , [shownItems]);

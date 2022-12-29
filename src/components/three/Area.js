@@ -2,16 +2,16 @@ import {AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
-import {SHOW_PLANTS, useControlsContext} from "../../contexts/ControlsContext";
+import {useControlsContext} from "../../contexts/ControlsContext";
 
 function AreaPlane(props) {
     const {area} = props;
     const {showAreasToggleApi} = useControlsContext();
-    const {isItemShown} = showAreasToggleApi;
+    const {isItemShown: isAreaItemShown} = showAreasToggleApi;
     const {plant, x, z, width, length} = area;
     const ref = useRef()
 
-    if (!isItemShown(area.id)) return;
+    if (!isAreaItemShown(area.id)) return;
 
     return (
         <mesh
@@ -34,12 +34,13 @@ export function Area(props) {
     const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
     const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants, width, length), [nrOfPlants, width, length]);
     // console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
-    const {getControlValue} = useControlsContext();
+    const {showPlantsToggleApi} = useControlsContext();
+    const {isItemShown: isPlantsItemShown} = showPlantsToggleApi;
 
     return (
         <>
             <AreaPlane area={area}/>
-            {getControlValue(SHOW_PLANTS) && plantPositions.map(pos =>
+            {isPlantsItemShown(area.id) && plantPositions.map(pos =>
                 <Plant key={pos.id} data={plant}
                        x={x + pos.x} z={z + pos.z}/>)}
         </>

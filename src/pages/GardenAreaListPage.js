@@ -1,9 +1,10 @@
 import {FaEye, FaEyeSlash} from "react-icons/fa";
-import {RxTriangleDown, RxTriangleRight} from "react-icons/rx";
+import {TbFlower, TbFlowerOff} from 'react-icons/tb';
+import {VscTriangleDown, VscTriangleRight} from "react-icons/vsc";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import {useControlsContext} from "../contexts/ControlsContext";
-import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
+import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {createContext, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {UI_SKY_BLUE} from "../constants/uiColors";
@@ -15,7 +16,7 @@ function SmallButton(props) {
     return (
         <Button size="sm"
                 variant="outline-primary"
-                className="border-0 px-0"
+                className="border-0 px-1"
                 onClick={onClick}>
             {children}
         </Button>
@@ -38,17 +39,41 @@ function EyeButton(props) {
     )
 }
 
+function FlowerButton(props) {
+    const {areas} = props;
+    const {showPlantsToggleApi} = useControlsContext();
+    const {isAtLeastOneOfTheseItemsShown, toggleShowForSomeItems} = showPlantsToggleApi;
+    const areaIds = useMemo(() => areas.map(a => a.id), [areas]);
+    return (
+        <SmallButton
+            onClick={() => toggleShowForSomeItems(areaIds)}>
+            {isAtLeastOneOfTheseItemsShown(areas.map(a => a.id))
+                ? <TbFlower size={ICON_SIZE_SMALL}/>
+                : <TbFlowerOff size={ICON_SIZE_SMALL}/>
+            }
+        </SmallButton>
+    )
+}
+
 function ExpandButton(props) {
     //show is an array of area-ids - if it contains
     const {show, toggleShow} = props;
     return (
         <SmallButton onClick={() => toggleShow()}>
             {show
-                ? <RxTriangleDown size={ICON_SIZE}/>
-                : <RxTriangleRight size={ICON_SIZE}/>
+                ? <VscTriangleDown size={ICON_SIZE_SMALL}/>
+                : <VscTriangleRight size={ICON_SIZE_SMALL}/>
             }
         </SmallButton>
     )
+}
+
+function NumCol(props) {
+    const {children} = props;
+    return <Col xs="2" className="text-end">
+        {children.toFixed(2)}
+    </Col>;
+
 }
 
 function AreaInfo(props) {
@@ -56,13 +81,14 @@ function AreaInfo(props) {
 
     return (
         <Row className="ms-1">
-            <Col xs="1" className="">
+            <Col xs="auto" className="">
                 <EyeButton areas={[area]}/>
+                <FlowerButton areas={[area]}/>
             </Col>
-            <Col xs="2">{area.x.toFixed(2)}</Col>
-            <Col xs="2">{area.z.toFixed(2)}</Col>
-            <Col xs="2">{area.width.toFixed(2)}</Col>
-            <Col xs="2">{area.length.toFixed(2)}</Col>
+            <NumCol>{area.x}</NumCol>
+            <NumCol>{area.z}</NumCol>
+            <NumCol>{area.width}</NumCol>
+            <NumCol>{area.length}</NumCol>
         </Row>
     );
 }
@@ -102,7 +128,7 @@ function PlantFiche(props) {
                 <Col xs={1} className="m-auto p-0"
                      style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
                 <Col xs="auto">{plant.timeLine.flowerStart}-{plant.timeLine.flowerEnd}</Col>
-                <Col >{""}</Col>
+                <Col>{""}</Col>
             </Row>
             <Row className="bg-white p-1">
                 <Col className="ms-3">
@@ -124,11 +150,14 @@ function PlantInfoHeader(props) {
                 <Col xs="auto" className="">
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
+                    <FlowerButton areas={areas}/>
                 </Col>
                 <Col xs="auto" className="">
-                    <h6>
+                    <h6 className="pt-1">
                         {plant.name}
                     </h6>
+                </Col>
+                <Col xs="auto" className="">
                 </Col>
                 <PlantPicture plant={plant} large={showPlantInfo}/>
             </Row>
@@ -187,6 +216,7 @@ export function GardenAreaListPage() {
                 <Col className="mx-0 px-0">
                     <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
                     <EyeButton areas={areasSelectedGarden}/>
+                    <FlowerButton areas={areasSelectedGarden}/>
                 </Col>
             </Row>
             <Row>
