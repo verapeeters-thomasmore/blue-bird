@@ -51,16 +51,8 @@ export default function App() {
 
 /*
 TODO
-* OK all areas: means traverse all areas -- do not save showAreaPlanes anymore
-* OK -- view-button in arealist: toggle
-* OK -- show plantlist
-* OK -- show areas for 1 plant in plantlist
-* OK open arealist for 1 plant
-* OK show plant details
-* OK sort plantinfo
 * edit areas
 ** select area / EDIT
-** OK -- show data of area
 ** modify data of area
 ** modify area in-canvas
 
@@ -80,8 +72,6 @@ TODO
 * tutorial
 
 -- easy - later
-* OK timer: show month as info
 * color scheme
-* OK camera settings in localstorage
 * timer autorun fast/slow
  */
