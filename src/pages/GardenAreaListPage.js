@@ -7,6 +7,7 @@ import {ICON_SIZE, ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {createContext, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {UI_SKY_BLUE} from "../constants/uiColors";
+import {GREEN} from "../constants/threeColors";
 
 
 function SmallButton(props) {
@@ -89,13 +90,19 @@ function PlantPicture(props) {
 
 function PlantFiche(props) {
     const {plantWithAreas, showPlantInfo} = props;
-    const {areas} = plantWithAreas;
+    const {plant, areas} = plantWithAreas;
 
     if (!showPlantInfo) return;
     return (
         <>
-            <Row className="bg-white p-2">
-                blabla
+            <Row className="bg-light px-1">
+                <Col xs={2} className="mx-0">{""}</Col>
+                <Col xs={1} className="m-auto p-0" style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</Col>
+                <Col xs="auto">{plant.timeLine.growStart}-{plant.timeLine.growFinal}</Col>
+                <Col xs={1} className="m-auto p-0"
+                     style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
+                <Col xs="auto">{plant.timeLine.flowerStart}-{plant.timeLine.flowerEnd}</Col>
+                <Col >{""}</Col>
             </Row>
             <Row className="bg-white p-1">
                 <Col className="ms-3">
@@ -119,7 +126,9 @@ function PlantInfoHeader(props) {
                     <EyeButton areas={areas}/>
                 </Col>
                 <Col xs="auto" className="">
-                    {plant.name}
+                    <h6>
+                        {plant.name}
+                    </h6>
                 </Col>
                 <PlantPicture plant={plant} large={showPlantInfo}/>
             </Row>
