@@ -56,8 +56,8 @@ TODO
 * OK -- show plantlist
 * OK -- show areas for 1 plant in plantlist
 * OK open arealist for 1 plant
-* show plant details
-* sort plantinfo
+* OK show plant details
+* OK sort plantinfo
 * edit areas
 ** select area / EDIT
 ** OK -- show data of area
@@ -80,8 +80,8 @@ TODO
 * tutorial
 
 -- easy - later
-* timer: show month as info
+* OK timer: show month as info
 * color scheme
-* camera settings in localstorage
+* OK camera settings in localstorage
 * timer autorun fast/slow
  */
