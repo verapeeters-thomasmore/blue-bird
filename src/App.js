@@ -57,7 +57,7 @@ TODO
 * OK -- show areas for 1 plant in plantlist
 * OK open arealist for 1 plant
 * show plant details
-* order plantinfo
+* sort plantinfo
 * edit areas
 ** select area / EDIT
 ** OK -- show data of area

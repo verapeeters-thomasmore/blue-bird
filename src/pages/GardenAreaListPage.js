@@ -70,16 +70,17 @@ const GardenAreaListPageContext = createContext();
 const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
 
 function PlantPicture(props) {
-    const {plant} = props;
+    const {plant, large} = props;
+    const size = large ? 50 : 31;
 
     return (
         <>
-            <div className="p-1 rounded-circle ms-auto"
-                 style={{backgroundColor: UI_SKY_BLUE, width: 50, height: 50}}>
+            <div className="m-1 p-0 rounded-circle position-absolute end-0 top-0"
+                 style={{backgroundColor: UI_SKY_BLUE, width: size, height: size}}>
                 <img src={`${plant.textureWithFlower}`}
                      alt={plant.plantName}
-                     width={50}
-                     height={50}
+                     width={size}
+                     height={size}
                 />
             </div>
         </>
@@ -93,7 +94,8 @@ function PlantFiche(props) {
     if (!showPlantInfo) return;
     return (
         <>
-            <Row className="bg-white p-1 d-flex justify-content-end">
+            <Row className="bg-white p-2">
+                blabla
             </Row>
             <Row className="bg-white p-1">
                 <Col className="ms-3">
@@ -110,7 +112,8 @@ function PlantInfoHeader(props) {
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
 
     return (
-            <Row className="bg-white p-1">
+        <>
+            <Row className="bg-white p-1 position-relative">
                 <Col xs="auto" className="">
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
@@ -118,12 +121,12 @@ function PlantInfoHeader(props) {
                 <Col xs="auto" className="">
                     {plant.name}
                 </Col>
-                <Col>
-                    <PlantPicture plant={plant}/>
-                </Col>
+                <PlantPicture plant={plant} large={showPlantInfo}/>
             </Row>
+        </>
     );
 }
+
 function PlantInfoWithAreas(props) {
     const {plantWithAreas} = props;
     const {isItemShown} = useGardenAreaListPageContext();
@@ -164,15 +167,19 @@ export function GardenAreaListPage() {
 
     return (
         <Container className="flex-column">
-            <Row><Col className="d-flex">
-                <h3 className="container">
-                    plants:
-                </h3>
-            </Col></Row>
-            <Row className="mx-1 px-0"><Col className="mx-0 px-0">
-                <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
-                <EyeButton areas={areasSelectedGarden}/>
-            </Col></Row>
+            <Row>
+                <Col className="d-flex">
+                    <h3 className="container">
+                        plants:
+                    </h3>
+                </Col>
+            </Row>
+            <Row className="mx-1 px-0">
+                <Col className="mx-0 px-0">
+                    <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
+                    <EyeButton areas={areasSelectedGarden}/>
+                </Col>
+            </Row>
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areasSelectedGardenGroupedByPlants}/>
