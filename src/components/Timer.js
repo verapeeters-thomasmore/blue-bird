@@ -1,6 +1,6 @@
 import {Button, Form} from "react-bootstrap";
 import {useTimeContext} from "../contexts/TimeContext";
-import {FaPlay, FaPause} from 'react-icons/fa';
+import {FaPause, FaPlay} from 'react-icons/fa';
 import {UI_WHITE} from "../constants/uiColors";
 import RangeSlider from 'react-bootstrap-range-slider';
 import moment from "moment";
@@ -28,14 +28,8 @@ export function Timer() {
                             onChange={e => setTime(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <Form.Control type="number"
-                                      size="sm"
-                                      className="m-0 mt-1 pe-0"
-                                      style={{width: "45px"}}
-                                      value={time}
-                                      onChange={e => setTime(e.target.value)}
-                        />
+                    <div  className="m-0 mt-1 pe-1 text-primary">
+                        {month}
                     </div>
                 </div>
             </Form>

@@ -72,6 +72,9 @@ TODO
 * tutorial
 
 -- easy - later
+* waaien
+* time runner: random zoom
 * color scheme
 * timer autorun fast/slow
+
  */
