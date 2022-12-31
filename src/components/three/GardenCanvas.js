@@ -33,6 +33,7 @@ export function GardenCanvas() {
             {getControlValue(SHOW_CATALOG) && <PlantCatalogue plants={PLANT_DATA}/>}
             {getControlValue(SHOW_GARDEN) && <Areas areas={areasSelectedGarden}/>}
             <OrbitControls maxPolarAngle={Math.PI / 2 - 0.07}/>
+            {/*<CameraAnimation/>*/}
         </Canvas>
     )
 }
