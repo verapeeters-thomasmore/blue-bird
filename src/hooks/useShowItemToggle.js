@@ -1,10 +1,11 @@
-import {useCallback, useMemo} from "react";
+import {useCallback, useMemo, useState} from "react";
 import {useLocalStorage} from "./useLocalStorage";
 
-export function useShowItemToggle(allItems, keyInLocalStorage) {
+export function useShowItemToggle(allItemsInitialValue, keyInLocalStorage) {
+    const [allItems, setAllItems] = useState(allItemsInitialValue);
     const [shownItems, setShownItems] = useLocalStorage(keyInLocalStorage, []);
 
-    console.log("useShowItemToggle hook", keyInLocalStorage, shownItems)
+    // console.log("useShowItemToggle hook", keyInLocalStorage, shownItems)
     const isItemShown = useCallback(
         (itemId) => shownItems.find(id => id === itemId),
         [shownItems]);
@@ -16,6 +17,8 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
                 : [...shownItems, itemId]),
         [shownItems]);
 
+    //itemIds is an array of ids
+    //assumption: these itemIds are included in allItems
     //result is that all itemIds are shown - or all itemIds are not shown
     const toggleShowForSomeItems = useCallback(
         itemIds => {
@@ -23,7 +26,7 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
             const newShownItems = foundOneTrue
                 ? shownItems.filter(id => !itemIds.includes(id))
                 : [...new Set([...shownItems, ...itemIds])];
-            console.log("toggleShowForSomeItems", itemIds, shownItems, newShownItems);
+            // console.log("toggleShowForSomeItems", itemIds, shownItems, newShownItems);
             setShownItems(newShownItems);
         },
         [shownItems]);
@@ -44,6 +47,20 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
             setShownItems(!!shownItems.length ? [] : [...allItems])
         }, [shownItems]);
 
+    //new items are toggled on (added to shownItems)
+    //removed items are removed from shownItems
+    const resetAllItems = useCallback(
+        (newAllItems) => {
+            const newItems = newAllItems.filter(id => !allItems.includes(id));
+            console.log("resetAllItems", keyInLocalStorage, allItems, newItems, newAllItems);
+            const shownItemsWithNewItems = [...shownItems, ...newItems];
+            const shownItemsWithoutRemovedItems = shownItemsWithNewItems.filter(id => newAllItems.includes(id));
+            console.log("resetAllItems", keyInLocalStorage, newItems, newAllItems, shownItemsWithoutRemovedItems);
+            setAllItems([...newAllItems]);
+            setShownItems(shownItemsWithoutRemovedItems);
+        }, [shownItems]);
+
+
     return useMemo(() => ({
             isItemShown,
             isAtLeastOneItemShown,
@@ -51,6 +68,7 @@ export function useShowItemToggle(allItems, keyInLocalStorage) {
             toggleShowForOneItem,
             toggleShowForSomeItems,
             toggleAllShownItems,
+            resetAllItems
         }),
-        [isItemShown, isAtLeastOneItemShown, isAtLeastOneItemShown, isAtLeastOneOfTheseItemsShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems]);
+        [isItemShown, isAtLeastOneItemShown, isAtLeastOneItemShown, isAtLeastOneOfTheseItemsShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems, resetAllItems]);
 }

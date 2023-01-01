@@ -37,10 +37,7 @@ export function CameraAnimation() {
             state.camera.position.lerp(nextPosVector, .025);
             // console.log("useFrame", state.camera.position, distance);
             const distance = state.camera.position.distanceTo(nextPosVector);
-            if (distance < 1) {
-                console.log("next index: ", index + 1)
-                setIndex(index => index + 1);
-            }
+            if (distance < 1) setIndex(index => index + 1);
         }
         return null
     })

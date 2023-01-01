@@ -13,6 +13,7 @@ import {ControlsPage} from "./pages/ControlsPage";
 import {GardenSelectionPage} from "./pages/GardenSelectionPage";
 import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
+import {EditPage} from "./pages/EditPage";
 
 function ProvidedApp() {
     return (
@@ -21,6 +22,7 @@ function ProvidedApp() {
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
+                <Route path="/edit" element={<EditPage/>}/>
                 <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
                 <Route path="/gardenarealist" element={<GardenAreaListPage/>}/>
@@ -58,6 +60,7 @@ TODO
 
 -- issues
 * OK deploy routes don't work (refresh) - fixed on render
+* select new garden --> controls to show areas/plants are broken
 * logo
 * proptypes voor area en plant
 * alle afmetingen *100?

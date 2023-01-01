@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo} from 'react';
+import React, {createContext, useCallback, useContext, useEffect, useMemo} from 'react';
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {useGardenSelectorContext} from "./GardenSelectorContext";
@@ -22,9 +22,20 @@ const INITIAL_CONTROLS = {
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
     const {areasSelectedGarden} = useGardenSelectorContext();
-    const areaIds = useMemo(() => areasSelectedGarden.map(a => a.id), []);
+    const areaIds = useMemo(() => areasSelectedGarden.map(a => a.id), [areasSelectedGarden]);
     const showAreasToggleApi = useShowItemToggle(areaIds, "showAreas");
     const showPlantsToggleApi = useShowItemToggle(areaIds, "showPlants");
+
+    console.log("ControlsProvider", areaIds);
+
+
+    useEffect(
+        () => {
+            console.log("useEffect", areaIds)
+            showPlantsToggleApi.resetAllItems(areaIds);
+            showAreasToggleApi.resetAllItems(areaIds);
+        },
+        [areaIds]);
 
     const getControlValue = useCallback(
         key => controls[key],
