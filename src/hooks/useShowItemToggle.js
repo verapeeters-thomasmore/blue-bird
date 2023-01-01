@@ -52,10 +52,8 @@ export function useShowItemToggle(allItemsInitialValue, keyInLocalStorage) {
     const resetAllItems = useCallback(
         (newAllItems) => {
             const newItems = newAllItems.filter(id => !allItems.includes(id));
-            console.log("resetAllItems", keyInLocalStorage, allItems, newItems, newAllItems);
             const shownItemsWithNewItems = [...shownItems, ...newItems];
             const shownItemsWithoutRemovedItems = shownItemsWithNewItems.filter(id => newAllItems.includes(id));
-            console.log("resetAllItems", keyInLocalStorage, newItems, newAllItems, shownItemsWithoutRemovedItems);
             setAllItems([...newAllItems]);
             setShownItems(shownItemsWithoutRemovedItems);
         }, [shownItems]);

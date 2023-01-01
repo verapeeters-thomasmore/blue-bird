@@ -64,9 +64,7 @@ export function GardenSelectorProvider(props) {
                     length: 1,
                     plantName: plantName
                 };
-                console.log(newArea)
-                return setAreas([...areas,
-                    newArea]);
+                return setAreas([...areas, newArea]);
             },
             [areas]
         )

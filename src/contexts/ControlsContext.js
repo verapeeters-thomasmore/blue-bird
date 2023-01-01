@@ -26,12 +26,10 @@ export function ControlsProvider(props) {
     const showAreasToggleApi = useShowItemToggle(areaIds, "showAreas");
     const showPlantsToggleApi = useShowItemToggle(areaIds, "showPlants");
 
-    console.log("ControlsProvider", areaIds);
-
+    // console.log("ControlsProvider", areaIds);
 
     useEffect(
         () => {
-            console.log("useEffect", areaIds)
             showPlantsToggleApi.resetAllItems(areaIds);
             showAreasToggleApi.resetAllItems(areaIds);
         },

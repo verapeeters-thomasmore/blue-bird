@@ -22,18 +22,18 @@ function GardenFloor(props) {
     const {getControlValue} = useControlsContext();
     const {addArea, clearArea} = useGardenSelectorContext();
 
-    // console.log(coordinates);
-
     if (!getControlValue(SHOW_FLOOR)) return;
     if (!editMode) return <Floor/>;
 
     return (
         <Floor onClick={e => {
-            console.log("onClick", flowerToEdit, e.point);
+            const roundedX = Math.round(e.point.x);
+            const roundedZ = Math.round(e.point.z);
+            console.log("onClick", flowerToEdit, roundedX, roundedZ);
             if (flowerToEdit)
-                addArea(Math.round(e.point.x), Math.round(e.point.z), flowerToEdit)
+                addArea(roundedX,roundedZ, flowerToEdit);
             else
-                clearArea(Math.round(e.point.x), Math.round(e.point.z))
+                clearArea(roundedX, roundedZ);
         }}
         />
     )
