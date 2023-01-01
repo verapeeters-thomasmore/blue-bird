@@ -379,56 +379,56 @@ export const GARDEN_PLENTY = {
 export const GARDEN_WHITE = {
     name: "white",
     areas: [
-        {id: getNextAreaId(), "x": 33, "z": -3, "width": 1, "length": 1, "plantName": "hyacint"},
+        {id: getNextAreaId(), "x": 3, "z": -3, "width": 1, "length": 1, "plantName": "hyacint"},
         {id: getNextAreaId(), "x": -2, "z": 2, "width": 1, "length": 1, "plantName": "hyacint"},
         {id: getNextAreaId(), "x": -3, "z": 3, "width": 1, "length": 1, "plantName": "hyacint"},
         {id: getNextAreaId(), "x": 1, "z": 2, "width": 1, "length": 1, "plantName": "hyacint"},
         {id: getNextAreaId(), "x": 3, "z": 2, "width": 1, "length": 1, "plantName": "hyacint"},
         {
             id: getNextAreaId(),
-            "x": -3.57,
-            "z": -3.23,
+            "x": -4,
+            "z": -3,
             "width": 1,
-            "length": 2.44,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
-            "x": 2.33,
-            "z": .83,
-            "width": 2.66,
-            "length": 3,
+            "x": 2,
+            "z": 1,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
-            "x": -.86,
+            "x": -1,
             "z": 3,
             "width": 3,
-            "length": 3.38,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": 0, "z": -3, "width": 1, "length": 1, "plantName": "camissia"},
         {id: getNextAreaId(), "x": 2, "z": 2, "width": 1, "length": 1, "plantName": "camissia"},
         {id: getNextAreaId(), "x": -1, "z": 1, "width": 1, "length": 1, "plantName": "camissia"},
-        {id: getNextAreaId(), "x": .54, "z": 3, "width": 1, "length": 1, "plantName": "camissia"},
+        {id: getNextAreaId(), "x": 1, "z": 3, "width": 1, "length": 1, "plantName": "camissia"},
         {
             id: getNextAreaId(),
             "x": 4,
-            "z": -.86,
+            "z": -1,
             "width": 1,
             "length": 1,
             "plantName": "echinacea_purpurea_green_jewel"
         },
         {
             id: getNextAreaId(),
-            "x": -3.45,
-            "z": 3.08,
-            "width": 3.34,
-            "length": .79,
+            "x": -3,
+            "z": 3,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_green_jewel"
         },
-        {id: getNextAreaId(), "x": .80, "z": -3, "width": 1, "length": 1, "plantName": "camissia"},
+        {id: getNextAreaId(), "x": 1, "z": -3, "width": 1, "length": 1, "plantName": "camissia"},
         {id: getNextAreaId(), "x": -2, "z": 0, "width": 1, "length": 1, "plantName": "camissia"},
         {id: getNextAreaId(), "x": 0, "z": 0, "width": 1, "length": 1, "plantName": "anthericum_liliago"},
         {
@@ -441,10 +441,10 @@ export const GARDEN_WHITE = {
         },
         {
             id: getNextAreaId(),
-            "x": -3.59,
-            "z": 3.57,
-            "width": 3,
-            "length": .72,
+            "x": -4,
+            "z": 4,
+            "width": 1,
+            "length": 1,
             "plantName": "anthericum_liliago"
         },
         {
@@ -459,20 +459,20 @@ export const GARDEN_WHITE = {
             id: getNextAreaId(),
             "x": -3,
             "z": 3,
-            "width": 3,
-            "length": .80,
+            "width": 1,
+            "length": 1,
             "plantName": "anthericum_liliago"
         },
-        {id: getNextAreaId(), "x": .68, "z": 3.87, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": 2.99, "z": 2.33, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -3.26, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -3.07, "z": .65, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 1, "z": 4, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 3, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -3, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -3, "z": 1, "width": 1, "length": 1, "plantName": "stipa"},
         {
             id: getNextAreaId(),
-            "x": .98,
+            "x": 1,
             "z": 3,
             "width": 1,
-            "length": .50,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
@@ -483,99 +483,99 @@ export const GARDEN_WHITE = {
             "length": 1,
             "plantName": "anthericum_liliago"
         },
-        {id: getNextAreaId(), "x": -3, "z": -2.22, "width": 1, "length": 1, "plantName": "sporobolus"},
-        {id: getNextAreaId(), "x": -.39, "z": -30, "width": 1, "length": 1, "plantName": "sporobolus"},
+        {id: getNextAreaId(), "x": -3, "z": -2, "width": 1, "length": 1, "plantName": "sporobolus"},
+        {id: getNextAreaId(), "x": -1, "z": -3, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": 2.76, "z": -3, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": 2, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -.29, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -3, "z": 3.37, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -20, "z": .72, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 0, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -3, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -2, "z": 1, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": 3, "z": -3, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": -2, "z": -1, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": 3, "z": -3, "width": 1, "length": 1, "plantName": "sporobolus"},
         {
             id: getNextAreaId(),
-            "x": -0,
-            "z": 20,
-            "width": .93,
-            "length": .96,
+            "x": 0,
+            "z": 2,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_green_jewel"
         },
         {
             id: getNextAreaId(),
             "x": 3,
-            "z": -.09,
+            "z": 0,
             "width": 1,
             "length": 1,
             "plantName": "lillium_regale"
         },
         {
             id: getNextAreaId(),
-            "x": -.83,
-            "z": 2.02,
+            "x": -1,
+            "z": 2,
             "width": 1,
             "length": 1,
             "plantName": "lillium_regale"
         },
         {
             id: getNextAreaId(),
-            "x": -2.39,
-            "z": 3.93,
+            "x": -2,
+            "z": 4,
             "width": 1,
             "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
-            "x": .94,
-            "z": 3.97,
+            "x": 1,
+            "z": 4,
             "width": 1,
-            "length": .95,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
-            "x": 2.36,
-            "z": 3.46,
-            "width": .93,
-            "length": .96,
-            "plantName": "echinacea_purpurea_green_jewel"
-        },
-        {
-            id: getNextAreaId(),
-            "x": 20,
+            "x": 2,
             "z": 3,
-            "width": .93,
-            "length": .96,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_green_jewel"
         },
-        {id: getNextAreaId(), "x": 3, "z": -.83, "width": 1, "length": 1, "plantName": "deschampsia"},
-        {id: getNextAreaId(), "x": -.02, "z": -.64, "width": 1, "length": 1, "plantName": "deschampsia"},
-        {id: getNextAreaId(), "x": -3.34, "z": -.08, "width": 1, "length": 1, "plantName": "deschampsia"},
-        {id: getNextAreaId(), "x": -2.87, "z": 2.03, "width": 1, "length": 1, "plantName": "deschampsia"},
         {
             id: getNextAreaId(),
-            "x": .37,
-            "z": 2.92,
+            "x": 2,
+            "z": 3,
+            "width": 1,
+            "length": 1,
+            "plantName": "echinacea_purpurea_green_jewel"
+        },
+        {id: getNextAreaId(), "x": 3, "z": -1, "width": 1, "length": 1, "plantName": "deschampsia"},
+        {id: getNextAreaId(), "x": 0, "z": -.64, "width": 1, "length": 1, "plantName": "deschampsia"},
+        {id: getNextAreaId(), "x": -3, "z": 0, "width": 1, "length": 1, "plantName": "deschampsia"},
+        {id: getNextAreaId(), "x": -3, "z": 2, "width": 1, "length": 1, "plantName": "deschampsia"},
+        {
+            id: getNextAreaId(),
+            "x": 0,
+            "z": 3,
             "width": 1,
             "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
-            "x": -.62,
-            "z": 3.72,
+            "x": -1,
+            "z": 3,
             "width": 1,
-            "length": .50,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
-        {id: getNextAreaId(), "x": 2.23, "z": 3.59, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 2, "z": 4, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -3, "z": 2, "width": 1, "length": 1, "plantName": "camissia"},
-        {id: getNextAreaId(), "x": 3.94, "z": -.56, "width": 1, "length": 1, "plantName": "camissia"},
+        {id: getNextAreaId(), "x": 3, "z": 0, "width": 1, "length": 1, "plantName": "camissia"},
         {
             id: getNextAreaId(),
-            "x": -3.64,
-            "z": 2.62,
+            "x": -4,
+            "z": 2,
             "width": 3,
             "length": 1,
             "plantName": "anthericum_liliago"
@@ -603,12 +603,12 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
     name: "a little bit of orange",
     areas: [
         {id: getNextAreaId(), "x": 4, "z": -4, "width": 1, "length": 1, "plantName": "sporobolus"},
-        {id: getNextAreaId(), "x": .37, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 0, "z": 2, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -2.57, "z": -3, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": .79, "z": -0, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -3.24, "z": -3.36, "width": 1, "length": 1, "plantName": "asclepias"},
         {id: getNextAreaId(), "x": -.22, "z": -.43, "width": 1, "length": 1, "plantName": "asclepias"},
-        {id: getNextAreaId(), "x": 3.39, "z": 20, "width": 1, "length": 1, "plantName": "asclepias"},
+        {id: getNextAreaId(), "x": 31, "z": 20, "width": 1, "length": 1, "plantName": "asclepias"},
         {
             id: getNextAreaId(),
             "x": 3.79,
@@ -621,8 +621,8 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
             id: getNextAreaId(),
             "x": 3,
             "z": 0,
-            "width": .68,
-            "length": .86,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": -40, "z": .45, "width": 1, "length": 1, "plantName": "sporobolus"},
@@ -630,7 +630,7 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
         {
             id: getNextAreaId(),
             "x": -2.32,
-            "z": 3.39,
+            "z": 31,
             "width": 3.36,
             "length": 3,
             "plantName": "echinacea_purpurea_polar_breeze"
@@ -639,25 +639,25 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
             id: getNextAreaId(),
             "x": 3,
             "z": .89,
-            "width": .68,
-            "length": .65,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
             id: getNextAreaId(),
             "x": -.59,
             "z": 3,
-            "width": .68,
-            "length": .86,
+            "width": 1,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": -2.04, "z": -.88, "width": 1, "length": 1, "plantName": "asclepias"},
         {
             id: getNextAreaId(),
-            "x": -3.26,
+            "x": -3,
             "z": 2,
             "width": .76,
-            "length": 2.23,
+            "length": 2,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
@@ -665,22 +665,22 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
             "x": -3,
             "z": -.34,
             "width": 3.36,
-            "length": 2.23,
+            "length": 2,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": 2.56, "z": .32, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": 3.72, "z": 3.79, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 31, "z": 3.79, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -2.38, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": .39, "z": .62, "width": 1, "length": 1, "plantName": "asclepias"},
-        {id: getNextAreaId(), "x": -2.43, "z": 3.97, "width": 1, "length": 1, "plantName": "asclepias"},
+        {id: getNextAreaId(), "x": 1, "z": 1, "width": 1, "length": 1, "plantName": "asclepias"},
+        {id: getNextAreaId(), "x": -2.43, "z": 4, "width": 1, "length": 1, "plantName": "asclepias"},
         {id: getNextAreaId(), "x": 3, "z": 3, "width": 1, "length": 1, "plantName": "asclepias"},
-        {id: getNextAreaId(), "x": -.83, "z": 3.37, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -1, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
         {
             id: getNextAreaId(),
             "x": .55,
-            "z": 3.59,
-            "width": 3.97,
-            "length": .86,
+            "z": 4,
+            "width": 4,
+            "length": 1,
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {
@@ -692,7 +692,7 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": -.93, "z": 3.38, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": 2, "z": 2.94, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": 2, "z": 21, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -3.24, "z": -2, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": 4.42, "z": .97, "width": 1, "length": 1, "plantName": "sporobolus"},
         {id: getNextAreaId(), "x": -4.26, "z": -3.89, "width": 1, "length": 1, "plantName": "sporobolus"},
@@ -702,12 +702,12 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
 export const GARDEN_AUTUMN = {
     name: "autumn",
     areas: [
-        {id: getNextAreaId(), "x": 3, "z": 3.62, "width": 1, "length": 1, "plantName": "eremurus"},
+        {id: getNextAreaId(), "x": 3, "z": 31, "width": 1, "length": 1, "plantName": "eremurus"},
         {id: getNextAreaId(), "x": -.56, "z": 3, "width": 1, "length": 1, "plantName": "eremurus"},
         {
             id: getNextAreaId(),
             "x": 2,
-            "z": 3.68,
+            "z": 31,
             "width": 1,
             "length": 1,
             "plantName": "echinacea_tennesseensis"
@@ -722,11 +722,11 @@ export const GARDEN_AUTUMN = {
         },
         {id: getNextAreaId(), "x": 3.76, "z": 3, "width": 1, "length": 1, "plantName": "stipa"},
         {id: getNextAreaId(), "x": -20, "z": 2.42, "width": 1, "length": 1, "plantName": "stipa"},
-        {id: getNextAreaId(), "x": -3, "z": 3.57, "width": 1, "length": 1, "plantName": "stipa"},
+        {id: getNextAreaId(), "x": -3, "z": 4, "width": 1, "length": 1, "plantName": "stipa"},
         {
             id: getNextAreaId(),
             "x": 20,
-            "z": 3.08,
+            "z": 3,
             "width": 1,
             "length": .74,
             "plantName": "echinacea_purpurea_polar_breeze"
@@ -748,7 +748,7 @@ export const GARDEN_AUTUMN = {
             "plantName": "echinacea_purpurea_polar_breeze"
         },
         {id: getNextAreaId(), "x": 3, "z": 3, "width": 1, "length": 1, "plantName": "deschampsia"},
-        {id: getNextAreaId(), "x": -2.43, "z": .83, "width": 1, "length": 1, "plantName": "deschampsia"},
+        {id: getNextAreaId(), "x": -2.43, "z": 1, "width": 1, "length": 1, "plantName": "deschampsia"},
         {id: getNextAreaId(), "x": -.63, "z": -.54, "width": 1, "length": 1, "plantName": "deschampsia"},
         {id: getNextAreaId(), "x": 2.95, "z": .33, "width": 1, "length": 1, "plantName": "calamagrostis"},
         {
@@ -759,20 +759,20 @@ export const GARDEN_AUTUMN = {
             "length": 1,
             "plantName": "calamagrostis"
         },
-        {id: getNextAreaId(), "x": .32, "z": 3.34, "width": 1, "length": 1, "plantName": "aster"},
+        {id: getNextAreaId(), "x": .32, "z": 3, "width": 1, "length": 1, "plantName": "aster"},
         {id: getNextAreaId(), "x": -30, "z": 2.57, "width": 1, "length": 1, "plantName": "aster"},
-        {id: getNextAreaId(), "x": 4, "z": 3.34, "width": 1, "length": 1, "plantName": "aster"},
+        {id: getNextAreaId(), "x": 4, "z": 3, "width": 1, "length": 1, "plantName": "aster"},
         {id: getNextAreaId(), "x": 3.27, "z": 3.03, "width": 1, "length": 1, "plantName": "aster"},
         {id: getNextAreaId(), "x": .29, "z": 2, "width": 1, "length": 1, "plantName": "aster"},
         {id: getNextAreaId(), "x": -2.48, "z": -2.59, "width": 1, "length": 1, "plantName": "sporobolus"},
-        {id: getNextAreaId(), "x": 3.39, "z": -3.45, "width": 1, "length": 1, "plantName": "sporobolus"},
-        {id: getNextAreaId(), "x": -3.97, "z": 3, "width": 1, "length": 1, "plantName": "aster"},
+        {id: getNextAreaId(), "x": 31, "z": -3, "width": 1, "length": 1, "plantName": "sporobolus"},
+        {id: getNextAreaId(), "x": -4, "z": 3, "width": 1, "length": 1, "plantName": "aster"},
         {
             id: getNextAreaId(),
             "x": -2.88,
-            "z": 3.08,
+            "z": 3,
             "width": 1,
-            "length": 3.65,
+            "length": 31,
             "plantName": "anthericum_liliago"
         },
         {
@@ -780,7 +780,7 @@ export const GARDEN_AUTUMN = {
             "x": 20,
             "z": 3,
             "width": 1,
-            "length": 3.65,
+            "length": 31,
             "plantName": "anthericum_liliago"
         },
         {
@@ -788,7 +788,7 @@ export const GARDEN_AUTUMN = {
             "x": -2.38,
             "z": 3,
             "width": 1,
-            "length": 3.65,
+            "length": 31,
             "plantName": "anthericum_liliago"
         },
         {
@@ -796,19 +796,19 @@ export const GARDEN_AUTUMN = {
             "x": -3,
             "z": 2,
             "width": 1,
-            "length": 3.26,
+            "length": 3,
             "plantName": "lillium_regale"
         },
         {
             id: getNextAreaId(),
-            "x": 3.62,
+            "x": 31,
             "z": .74,
             "width": 2.29,
             "length": 1,
             "plantName": "lillium_regale"
         },
-        {id: getNextAreaId(), "x": 3.59, "z": -.08, "width": 1, "length": 1, "plantName": "sporobolus"},
-        {id: getNextAreaId(), "x": -2.37, "z": -30, "width": 1, "length": 1, "plantName": "sporobolus"}
+        {id: getNextAreaId(), "x": 4, "z": -.08, "width": 1, "length": 1, "plantName": "sporobolus"},
+        {id: getNextAreaId(), "x": -20, "z": -30, "width": 1, "length": 1, "plantName": "sporobolus"}
     ]
 }
 
