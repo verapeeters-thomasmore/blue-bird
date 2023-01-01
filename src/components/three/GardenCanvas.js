@@ -20,7 +20,7 @@ import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
 function GardenFloor(props) {
     const {editMode, flowerToEdit} = props;
     const {getControlValue} = useControlsContext();
-    const {addArea} = useGardenSelectorContext();
+    const {addArea, clearArea} = useGardenSelectorContext();
 
     // console.log(coordinates);
 
@@ -29,8 +29,11 @@ function GardenFloor(props) {
 
     return (
         <Floor onClick={e => {
-            console.log("onClick", e, e.point);
-            addArea(Math.round(e.point.x), Math.round(e.point.z), flowerToEdit)
+            console.log("onClick", flowerToEdit, e.point);
+            if (flowerToEdit)
+                addArea(Math.round(e.point.x), Math.round(e.point.z), flowerToEdit)
+            else
+                clearArea(Math.round(e.point.x), Math.round(e.point.z))
         }}
         />
     )

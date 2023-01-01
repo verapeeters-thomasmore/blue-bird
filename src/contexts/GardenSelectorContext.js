@@ -58,8 +58,8 @@ export function GardenSelectorProvider(props) {
                 if (!plantName) return;
                 const newArea = {
                     id: getNextAreaId(),
-                    x:x,
-                    z:z,
+                    x: x,
+                    z: z,
                     width: 1,
                     length: 1,
                     plantName: plantName
@@ -71,7 +71,9 @@ export function GardenSelectorProvider(props) {
             [areas]
         )
     ;
-    const clearArea = useCallback(({x, z}) => undefined, []);
+    const clearArea = useCallback(
+        (x, z) => setAreas(areas.filter(a => !(a.x === x && a.z === z))),
+        [areas]);
 
     const api = useMemo(
         () => ({
@@ -81,8 +83,9 @@ export function GardenSelectorProvider(props) {
             plantIdsForSelectedGarden,
             selectGarden,
             addArea,
+            clearArea
         }),
-        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, selectGarden, addArea]);
+        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, selectGarden, addArea, clearArea]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
@@ -90,3 +93,7 @@ export function GardenSelectorProvider(props) {
 }
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
+
+//TODO clear area
+//TODO add area that already exists
+//TODO which button is selected
