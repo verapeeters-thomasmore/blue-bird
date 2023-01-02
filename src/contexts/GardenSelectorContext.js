@@ -60,8 +60,6 @@ export function GardenSelectorProvider(props) {
                     id: getNextAreaId(),
                     x: x,
                     z: z,
-                    width: 1,
-                    length: 1,
                     plantName: plantName
                 };
                 return setAreas([...areas, newArea]);

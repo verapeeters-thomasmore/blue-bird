@@ -1,4 +1,4 @@
-import {AREA_Y} from "../../constants/dimensions";
+import {AREA_LENGTH, AREA_WIDTH, AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
@@ -8,7 +8,7 @@ function AreaPlane(props) {
     const {area} = props;
     const {showAreasToggleApi} = useControlsContext();
     const {isItemShown: isAreaItemShown} = showAreasToggleApi;
-    const {plant, x, z, width, length} = area;
+    const {plant, x, z} = area;
     const ref = useRef()
 
     if (!isAreaItemShown(area.id)) return;
@@ -20,7 +20,7 @@ function AreaPlane(props) {
             position={[x, AREA_Y, z]}
             rotation-x={-Math.PI / 2}
             name="floor">
-            <planeGeometry args={[width, length, 1, 1]}/>
+            <planeGeometry args={[AREA_WIDTH, AREA_LENGTH, 1, 1]}/>
             <meshLambertMaterial color={plant.flowerColor}/>
         </mesh>
     );
@@ -29,10 +29,9 @@ function AreaPlane(props) {
 
 export function Area(props) {
     const {area} = props;
-    const {plant, width, length, x, z} = area;
-    const areaSize = width * length;
-    const nrOfPlants = Math.floor(areaSize * plant.plantsPerM2);
-    const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants, width, length), [nrOfPlants, width, length]);
+    const {plant, x, z} = area;
+    const nrOfPlants = Math.floor(plant.plantsPerM2); //because area_width==area_length==1
+    const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants), [nrOfPlants]);
     // console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
     const {showPlantsToggleApi} = useControlsContext();
     const {isItemShown: isPlantsItemShown} = showPlantsToggleApi;

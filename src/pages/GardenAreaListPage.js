@@ -87,8 +87,6 @@ function AreaInfo(props) {
             </Col>
             <NumCol>{area.x}</NumCol>
             <NumCol>{area.z}</NumCol>
-            <NumCol>{area.width}</NumCol>
-            <NumCol>{area.length}</NumCol>
         </Row>
     );
 }

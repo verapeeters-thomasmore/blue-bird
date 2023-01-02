@@ -24,8 +24,6 @@ export function PlantCatalogue(props) {
                 <Area key={p.id}
                       area={{
                           plant: p,
-                          width: 1,
-                          length: 1,
                           x: i % COLS - FLOOR_WIDTH / COLS,
                           z: Math.floor(i / COLS) - FLOOR_WIDTH / COLS,
                       }}>
