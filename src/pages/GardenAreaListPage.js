@@ -7,8 +7,8 @@ import {useControlsContext} from "../contexts/ControlsContext";
 import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {createContext, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
-import {UI_SKY_BLUE} from "../constants/uiColors";
 import {GREEN} from "../constants/threeColors";
+import {PlantPicture} from "../components/PlantPicture";
 
 
 function SmallButton(props) {
@@ -94,24 +94,6 @@ function AreaInfo(props) {
 const GardenAreaListPageContext = createContext();
 const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
 
-function PlantPicture(props) {
-    const {plant, large} = props;
-    const size = large ? 50 : 31;
-
-    return (
-        <>
-            <div className="m-1 p-0 rounded-circle position-absolute end-0 top-0"
-                 style={{backgroundColor: UI_SKY_BLUE, width: size, height: size}}>
-                <img src={`${plant.textureWithFlower}`}
-                     alt={plant.plantName}
-                     width={size}
-                     height={size}
-                />
-            </div>
-        </>
-    )
-}
-
 function PlantFiche(props) {
     const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
@@ -157,7 +139,7 @@ function PlantInfoHeader(props) {
                 </Col>
                 <Col xs="auto" className="">
                 </Col>
-                <PlantPicture plant={plant} large={showPlantInfo}/>
+                <PlantPicture plant={plant} large={showPlantInfo} absolute={true}/>
             </Row>
         </>
     );

@@ -2,11 +2,12 @@ import React, {createContext, useCallback, useContext, useMemo, useState} from '
 import {getNextAreaId, PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import {findPlantData} from "../utils/plant_utils";
 
 const GardenSelectorContext = createContext();
 
 function getGardenEnrichedWithPlants(selectedGarden, plants) {
-    return selectedGarden.map(area => ({...area, plant: plants.find(p => p.shortName === area.plantName)}))
+    return selectedGarden.map(area => ({...area, plant: findPlantData(plants, area.plantName)}))
 }
 
 function getGardenGroupedByPlants(areasSelectedGarden) {
@@ -90,6 +91,7 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//TODO clear area
 //TODO add area that already exists
 //TODO which button is selected
+//TODO topview on editPage
+//TODO select-pages: select-button and go to Home
