@@ -4,6 +4,7 @@ import {useState} from "react";
 import {PlantSelectionButtons} from "../components/PlantSelectionButtons";
 import {VIEWPOINT_TOP} from "../contexts/CameraViewpointContext";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
+import {AreaInfo} from "../components/AreaInfo";
 
 export function EditPage() {
     const {plantDataForSelectedGarden} = useGardenSelectorContext();
@@ -16,6 +17,7 @@ export function EditPage() {
                 <GardenCanvas editMode={true} flowerToEdit={flowerToEdit} fixedViewPoint={VIEWPOINT_TOP}/>
             </div>
             <PlantSelectionButtons flowerToEdit={flowerToEdit} setFlowerToEdit={setFlowerToEdit}/>
+            <AreaInfo/>
         </>
     )
 }

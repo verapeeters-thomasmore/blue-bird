@@ -14,6 +14,7 @@ import {GardenSelectionPage} from "./pages/GardenSelectionPage";
 import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
 import {EditPage} from "./pages/EditPage";
+import {MessageInfoProvider} from "./contexts/MessageInfoContext";
 
 function ProvidedApp() {
     return (
@@ -35,17 +36,19 @@ function ProvidedApp() {
 
 export default function App() {
     return (
-        <TimeProvider>
-            <GardenSelectorProvider>
-                <ControlsProvider>
-                    <CameraViewpointProvider>
-                        <BrowserRouter>
-                            <ProvidedApp/>
-                        </BrowserRouter>
-                    </CameraViewpointProvider>
-                </ControlsProvider>
-            </GardenSelectorProvider>
-        </TimeProvider>
+        <MessageInfoProvider>
+            <TimeProvider>
+                <GardenSelectorProvider>
+                    <ControlsProvider>
+                        <CameraViewpointProvider>
+                            <BrowserRouter>
+                                <ProvidedApp/>
+                            </BrowserRouter>
+                        </CameraViewpointProvider>
+                    </ControlsProvider>
+                </GardenSelectorProvider>
+            </TimeProvider>
+        </MessageInfoProvider>
     )
 
 }

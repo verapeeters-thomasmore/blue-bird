@@ -1,5 +1,5 @@
 import {MdOutlineDelete} from "react-icons/md";
-import {PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
+import {MENU_HEIGHT, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 import {Button} from "react-bootstrap";
 import {GrAdd} from "react-icons/gr";
 import {PlantPicture} from "./PlantPicture";
@@ -47,8 +47,8 @@ export function PlantSelectionButtons(props) {
     const {plantDataForSelectedGarden} = useGardenSelectorContext();
 
     return (
-        <div className="position-absolute ms-2 mt-2 d-flex flex-column"
-             style={{top: "70px"}}>
+        <div className="position-absolute ms-1 mt-2 d-flex flex-column"
+             style={{top: MENU_HEIGHT}}>
             {plantDataForSelectedGarden.map(p =>
                 <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
                                    setFlowerToEdit={setFlowerToEdit}/>)
