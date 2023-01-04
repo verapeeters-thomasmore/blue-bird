@@ -7,7 +7,7 @@ export function AreaInfo() {
     return (
         <div className="position-absolute me-1 mt-2 p-1 end-0 bg-white rounded-1"
              style={{top: MENU_HEIGHT}}>
-            {areaInfoMessages.map(m => <div>{m.message}</div>)}
+            {areaInfoMessages.map(m => <div key={m.id}>{m.message}</div>)}
         </div>
 
     )
