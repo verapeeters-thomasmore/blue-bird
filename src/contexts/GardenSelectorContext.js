@@ -97,6 +97,7 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //TODO select-pages: select-button and go to Home
 //TODO in edit mode hoveren over een area: tooltip of zo met alle planten
-//TODO in edit mode selecteer 1e plant ipv vuilbak
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO test effect of EditPage on Catalog
+//TODO save camera position after orbiting
+//TODO save edited areas in localstorage

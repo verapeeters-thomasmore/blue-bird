@@ -3,9 +3,11 @@ import {GardenCanvas} from "../components/three/GardenCanvas";
 import {useState} from "react";
 import {PlantSelectionButtons} from "../components/PlantSelectionButtons";
 import {VIEWPOINT_TOP} from "../contexts/CameraViewpointContext";
+import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
 export function EditPage() {
-    const [flowerToEdit, setFlowerToEdit] = useState(undefined);
+    const {plantDataForSelectedGarden} = useGardenSelectorContext();
+    const [flowerToEdit, setFlowerToEdit] = useState(plantDataForSelectedGarden[0]?.shortName); //plant.shortName
     // console.log("EditPage", flowerToEdit)
     return (
         <>
