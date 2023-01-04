@@ -4,15 +4,15 @@ export function getNextAreaId() {
     return ++gardenAreaIdGenerator;
 }
 
-export const GARDEN_ONE_AREA_NEW = {
-    name: "only 1 area NEW",
+export const GARDEN_ONE_AREA = {
+    name: "only 1 area",
     areas: [
         {id: getNextAreaId(), "x": 0, "z": 0, "plantName": "camissia"},
     ]
 };
 
-export const GARDEN_JUST_A_FEW_AREAS_NEW = {
-    name: "just a few areas NEW",
+export const GARDEN_JUST_A_FEW_AREAS = {
+    name: "just a few areas",
     areas: [
         {id: getNextAreaId(), "x": 3, "z": 0, "plantName": "camissia"},
         {id: getNextAreaId(), "x": 3, "z": 3, "plantName": "camissia"},
@@ -378,8 +378,8 @@ export const GARDEN_AUTUMN = {
 
 //assumption: name of the predefined gardens is unique for each garden
 export const PREDEFINED_GARDENS = [
-    GARDEN_ONE_AREA_NEW,
-    GARDEN_JUST_A_FEW_AREAS_NEW,
+    GARDEN_ONE_AREA,
+    GARDEN_JUST_A_FEW_AREAS,
     GARDEN_PLENTY,
     GARDEN_WHITE,
     GARDEN_A_LITTLE_BIT_OF_ORANGE,
