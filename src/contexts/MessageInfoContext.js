@@ -6,7 +6,7 @@ const MessageInfoContext = createContext();
 export function MessageInfoProvider(props) {
     const [areaInfoMessages, setAreaInfoMessages] = useState([]);
 
-    console.log(areaInfoMessages);
+    // console.log(areaInfoMessages);
 
     const addAreaInfoMessage = useCallback(
         area => setAreaInfoMessages(areaInfoMessages =>

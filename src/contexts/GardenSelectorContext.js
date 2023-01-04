@@ -99,3 +99,5 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO test effect of EditPage on Catalog -- catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO save edited areas in localstorage
+//TODO Area info does not work if area not visible - is that a problem???
+//TODO show area/plants -button in nav bar?
