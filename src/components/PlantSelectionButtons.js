@@ -1,10 +1,9 @@
 import {MdOutlineDelete} from "react-icons/md";
-import {ICON_SIZE, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
+import {PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 import {Button} from "react-bootstrap";
 import {GrAdd} from "react-icons/gr";
 import {PlantPicture} from "./PlantPicture";
-import {findPlantData} from "../utils/plant_utils";
-import {PLANT_DATA} from "../data/plant.data";
+import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
 function SelectButton(props) {
     const {children, onClick, isSelected, title} = props;
@@ -38,25 +37,19 @@ function AddButton() {
                 variant=""
                 className="m-1 p-0 bg-light"
                 onClick={() => undefined}>
-            <GrAdd size={PLANT_PICTURE_SIZE_SMALL} />
+            <GrAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );
 }
 
-//TODO move to context
-const plantsInGarden = [
-    findPlantData(PLANT_DATA, "camissia"),
-    findPlantData(PLANT_DATA, "eremurus"),
-    findPlantData(PLANT_DATA, "nepeta"),
-];
-
-
 export function PlantSelectionButtons(props) {
     const {flowerToEdit, setFlowerToEdit} = props;
+    const {plantDataForSelectedGarden} = useGardenSelectorContext();
+
     return (
         <div className="position-absolute ms-2 mt-2 d-flex flex-column"
              style={{top: "70px"}}>
-            {plantsInGarden.map(p =>
+            {plantDataForSelectedGarden.map(p =>
                 <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
                                    setFlowerToEdit={setFlowerToEdit}/>)
             }
