@@ -21,9 +21,10 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
 
 export function GardenSelectorProvider(props) {
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
-    const [areas, setAreas] = useState(PREDEFINED_GARDENS[indexSelectedGarden].areas);
+    const [areas, setAreas] = useLocalStorage("areas", PREDEFINED_GARDENS[indexSelectedGarden].areas);
+    const [isDirty, setIsDirty] = useState(false);
 
-    // console.log(indexSelectedGarden, areas);
+    console.log(indexSelectedGarden, areas, isDirty);
 
     //array of areas
     //contains plantinfo for each area
@@ -53,6 +54,7 @@ export function GardenSelectorProvider(props) {
             const index = PREDEFINED_GARDENS.findIndex(g => g.name === gardenNameToSelect);
             setIndexSelectedGardenInternal(index);
             setAreas(PREDEFINED_GARDENS[index].areas);
+            setIsDirty(false);
         },
         []);
 
@@ -66,13 +68,17 @@ export function GardenSelectorProvider(props) {
                     z: z,
                     plantName: plantName
                 };
-                return setAreas([...areas, newArea]);
+                setIsDirty(true);
+                setAreas([...areas, newArea]);
             },
             [areas]
         )
     ;
     const clearArea = useCallback(
-        (x, z) => setAreas(areas.filter(a => !(a.x === x && a.z === z))),
+        (x, z) => {
+            setIsDirty(true);
+            setAreas(areas.filter(a => !(a.x === x && a.z === z)));
+        },
         [areas]);
 
     const api = useMemo(
