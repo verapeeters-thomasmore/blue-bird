@@ -1,4 +1,4 @@
-import {Container} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 import {PREDEFINED_GARDENS} from "../data/area.data";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
@@ -13,11 +13,16 @@ export function GardenSelectionPage() {
                     <SelectAndReturnButton key={g.name}
                                            title={g.name}
                                            onSelect={() => selectGarden(g.name)}
-                                           isSelected={index===indexSelectedGarden}/>
+                                           isSelected={index === indexSelectedGarden}/>
                 )}
             </div>
             <div>
-                {isDirty && `selected garden is modified.`}
+                {isDirty &&
+                    <>
+                        `selected garden is modified.`
+                        <Button>save</Button>
+                    </>
+                }
             </div>
         </Container>
     )
