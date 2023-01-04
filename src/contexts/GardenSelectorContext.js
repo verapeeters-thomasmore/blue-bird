@@ -95,7 +95,6 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//TODO in edit mode hoveren over een area: tooltip of zo met alle planten
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO test effect of EditPage on Catalog -- catalog is broken - it should be a garden
 //TODO save camera position after orbiting

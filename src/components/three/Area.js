@@ -5,7 +5,6 @@ import {calculatePlantPositions} from "../../utils/area_utils";
 import {useControlsContext} from "../../contexts/ControlsContext";
 import {useMessageInfoContext} from "../../contexts/MessageInfoContext";
 
-//TODO onMoveIn is not correct (no internet on train)
 function AreaPlane(props) {
     const {area} = props;
     const {showAreasToggleApi} = useControlsContext();

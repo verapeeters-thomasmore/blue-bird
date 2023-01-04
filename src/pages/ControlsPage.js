@@ -47,5 +47,3 @@ export function ControlsPage() {
         </Container>
     )
 }
-
-//todo areas checkbox in controlspage

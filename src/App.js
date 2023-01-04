@@ -56,13 +56,7 @@ export default function App() {
 
 /*
 TODO
-* edit areas
-** select area / EDIT
-** modify data of area
-** modify area in-canvas
-
 -- issues
-* OK deploy routes don't work (refresh) - fixed on render
 * select new garden --> controls to show areas/plants are broken
 * logo
 * proptypes voor area en plant
