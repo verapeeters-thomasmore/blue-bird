@@ -4,6 +4,7 @@ import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
 import {useControlsContext} from "../../contexts/ControlsContext";
 
+//TODO onMoveIn is not correct (no internet on train)
 function AreaPlane(props) {
     const {area} = props;
     const {showAreasToggleApi} = useControlsContext();
@@ -19,7 +20,8 @@ function AreaPlane(props) {
             ref={ref}
             position={[x, AREA_Y, z]}
             rotation-x={-Math.PI / 2}
-            name="floor">
+            name="floor"
+            onMoveIn={() => console.log(plant.plantName)}>
             <planeGeometry args={[AREA_WIDTH, AREA_LENGTH, 1, 1]}/>
             <meshLambertMaterial color={plant.flowerColor}/>
         </mesh>

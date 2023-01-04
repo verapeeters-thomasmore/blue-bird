@@ -17,6 +17,7 @@ import {Areas} from "./Areas";
 import {OrbitControls} from "@react-three/drei";
 import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
 
+//TODO move this into Floor
 function GardenFloor(props) {
     const {editMode, flowerToEdit} = props;
     const {getControlValue} = useControlsContext();
