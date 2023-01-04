@@ -32,6 +32,10 @@ export function GardenSelectorProvider(props) {
         () => getGardenEnrichedWithPlants(areas, PLANT_DATA),
         [areas]);
 
+    const propertiesSelectedGarden = useMemo(
+        () => PREDEFINED_GARDENS[indexSelectedGarden],
+        [indexSelectedGarden]);
+
     //array of objects for each plant in this garden
     //each object contains plantName, plant (plantinfo), array of areas
     const areasSelectedGardenGroupedByPlants = useMemo(
@@ -85,14 +89,16 @@ export function GardenSelectorProvider(props) {
         () => ({
             areasSelectedGarden,
             indexSelectedGarden,
+            propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants,
             plantIdsForSelectedGarden,
             plantDataForSelectedGarden,
             selectGarden,
             addArea,
-            clearArea
+            clearArea,
+            isDirty,
         }),
-        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden, selectGarden, addArea, clearArea]);
+        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden, selectGarden, addArea, clearArea, isDirty]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
