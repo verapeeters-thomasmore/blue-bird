@@ -95,9 +95,8 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//OK add area that already exists
-//TODO topview on editPage
 //TODO select-pages: select-button and go to Home
 //TODO in edit mode hoveren over een area: tooltip of zo met alle planten
 //TODO in edit mode selecteer 1e plant ipv vuilbak
 //TODO te veel planten in PlantSelectionButtons (scroll?)
+//TODO test effect of EditPage on Catalog

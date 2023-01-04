@@ -42,7 +42,7 @@ function GardenFloor(props) {
 
 
 export function GardenCanvas(props) {
-    const {editMode, flowerToEdit} = props;
+    const {editMode, flowerToEdit, fixedViewPoint} = props;
     const {areasSelectedGarden} = useGardenSelectorContext();
     const {getControlValue} = useControlsContext();
 
@@ -51,7 +51,7 @@ export function GardenCanvas(props) {
         <>
             <Canvas style={{background: WORLD_SKY_BLUE}}
                     resize={{scroll: false}}>
-                <Camera/>
+                <Camera fixedViewPoint={fixedViewPoint}/>
                 <ambientLight intensity={2.5}/>
                 <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
                 {getControlValue(SHOW_AXES) && <axesHelper/>}
