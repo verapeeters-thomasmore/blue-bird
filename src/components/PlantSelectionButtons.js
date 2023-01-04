@@ -1,5 +1,5 @@
 import {MdOutlineDelete} from "react-icons/md";
-import {ICON_SIZE} from "../constants/uiSizes";
+import {ICON_SIZE, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 import {Button} from "react-bootstrap";
 import {GrAdd} from "react-icons/gr";
 import {PlantPicture} from "./PlantPicture";
@@ -11,7 +11,7 @@ function SelectButton(props) {
     return (
         <Button size="sm"
                 variant={`${isSelected ? "info" : "light"}`}
-                className={`m-1 p-0`}
+                className={`m-1 p-0 ${isSelected ? "text-light" : "text-info"}`}
                 title={title}
                 onClick={onClick}>
             {children}
@@ -31,12 +31,25 @@ function SelectPlantButton(props) {
     );
 }
 
+//TODO: can't change text-color???
+function AddButton() {
+    return (
+        <Button size="sm"
+                variant=""
+                className="m-1 p-0 bg-light"
+                onClick={() => undefined}>
+            <GrAdd size={PLANT_PICTURE_SIZE_SMALL} />
+        </Button>
+    );
+}
+
 //TODO move to context
 const plantsInGarden = [
     findPlantData(PLANT_DATA, "camissia"),
     findPlantData(PLANT_DATA, "eremurus"),
     findPlantData(PLANT_DATA, "nepeta"),
 ];
+
 
 export function PlantSelectionButtons(props) {
     const {flowerToEdit, setFlowerToEdit} = props;
@@ -49,9 +62,9 @@ export function PlantSelectionButtons(props) {
             }
             <SelectButton onClick={() => setFlowerToEdit()}
                           isSelected={!flowerToEdit}>
-                <MdOutlineDelete size={ICON_SIZE}/>
+                <MdOutlineDelete size={PLANT_PICTURE_SIZE_SMALL}/>
             </SelectButton>
-            <Button size="sm" className="m-1" onClick={() => undefined}><GrAdd size={ICON_SIZE}/></Button>
+            <AddButton/>
         </div>
     )
 }
