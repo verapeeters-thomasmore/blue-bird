@@ -59,6 +59,7 @@ export function GardenSelectorProvider(props) {
     const addArea = useCallback(
             (x, z, plantName) => {
                 if (!plantName) return;
+                if (areas.find(a => a.x === x && a.z === z && a.plantName === plantName)) return;
                 const newArea = {
                     id: getNextAreaId(),
                     x: x,
@@ -94,7 +95,7 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//TODO add area that already exists
+//OK add area that already exists
 //TODO topview on editPage
 //TODO select-pages: select-button and go to Home
 //TODO in edit mode hoveren over een area: tooltip of zo met alle planten
