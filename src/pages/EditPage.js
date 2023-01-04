@@ -24,7 +24,7 @@ function SelectButton(props) {
 
 function SelectPlantButton(props) {
     const {plant, flowerToEdit, setFlowerToEdit} = props;
-    console.log("SelectedPlantButton", flowerToEdit, plant.shortName)
+    // console.log("SelectedPlantButton", flowerToEdit, plant.shortName)
     return (
         <SelectButton onClick={() => setFlowerToEdit(plant.shortName)}
                       title={plant.name}
@@ -41,27 +41,34 @@ const plantsInGarden = [
     findPlantData(PLANT_DATA, "nepeta"),
 ];
 
+function PlantSelectionButtons(props) {
+    const {flowerToEdit, setFlowerToEdit} = props;
+    return (
+        <div className="position-absolute ms-2 mt-2 d-flex flex-column"
+             style={{top: "70px"}}>
+            {plantsInGarden.map(p =>
+                <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
+                                   setFlowerToEdit={setFlowerToEdit}/>)
+            }
+            <SelectButton onClick={() => setFlowerToEdit()}
+                          isSelected={!flowerToEdit}>
+                <MdOutlineDelete size={ICON_SIZE}/>
+            </SelectButton>
+            <Button size="sm" className="m-1" onClick={() => undefined}><GrAdd size={ICON_SIZE}/></Button>
+        </div>
+    )
+}
+
 export function EditPage() {
     const [flowerToEdit, setFlowerToEdit] = useState(undefined);
-    console.log("EditPage", flowerToEdit)
+    // console.log("EditPage", flowerToEdit)
     return (
         <>
             <Timer/>
             <div className="flex-grow-1">
                 <GardenCanvas editMode={true} flowerToEdit={flowerToEdit}/>
             </div>
-            <div className="position-absolute ms-2 mt-2 d-flex flex-column"
-                 style={{top: "70px"}}>
-                {plantsInGarden.map(p =>
-                    <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
-                                       setFlowerToEdit={setFlowerToEdit}/>)
-                }
-                <SelectButton onClick={() => setFlowerToEdit()}
-                              isSelected={!flowerToEdit}>
-                    <MdOutlineDelete size={ICON_SIZE}/>
-                </SelectButton>
-                <Button size="sm" className="m-1" onClick={() => undefined}><GrAdd size={ICON_SIZE}/></Button>
-            </div>
+            <PlantSelectionButtons flowerToEdit={flowerToEdit} setFlowerToEdit={setFlowerToEdit}/>
         </>
     )
 }

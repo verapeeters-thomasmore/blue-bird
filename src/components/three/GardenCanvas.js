@@ -29,7 +29,7 @@ function GardenFloor(props) {
         <Floor onClick={e => {
             const roundedX = Math.round(e.point.x);
             const roundedZ = Math.round(e.point.z);
-            console.log("onClick", flowerToEdit, roundedX, roundedZ);
+            // console.log("onClick", flowerToEdit, roundedX, roundedZ);
             if (flowerToEdit)
                 addArea(roundedX,roundedZ, flowerToEdit);
             else
