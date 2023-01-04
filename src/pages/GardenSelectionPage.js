@@ -8,7 +8,7 @@ function SelectGardenControl(props) {
     const navigate = useNavigate();
 
     return (
-        <div className="border m-1">
+        <div className="m-1 bg-white">
             <Button variant="primary"
                     size="sm"
                     className="m-1 me-2"
