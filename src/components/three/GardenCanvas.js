@@ -1,11 +1,4 @@
-import {
-    SHOW_AXES,
-    SHOW_CATALOG,
-    SHOW_FLOOR,
-    SHOW_GARDEN,
-    SHOW_WORLD,
-    useControlsContext
-} from "../../contexts/ControlsContext";
+import {SHOW_AXES, SHOW_CATALOG, SHOW_GARDEN, SHOW_WORLD, useControlsContext} from "../../contexts/ControlsContext";
 import {Canvas} from "@react-three/fiber";
 import {WORLD_SKY_BLUE} from "../../constants/threeColors";
 import {Camera} from "./Camera";
@@ -16,29 +9,6 @@ import {PLANT_DATA} from "../../data/plant.data";
 import {Areas} from "./Areas";
 import {OrbitControls} from "@react-three/drei";
 import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
-
-//TODO move this into Floor
-function GardenFloor(props) {
-    const {editMode, flowerToEdit} = props;
-    const {getControlValue} = useControlsContext();
-    const {addArea, clearArea} = useGardenSelectorContext();
-
-    if (!getControlValue(SHOW_FLOOR)) return;
-    if (!editMode) return <Floor/>;
-
-    return (
-        <Floor onClick={e => {
-            const roundedX = Math.round(e.point.x);
-            const roundedZ = Math.round(e.point.z);
-            // console.log("onClick", flowerToEdit, roundedX, roundedZ);
-            if (flowerToEdit)
-                addArea(roundedX,roundedZ, flowerToEdit);
-            else
-                clearArea(roundedX, roundedZ);
-        }}
-        />
-    )
-}
 
 
 export function GardenCanvas(props) {
@@ -56,7 +26,7 @@ export function GardenCanvas(props) {
                 <spotLight position={[0, 20, 20]} angle={0.15} penumbra={1}/>
                 {getControlValue(SHOW_AXES) && <axesHelper/>}
                 {getControlValue(SHOW_WORLD) && <World/>}
-                <GardenFloor editMode={editMode} flowerToEdit={flowerToEdit}/>
+                <Floor editMode={editMode} flowerToEdit={flowerToEdit}/>
                 {getControlValue(SHOW_CATALOG) && <PlantCatalogue plants={PLANT_DATA}/>}
                 {getControlValue(SHOW_GARDEN) && <Areas areas={areasSelectedGarden}/>}
                 {<OrbitControls enabled={!editMode} maxPolarAngle={Math.PI / 2 - 0.07}/>}
