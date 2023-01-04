@@ -1,25 +1,20 @@
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {useCameraViewpointContext} from "../contexts/CameraViewpointContext";
+import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
 
 
 export function CameraViewpointsPage() {
     const {viewpoints, setCameraViewpoint} = useCameraViewpointContext();
     return (
         <Container>
-            <h3>select:</h3>
-            <Row className="m-1 p-2 border">
+            <h3>Predefined camera viewpoints:</h3>
+            <div className="py-2">
                 {viewpoints.map(vp =>
-                    <Col xs="6" sm="4" className="p-1" key={vp.name}>
-                        <Button variant="outline-primary"
-                                className="border-0"
-                                onClick={() => {
-                                    setCameraViewpoint(vp.name);
-                                }}>
-                            {vp.name}
-                        </Button>
-                    </Col>
+                    <SelectAndReturnButton key={vp.name}
+                                           title={vp.name}
+                                           onSelect={() => setCameraViewpoint(vp.name)}/>
                 )}
-            </Row>
+            </div>
         </Container>
     )
 }

@@ -1,4 +1,4 @@
-import {Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {PREDEFINED_GARDENS} from "../data/area.data";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
@@ -8,13 +8,13 @@ export function GardenSelectionPage() {
     return (
         <Container>
             <h3>Predefined gardens:</h3>
-            <Row className="m-1 p-2 ">
+            <div className="py-2">
                 {PREDEFINED_GARDENS.map(g =>
-                    <div key={g.name}>
-                        <SelectAndReturnButton title={g.name} onSelect={() => selectGarden(g.name)}/>
-                    </div>
+                    <SelectAndReturnButton key={g.name}
+                                           title={g.name}
+                                           onSelect={() => selectGarden(g.name)}/>
                 )}
-            </Row>
+            </div>
         </Container>
     )
 }

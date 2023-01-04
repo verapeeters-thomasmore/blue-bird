@@ -6,7 +6,7 @@ export function SelectAndReturnButton(props) {
     const navigate = useNavigate();
 
     return (
-        <div className="m-1 bg-white">
+        <div className="my-2 bg-white rounded-1">
             <Button variant="primary"
                     size="sm"
                     className="m-1 me-2"
