@@ -73,6 +73,26 @@ export function GardenSelectorProvider(props) {
         },
         []);
 
+    //TODO it must be possible to do this in a more "react" way
+    const saveAreasInFile = useCallback(
+        (fileName) => {
+            const areasAsJSON = JSON.stringify(areas);
+            const blob = new Blob([areasAsJSON], {type: 'application/json'});
+            const blobURL = window.URL.createObjectURL(blob);
+            const tempLink = document.createElement('a');
+            tempLink.style.display = 'none';
+            tempLink.href = blobURL;
+            tempLink.setAttribute('download', fileName + ".json");
+            if (typeof tempLink.download === 'undefined') {
+                tempLink.setAttribute('target', '_blank');
+            }
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+            window.URL.revokeObjectURL(blobURL);
+        },
+        [areas]
+    );
     const addArea = useCallback(
             (x, z, plantName) => {
                 if (!plantName) return;
@@ -106,13 +126,15 @@ export function GardenSelectorProvider(props) {
             plantDataForSelectedGarden,
             selectGarden,
             selectGardenAreas,
+            saveAreasInFile,
             addArea,
             clearArea,
             isDirty,
         }),
         [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
-            selectGarden, selectGardenAreas, addArea, clearArea, isDirty]);
+            selectGarden, selectGardenAreas, saveAreasInFile,
+            addArea, clearArea, isDirty]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
@@ -125,7 +147,7 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO area-id: unique per garden, not in general
 //OK isDirty NOT correct when refreshing (load local storage)
 //OK save edited area in file
-//TODO save saves too much (plant-data)
+//OK save saves too much (plant-data)
 //OK load edited area from file
 //TODO load from file: remember filename??
 //TODO te veel planten in PlantSelectionButtons (scroll?)

@@ -7,29 +7,13 @@ import {BsFillFileEarmarkArrowDownFill, BsFillFileEarmarkArrowUpFill} from "reac
 import {useState} from "react";
 
 function SaveGardenInFile() {
-    const {areasSelectedGarden} = useGardenSelectorContext();
+    const {saveAreasInFile} = useGardenSelectorContext();
     const [fileName, setFileName] = useState("");
 
-    //TODO move function save to context
-    //TODO it must be possible to do this in a more "react" way
     function save() {
         console.log("SAVE in ", fileName);
         if (!fileName) return;
-
-        const areasAsJSON = JSON.stringify(areasSelectedGarden);
-        const blob = new Blob([areasAsJSON], {type: 'application/json'});
-        const blobURL = window.URL.createObjectURL(blob);
-        const tempLink = document.createElement('a');
-        tempLink.style.display = 'none';
-        tempLink.href = blobURL;
-        tempLink.setAttribute('download', fileName + ".json");
-        if (typeof tempLink.download === 'undefined') {
-            tempLink.setAttribute('target', '_blank');
-        }
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
-        window.URL.revokeObjectURL(blobURL);
+        saveAreasInFile(fileName);
     }
 
     return (
