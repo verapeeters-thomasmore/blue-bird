@@ -5,7 +5,6 @@ import {
     PINK,
     PURPLE,
     VIOLET,
-    VIOLET2,
     WHITE,
     YELLOW,
     YELLOWGREEN
@@ -40,7 +39,7 @@ export const PLANT_DATA = [
         linkWithInfo: "https://www.vasteplant.be/catalog/index.cfm?fuseaction=DETAIL&TREFNAAM=ALGLAD",
         textureWithoutFlower: "images/sprites/alium_gladiator.png",
         textureWithFlower: "images/sprites/alium_gladiator_flower.png",
-        flowerColor: VIOLET2,
+        flowerColor: VIOLET,
         maxHeight: 120,
         plantsPerM2: 1,
         timeLine: {

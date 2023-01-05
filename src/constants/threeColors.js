@@ -9,8 +9,7 @@ export const PINK = "#DD0080";
 export const PURPLE = "#A000A0";
 export const YELLOW = "#EEEE00";
 export const YELLOWGREEN = "#A0A030";
-export const VIOLET = "#C09DEE";
-export const VIOLET2 = "#AB71F7";
+export const VIOLET = "#9b61e3";
 export const WHITE = "#EEEEEE";
 
 //world colors

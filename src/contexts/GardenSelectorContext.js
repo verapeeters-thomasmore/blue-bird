@@ -171,6 +171,7 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
 //TODO show area/plants -button in nav bar?
-//TODO aster area looks white
+//OK aster area looks white
 //TODO error when hovering area (to display plants -- shows too many sometimes)
 //TODO go to / after loading file
+//TODO add plant in garden
