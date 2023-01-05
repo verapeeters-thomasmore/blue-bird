@@ -125,6 +125,7 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO area-id: unique per garden, not in general
 //TODO isDirty NOT correct when refreshing (load local storage)
 //TODO save edited area in file
+//TODO save saves to much (plant-data)
 //TODO load edited area from file
 //TODO load from file: remember filename
 //TODO te veel planten in PlantSelectionButtons (scroll?)

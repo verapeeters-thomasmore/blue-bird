@@ -4,14 +4,14 @@ export function getNextAreaId() {
     return ++gardenAreaIdGenerator;
 }
 
-export const GARDEN_ONE_AREA = {
+const GARDEN_ONE_AREA = {
     name: "only 1 area",
     areas: [
         {id: getNextAreaId(), "x": 0, "z": 0, "plantName": "camissia"},
     ]
 };
 
-export const GARDEN_JUST_A_FEW_AREAS = {
+const GARDEN_JUST_A_FEW_AREAS = {
     name: "just a few areas",
     areas: [
         {id: getNextAreaId(), "x": 3, "z": 0, "plantName": "camissia"},
@@ -23,7 +23,7 @@ export const GARDEN_JUST_A_FEW_AREAS = {
     ]
 };
 
-export const GARDEN_PLENTY = {
+const GARDEN_PLENTY = {
     name: "plenty",
     areas: [
         {id: getNextAreaId(), "x": -3, "z": 2, "plantName": "crocus"},
@@ -183,7 +183,7 @@ export const GARDEN_PLENTY = {
     ],
 }
 
-export const GARDEN_WHITE = {
+const GARDEN_WHITE = {
     name: "white",
     areas: [
         {id: getNextAreaId(), "x": 3, "z": -3, "plantName": "hyacint"},
@@ -319,7 +319,7 @@ const GARDEN_A_LITTLE_BIT_OF_ORANGE = {
         {id: getNextAreaId(), "x": -3, "z": 1, "plantName": "echinacea_purpurea_polar_breeze"},
     ],
 }
-export const GARDEN_AUTUMN = {
+const GARDEN_AUTUMN = {
     name: "autumn",
     areas: [
         {id: getNextAreaId(), "x": 3, "z": 3, "plantName": "eremurus"},
@@ -376,6 +376,362 @@ export const GARDEN_AUTUMN = {
     ]
 }
 
+const GARDEN_AUTUMN2 = {
+    name: "autumn2",
+    areas:
+        [{
+            "id": 290,
+            "x": 3,
+            "z": 3,
+            "plantName": "eremurus",
+        }, {
+            "id": 291,
+            "x": 3,
+            "z": 3,
+            "plantName": "eremurus",
+        }, {
+            "id": 292,
+            "x": 2,
+            "z": 3,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 293,
+            "x": -4,
+            "z": 2,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 294,
+            "x": 2,
+            "z": 2,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 295,
+            "x": 3,
+            "z": 1,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 296,
+            "x": 4,
+            "z": 3,
+            "plantName": "stipa",
+        }, {
+            "id": 297,
+            "x": -2,
+            "z": 2,
+            "plantName": "stipa",
+        }, {
+            "id": 298,
+            "x": -3,
+            "z": 4,
+            "plantName": "stipa",
+        }, {
+            "id": 299,
+            "x": 2,
+            "z": 3,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 300,
+            "x": -4,
+            "z": 3,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 301,
+            "x": -2,
+            "z": 2,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 302,
+            "x": 3,
+            "z": 3,
+            "plantName": "deschampsia",
+        }, {
+            "id": 303,
+            "x": -2,
+            "z": 1,
+            "plantName": "deschampsia",
+        }, {
+            "id": 304,
+            "x": -3,
+            "z": -1,
+            "plantName": "deschampsia",
+        }, {
+            "id": 305,
+            "x": -2,
+            "z": -2,
+            "plantName": "deschampsia",
+        }, {
+            "id": 306,
+            "x": 2,
+            "z": -1,
+            "plantName": "deschampsia",
+        }, {
+            "id": 307,
+            "x": 2,
+            "z": 0,
+            "plantName": "deschampsia",
+        }, {
+            "id": 309,
+            "x": 1,
+            "z": -1,
+            "plantName": "deschampsia",
+        }, {
+            "id": 310,
+            "x": 3,
+            "z": 0,
+            "plantName": "calamagrostis",
+        }, {
+            "id": 311,
+            "x": 3,
+            "z": 1,
+            "plantName": "calamagrostis",
+        }, {
+            "id": 312,
+            "x": 2,
+            "z": 1,
+            "plantName": "calamagrostis",
+        }, {
+            "id": 313,
+            "x": -2,
+            "z": 0,
+            "plantName": "calamagrostis",
+        }, {
+            "id": 314,
+            "x": 1,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 315,
+            "x": -3,
+            "z": 2,
+            "plantName": "aster",
+        }, {
+            "id": 316,
+            "x": 4,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 317,
+            "x": 3,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 318,
+            "x": 1,
+            "z": 2,
+            "plantName": "aster",
+        }, {
+            "id": 322,
+            "x": -4,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 323,
+            "x": -4,
+            "z": 1,
+            "plantName": "aster",
+        }, {
+            "id": 324,
+            "x": -3,
+            "z": 1,
+            "plantName": "aster",
+        }, {
+            "id": 325,
+            "x": 1,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 326,
+            "x": 1,
+            "z": 0,
+            "plantName": "aster",
+        }, {
+            "id": 327,
+            "x": 1,
+            "z": 1,
+            "plantName": "aster",
+        }, {
+            "id": 328,
+            "x": 2,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 329,
+            "x": 0,
+            "z": 3,
+            "plantName": "aster",
+        }, {
+            "id": 330,
+            "x": 2,
+            "z": 1,
+            "plantName": "aster",
+        }, {
+            "id": 331,
+            "x": 1,
+            "z": 2,
+            "plantName": "aster",
+        }, {
+            "id": 333,
+            "x": 3,
+            "z": -2,
+            "plantName": "sporobolus",
+        }, {
+            "id": 334,
+            "x": 4,
+            "z": -1,
+            "plantName": "sporobolus",
+        }, {
+            "id": 336,
+            "x": -3,
+            "z": 3,
+            "plantName": "anthericum_liliago",
+        }, {
+            "id": 337,
+            "x": 2,
+            "z": 3,
+            "plantName": "anthericum_liliago",
+        }, {
+            "id": 338,
+            "x": -2,
+            "z": 3,
+            "plantName": "anthericum_liliago",
+        }, {
+            "id": 339,
+            "x": -3,
+            "z": 2,
+            "plantName": "lillium_regale",
+        }, {
+            "id": 340,
+            "x": 3,
+            "z": 0,
+            "plantName": "lillium_regale",
+        }, {
+            "id": 341,
+            "x": 2,
+            "z": -2,
+            "plantName": "eremurus",
+        }, {
+            "id": 342,
+            "x": 1,
+            "z": -2,
+            "plantName": "eremurus",
+        }, {
+            "id": 343,
+            "x": 3,
+            "z": -1,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 344,
+            "x": 4,
+            "z": 0,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 345,
+            "x": -4,
+            "z": 0,
+            "plantName": "echinacea_tennesseensis",
+        }, {
+            "id": 346,
+            "x": -3,
+            "z": 0,
+            "plantName": "stipa",
+        }, {
+            "id": 347,
+            "x": 0,
+            "z": 2,
+            "plantName": "stipa",
+        }, {
+            "id": 348,
+            "x": -1,
+            "z": 0,
+            "plantName": "aster",
+        }, {
+            "id": 351,
+            "x": -2,
+            "z": -1,
+            "plantName": "aster",
+        }, {
+            "id": 352,
+            "x": -1,
+            "z": -1,
+            "plantName": "aster",
+        }, {
+            "id": 353,
+            "x": 0,
+            "z": -3,
+            "plantName": "aster",
+        }, {
+            "id": 354,
+            "x": 1,
+            "z": -3,
+            "plantName": "aster",
+        }, {
+            "id": 355,
+            "x": 1,
+            "z": -2,
+            "plantName": "aster",
+        }, {
+            "id": 356,
+            "x": 1,
+            "z": -1,
+            "plantName": "aster",
+        }, {
+            "id": 358,
+            "x": 0,
+            "z": -3,
+            "plantName": "eremurus",
+        }, {
+            "id": 341,
+            "x": -2,
+            "z": -3,
+            "plantName": "aster",
+        }, {
+            "id": 342,
+            "x": -2,
+            "z": 1,
+            "plantName": "aster",
+        }, {
+            "id": 343,
+            "x": 0,
+            "z": 4,
+            "plantName": "aster",
+        }, {
+            "id": 344,
+            "x": 0,
+            "z": 3,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 345,
+            "x": 1,
+            "z": 3,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 346,
+            "x": 1,
+            "z": 2,
+            "plantName": "echinacea_purpurea_polar_breeze",
+        }, {
+            "id": 347,
+            "x": -3,
+            "z": -2,
+            "plantName": "stipa",
+        }, {
+            "id": 348,
+            "x": -3,
+            "z": -3,
+            "plantName": "stipa",
+        }, {
+            "id": 349,
+            "x": 2,
+            "z": -3,
+            "plantName": "stipa",
+        }, {
+            "id": 350,
+            "x": 3,
+            "z": -3,
+            "plantName": "stipa",
+        }]
+};
+
 //assumption: name of the predefined gardens is unique for each garden
 export const PREDEFINED_GARDENS = [
     GARDEN_ONE_AREA,
@@ -383,5 +739,6 @@ export const PREDEFINED_GARDENS = [
     GARDEN_PLENTY,
     GARDEN_WHITE,
     GARDEN_A_LITTLE_BIT_OF_ORANGE,
-    GARDEN_AUTUMN
+    GARDEN_AUTUMN,
+    GARDEN_AUTUMN2,
 ];
