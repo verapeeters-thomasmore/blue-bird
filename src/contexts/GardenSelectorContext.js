@@ -159,19 +159,13 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//OK save edited areas in localstorage
+//TODO go to / after loading file
+//TODO show area/plants -button in nav bar?
 //TODO area-id: unique per garden, not in general
-//OK isDirty NOT correct when refreshing (load local storage)
-//OK save edited area in file
-//OK save saves too much (plant-data)
-//OK load edited area from file
-//TODO load from file: remember filename??
+//TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
+//TODO error when hovering area (to display plants -- shows too many sometimes)
+//TODO load from file: remember filename??
 //TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
-//TODO show area/plants -button in nav bar?
-//OK aster area looks white
-//TODO error when hovering area (to display plants -- shows too many sometimes)
-//TODO go to / after loading file
-//TODO add plant in garden
