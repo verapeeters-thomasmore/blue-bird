@@ -11,6 +11,7 @@ function SaveAreaButton() {
     </div>;
 }
 
+
 export function GardenSelectionPage() {
     const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
     return (
@@ -18,11 +19,12 @@ export function GardenSelectionPage() {
             <h3>Predefined gardens:</h3>
             <div className="py-2">
                 {PREDEFINED_GARDENS.map((g, index) =>
-                    <SelectAndReturnButton key={g.name}
-                                           title={g.name}
-                                           isSelected={index === indexSelectedGarden}
-                                           isDirty={index === indexSelectedGarden && isDirty}
-                                           onSelect={() => selectGarden(g.name)}/>
+                    <SelectAndReturnButton
+                        key={g.name}
+                        title={g.name}
+                        isSelected={index === indexSelectedGarden}
+                        isDirty={isDirty}
+                        onSelect={() => selectGarden(g.name)}/>
                 )}
             </div>
             <SaveAreaButton/>
