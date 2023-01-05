@@ -21,7 +21,7 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
 
 export function GardenSelectorProvider(props) {
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
-    const [areas, setAreas] = useLocalStorage("gardenAreas", PREDEFINED_GARDENS[indexSelectedGarden].areas);
+    const [areas, setAreas] = useLocalStorage("gardenAreas", PREDEFINED_GARDENS[indexSelectedGarden]?.areas);
     const [isDirty, setIsDirty] = useLocalStorage("gardenAreasIsDirty", false);
 
     console.log(indexSelectedGarden, areas, isDirty);
@@ -65,6 +65,14 @@ export function GardenSelectorProvider(props) {
         },
         []);
 
+    const selectGardenAreas = useCallback(
+        areas => {
+            setIndexSelectedGardenInternal(undefined);
+            setAreas(areas);
+            setIsDirty(false);
+        },
+        []);
+
     const addArea = useCallback(
             (x, z, plantName) => {
                 if (!plantName) return;
@@ -97,11 +105,14 @@ export function GardenSelectorProvider(props) {
             plantIdsForSelectedGarden,
             plantDataForSelectedGarden,
             selectGarden,
+            selectGardenAreas,
             addArea,
             clearArea,
             isDirty,
         }),
-        [areasSelectedGarden, indexSelectedGarden, areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden, selectGarden, addArea, clearArea, isDirty]);
+        [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
+            areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
+            selectGarden, selectGardenAreas, addArea, clearArea, isDirty]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
@@ -111,11 +122,15 @@ export function GardenSelectorProvider(props) {
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK save edited areas in localstorage
+//TODO area-id: unique per garden, not in general
 //TODO isDirty NOT correct when refreshing (load local storage)
 //TODO save edited area in file
 //TODO load edited area from file
+//TODO load from file: remember filename
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO test effect of EditPage on Catalog -- catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
 //TODO show area/plants -button in nav bar?
+//TODO aster area looks white
+//TODO error when hovering area (to display plants)

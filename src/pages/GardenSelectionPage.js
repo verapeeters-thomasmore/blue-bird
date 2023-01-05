@@ -10,6 +10,8 @@ function SaveGardenInFile() {
     const {areasSelectedGarden} = useGardenSelectorContext();
     const [fileName, setFileName] = useState("");
 
+    //TODO move function save to context
+    //TODO it must be possible to do this in a more "react" way
     function save() {
         console.log("SAVE in ", fileName);
         if (!fileName) return;
@@ -41,7 +43,7 @@ function SaveGardenInFile() {
 
                 <Button className="my-2 ms-2"
                         title="save in file"
-                        onClick={() => save()}>
+                        onClick={save}>
                     <BsFillFileEarmarkArrowUpFill size={ICON_SIZE}/>
                 </Button>
             </div>
@@ -50,20 +52,36 @@ function SaveGardenInFile() {
 }
 
 function LoadGardenFromFile() {
-    const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
-    const [fileName, setFileName] = useState("");
+    const {selectGardenAreas} = useGardenSelectorContext();
+    const [chosenFiles, setChosenFiles] = useState("");
+
+    //TODO must be possible with await instead
+    function load() {
+        if (!chosenFiles) return;
+        console.log("LOAD", chosenFiles[0].name);
+
+        const reader = new FileReader();
+        reader.onloadend = e => {
+            const fileReaderWithLoadedContent = e.target;
+            const fileContent = fileReaderWithLoadedContent.result;
+            const fileContentAsJson = JSON.parse(fileContent);
+            selectGardenAreas(fileContentAsJson);
+        };
+        // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
+        reader.readAsText(chosenFiles[0]);
+    }
 
     return (
         <>
             <h3>Load garden from file</h3>
             <div className="d-flex my-1 ">
                 <FormControl type="file"
-                             value={fileName}
-                             onChange={e => setFileName(e.target.value)}/>
+                             accept=".json"
+                             onChange={e => setChosenFiles(e.target.files)}/>
 
                 <Button className="my-2 ms-2"
                         title="load from file"
-                        onClick={() => console.log("LOAD")}>
+                        onClick={load}>
                     <BsFillFileEarmarkArrowDownFill size={ICON_SIZE}/>
                 </Button>
             </div>
@@ -91,7 +109,6 @@ function GardenSelectPredefined() {
 }
 
 export function GardenSelectionPage() {
-    const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
     return (
         <Container>
             <GardenSelectPredefined/>
