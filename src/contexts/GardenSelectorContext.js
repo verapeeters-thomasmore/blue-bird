@@ -93,6 +93,21 @@ export function GardenSelectorProvider(props) {
         },
         [areas]
     );
+    const loadAreasFromFile = useCallback(
+        (chosenFile) => {
+            //TODO must be possible with await instead
+            const reader = new FileReader();
+            reader.onloadend = e => {
+                const fileReaderWithLoadedContent = e.target;
+                const fileContent = fileReaderWithLoadedContent.result;
+                const fileContentAsJson = JSON.parse(fileContent);
+                selectGardenAreas(fileContentAsJson);
+            };
+            // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
+            reader.readAsText(chosenFile);
+        },
+        []
+    )
     const addArea = useCallback(
             (x, z, plantName) => {
                 if (!plantName) return;
@@ -127,13 +142,14 @@ export function GardenSelectorProvider(props) {
             selectGarden,
             selectGardenAreas,
             saveAreasInFile,
+            loadAreasFromFile,
             addArea,
             clearArea,
             isDirty,
         }),
         [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
-            selectGarden, selectGardenAreas, saveAreasInFile,
+            selectGarden, selectGardenAreas, saveAreasInFile, loadAreasFromFile,
             addArea, clearArea, isDirty]);
 
     return <GardenSelectorContext.Provider value={api}>
@@ -157,3 +173,4 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO show area/plants -button in nav bar?
 //TODO aster area looks white
 //TODO error when hovering area (to display plants -- shows too many sometimes)
+//TODO go to / after loading file

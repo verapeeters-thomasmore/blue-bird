@@ -36,23 +36,13 @@ function SaveGardenInFile() {
 }
 
 function LoadGardenFromFile() {
-    const {selectGardenAreas} = useGardenSelectorContext();
+    const {loadAreasFromFile} = useGardenSelectorContext();
     const [chosenFiles, setChosenFiles] = useState("");
 
-    //TODO must be possible with await instead
     function load() {
         if (!chosenFiles) return;
         console.log("LOAD", chosenFiles[0].name);
-
-        const reader = new FileReader();
-        reader.onloadend = e => {
-            const fileReaderWithLoadedContent = e.target;
-            const fileContent = fileReaderWithLoadedContent.result;
-            const fileContentAsJson = JSON.parse(fileContent);
-            selectGardenAreas(fileContentAsJson);
-        };
-        // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
-        reader.readAsText(chosenFiles[0]);
+        loadAreasFromFile(chosenFiles[0]);
     }
 
     return (
