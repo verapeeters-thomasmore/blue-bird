@@ -123,15 +123,15 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK save edited areas in localstorage
 //TODO area-id: unique per garden, not in general
-//TODO isDirty NOT correct when refreshing (load local storage)
-//TODO save edited area in file
-//TODO save saves to much (plant-data)
-//TODO load edited area from file
-//TODO load from file: remember filename
+//OK isDirty NOT correct when refreshing (load local storage)
+//OK save edited area in file
+//TODO save saves too much (plant-data)
+//OK load edited area from file
+//TODO load from file: remember filename??
 //TODO te veel planten in PlantSelectionButtons (scroll?)
-//TODO test effect of EditPage on Catalog -- catalog is broken - it should be a garden
+//TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
 //TODO show area/plants -button in nav bar?
 //TODO aster area looks white
-//TODO error when hovering area (to display plants)
+//TODO error when hovering area (to display plants -- shows too many sometimes)
