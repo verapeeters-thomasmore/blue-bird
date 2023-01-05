@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {getNextAreaId, PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -21,15 +21,18 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
 
 export function GardenSelectorProvider(props) {
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
-    const [areas, setAreas] = useLocalStorage("areas", PREDEFINED_GARDENS[indexSelectedGarden].areas);
-    const [isDirty, setIsDirty] = useState(false);
+    const [areas, setAreas] = useLocalStorage("gardenAreas", PREDEFINED_GARDENS[indexSelectedGarden].areas);
+    const [isDirty, setIsDirty] = useLocalStorage("gardenAreasIsDirty", false);
 
     console.log(indexSelectedGarden, areas, isDirty);
 
     //array of areas
     //contains plantinfo for each area
     const areasSelectedGarden = useMemo(
-        () => getGardenEnrichedWithPlants(areas, PLANT_DATA),
+        () => {
+            console.log("useMemo areasSelectedGarden", indexSelectedGarden, areas)
+            return getGardenEnrichedWithPlants(areas, PLANT_DATA)
+        },
         [areas]);
 
     const propertiesSelectedGarden = useMemo(

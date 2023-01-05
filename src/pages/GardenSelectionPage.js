@@ -3,6 +3,14 @@ import {PREDEFINED_GARDENS} from "../data/area.data";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
 
+function SaveAreaButton() {
+    const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
+
+    return <div>
+        <Button>save</Button>
+    </div>;
+}
+
 export function GardenSelectionPage() {
     const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
     return (
@@ -12,18 +20,12 @@ export function GardenSelectionPage() {
                 {PREDEFINED_GARDENS.map((g, index) =>
                     <SelectAndReturnButton key={g.name}
                                            title={g.name}
-                                           onSelect={() => selectGarden(g.name)}
-                                           isSelected={index === indexSelectedGarden}/>
+                                           isSelected={index === indexSelectedGarden}
+                                           isDirty={index === indexSelectedGarden && isDirty}
+                                           onSelect={() => selectGarden(g.name)}/>
                 )}
             </div>
-            <div>
-                {isDirty &&
-                    <>
-                        `selected garden is modified.`
-                        <Button>save</Button>
-                    </>
-                }
-            </div>
+            <SaveAreaButton/>
         </Container>
     )
 }
