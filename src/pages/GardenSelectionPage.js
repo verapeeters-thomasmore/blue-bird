@@ -6,7 +6,7 @@ import {ICON_SIZE} from "../constants/uiSizes";
 import {BsFillFileEarmarkArrowDownFill, BsFillFileEarmarkArrowUpFill} from "react-icons/bs";
 import {useState} from "react";
 
-function SaveInFileButton() {
+function SaveGardenInFile() {
     const {areasSelectedGarden} = useGardenSelectorContext();
     const [fileName, setFileName] = useState("");
 
@@ -30,7 +30,6 @@ function SaveInFileButton() {
         window.URL.revokeObjectURL(blobURL);
     }
 
-    console.log(fileName);
     return (
         <>
             <h3>Save garden in file</h3>
@@ -50,7 +49,7 @@ function SaveInFileButton() {
     );
 }
 
-function LoadFromFileButton() {
+function LoadGardenFromFile() {
     const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
     const [fileName, setFileName] = useState("");
 
@@ -96,8 +95,8 @@ export function GardenSelectionPage() {
     return (
         <Container>
             <GardenSelectPredefined/>
-            <SaveInFileButton/>
-            <LoadFromFileButton/>
+            <SaveGardenInFile/>
+            <LoadGardenFromFile/>
         </Container>
     )
 }
