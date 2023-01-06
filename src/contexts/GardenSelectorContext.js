@@ -84,12 +84,9 @@ export function GardenSelectorProvider(props) {
     );
     const loadAreasFromFile = useCallback(
         (chosenFile) => {
-            //TODO must be possible with await instead
             const reader = new FileReader();
-            reader.onloadend = e => {
-                const fileReaderWithLoadedContent = e.target;
-                const fileContent = fileReaderWithLoadedContent.result;
-                const fileContentAsJson = JSON.parse(fileContent);
+            reader.onload = e => {
+                const fileContentAsJson = JSON.parse(e.target.result);
                 selectGardenAreas(fileContentAsJson);
             };
             // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
