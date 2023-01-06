@@ -169,9 +169,8 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //OK  go to / after loading file
 //OK after loading gardenIndex is not modified in localstorage?
 //OK load file: check isDirty
-//TODO default for showPlants when localStorage is empty
-//TODO load from file: remember filename?? (for history)
 //TODO show area/plants -button in nav bar?
+//TODO default for showPlants when localStorage is empty
 //TODO area-id: unique per garden, not in general
 //TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
@@ -179,3 +178,4 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
+//TODO load from file: remember filename?? (for history)
