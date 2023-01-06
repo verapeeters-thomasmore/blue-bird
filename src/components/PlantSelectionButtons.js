@@ -1,7 +1,6 @@
-import {MdOutlineDelete} from "react-icons/md";
+import {MdAdd, MdOutlineDelete} from "react-icons/md";
 import {MENU_HEIGHT, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 import {Button} from "react-bootstrap";
-import {GrAdd} from "react-icons/gr";
 import {PlantPicture} from "./PlantPicture";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
@@ -30,17 +29,25 @@ function SelectPlantButton(props) {
     );
 }
 
-//TODO: can't change text-color???
 function AddButton() {
     return (
         <Button size="sm"
                 variant=""
-                className="m-1 p-0 bg-light"
+                className="m-1 p-0 bg-light text-info"
                 onClick={() => undefined}>
-            <GrAdd size={PLANT_PICTURE_SIZE_SMALL}/>
+            <MdAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );
 }
+
+function ClearButton(props) {
+    const {setFlowerToEdit, flowerToEdit} = props;
+    return <SelectButton onClick={() => setFlowerToEdit(undefined)}
+                         isSelected={!flowerToEdit}>
+        <MdOutlineDelete size={PLANT_PICTURE_SIZE_SMALL}/>
+    </SelectButton>;
+}
+
 
 export function PlantSelectionButtons(props) {
     const {flowerToEdit, setFlowerToEdit} = props;
@@ -53,10 +60,7 @@ export function PlantSelectionButtons(props) {
                 <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
                                    setFlowerToEdit={setFlowerToEdit}/>)
             }
-            <SelectButton onClick={() => setFlowerToEdit()}
-                          isSelected={!flowerToEdit}>
-                <MdOutlineDelete size={PLANT_PICTURE_SIZE_SMALL}/>
-            </SelectButton>
+            <ClearButton flowerToEdit={flowerToEdit} setFlowerToEdit={setFlowerToEdit}/>
             <AddButton/>
         </div>
     )

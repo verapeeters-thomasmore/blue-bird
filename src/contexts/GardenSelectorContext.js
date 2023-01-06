@@ -69,7 +69,7 @@ export function GardenSelectorProvider(props) {
 
     //array of ids of each plant in this garde
     const plantIdsForSelectedGarden = useMemo(
-        () => areasSelectedGardenGroupedByPlants.map(p => p.plant.id),
+        () => areasSelectedGardenGroupedByPlants.map(p => p.plant?.id),
         [areasSelectedGardenGroupedByPlants]
     );
 
@@ -185,6 +185,7 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO error when hovering area (to display plants -- shows too many sometimes)
 //TODO catalog is broken - it should be a garden
 //TODO mobile: edit-view entire garden is not visible
+//TODO GardenAreaListPage: order plants
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
 //TODO load from file: remember filename?? (for history)
