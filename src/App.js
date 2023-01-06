@@ -15,6 +15,8 @@ import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
 import {EditPage} from "./pages/EditPage";
 import {MessageInfoProvider} from "./contexts/MessageInfoContext";
+import {AddPlantPage} from "./pages/AddPlantPage";
+import {PLANT_DATA} from "./data/plant.data";
 
 function ProvidedApp() {
     return (
@@ -24,6 +26,7 @@ function ProvidedApp() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
                 <Route path="/edit" element={<EditPage/>}/>
+                <Route path="/addPlant" element={<AddPlantPage allPlants={PLANT_DATA}/>}/>
                 <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
                 <Route path="/gardenarealist" element={<GardenAreaListPage/>}/>

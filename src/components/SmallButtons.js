@@ -6,7 +6,7 @@ import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {VscTriangleDown, VscTriangleRight} from "react-icons/vsc";
 
-function SmallButton(props) {
+export function SmallButton(props) {
     const {onClick, children} = props;
     return (
         <Button size="sm"

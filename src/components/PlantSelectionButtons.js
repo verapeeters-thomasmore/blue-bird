@@ -3,6 +3,7 @@ import {MENU_HEIGHT, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 import {Button} from "react-bootstrap";
 import {PlantPicture} from "./PlantPicture";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
+import {useNavigate} from "react-router";
 
 function SelectButton(props) {
     const {children, onClick, isSelected, title} = props;
@@ -30,11 +31,12 @@ function SelectPlantButton(props) {
 }
 
 function AddButton() {
+    const navigate = useNavigate();
     return (
         <Button size="sm"
                 variant=""
                 className="m-1 p-0 bg-light text-info"
-                onClick={() => undefined}>
+                onClick={() => navigate("/addPlant")}>
             <MdAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );

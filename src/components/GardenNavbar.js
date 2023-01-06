@@ -6,7 +6,7 @@ import {BRAND_ICON_SIZE, ICON_SIZE} from "../constants/uiSizes";
 import {UI_WHITE} from "../constants/uiColors";
 import {Link} from "react-router-dom";
 import {TbSettings} from "react-icons/tb";
-import {EyeButton, FlowerButton} from "../pages/SmallButtons";
+import {EyeButton, FlowerButton} from "./SmallButtons";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
 function GardenIcon() {

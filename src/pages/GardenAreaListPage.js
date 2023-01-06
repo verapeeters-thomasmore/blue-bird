@@ -4,7 +4,7 @@ import {createContext, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {GREEN} from "../constants/threeColors";
 import {PlantPicture} from "../components/PlantPicture";
-import {ExpandButton, EyeButton, FlowerButton} from "./SmallButtons";
+import {ExpandButton, EyeButton, FlowerButton} from "../components/SmallButtons";
 
 
 function NumCol(props) {
@@ -99,6 +99,7 @@ function PlantInfoWithAreas(props) {
 
 function AreaInfoGroupedByPlant(props) {
     const {areaInfoGroupedByPlant} = props;
+    console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
         <Container className="mx-auto">

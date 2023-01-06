@@ -135,6 +135,22 @@ export function GardenSelectorProvider(props) {
         [areas]
     );
 
+    const addPlantInGarden = useCallback(
+        (plantName) => {
+            if (!plantName) return;
+            //TODO if plant already in garden return
+            const newArea = {
+                id: getNextAreaId(),
+                x: undefined,
+                z: undefined,
+                plantName: plantName
+            };
+            setAreas([...areas, newArea]);
+            addAction(`add plant ${plantName}`)
+        },
+        [areas]
+    );
+
     const clearArea = useCallback(
         (x, z) => {
             setIsDirty(true);
@@ -162,6 +178,7 @@ export function GardenSelectorProvider(props) {
             saveAreasInFile,
             loadAreasFromFile,
             addArea,
+            addPlantInGarden,
             clearArea,
             isDirty,
             actions,
@@ -170,7 +187,7 @@ export function GardenSelectorProvider(props) {
         [areasSelectedGarden, indexSelectedGarden, areaIdsForSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
             selectGarden, saveAreasInFile, loadAreasFromFile,
-            addArea, clearArea, isDirty,
+            addArea, addPlantInGarden, clearArea, isDirty,
             actions, addAction]);
 
     return <GardenSelectorContext.Provider value={api}>
