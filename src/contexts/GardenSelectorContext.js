@@ -76,14 +76,6 @@ export function GardenSelectorProvider(props) {
         },
         []);
 
-    const selectGardenAreas = useCallback(
-        areas => {
-            setIndexSelectedGardenInternal(undefined);
-            setAreas(areas);
-            setIsDirty(false);
-        },
-        []);
-
     const saveAreasInFile = useCallback(
         (fileName) => {
             const areasAsJSON = JSON.stringify(areas);
@@ -96,12 +88,14 @@ export function GardenSelectorProvider(props) {
         },
         [areas]
     );
+
     const loadAreasFromFile = useCallback(
         (chosenFile) => {
             const reader = new FileReader();
             reader.onload = e => {
-                const fileContentAsJson = JSON.parse(e.target.result);
-                selectGardenAreas(fileContentAsJson);
+                setAreas(JSON.parse(e.target.result));
+                setIndexSelectedGardenInternal(undefined);
+                setIsDirty(false);
                 addAction(`loaded from "${chosenFile.name}"`)
             };
             // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
@@ -148,7 +142,6 @@ export function GardenSelectorProvider(props) {
             plantIdsForSelectedGarden,
             plantDataForSelectedGarden,
             selectGarden,
-            selectGardenAreas,
             saveAreasInFile,
             loadAreasFromFile,
             addArea,
@@ -159,7 +152,7 @@ export function GardenSelectorProvider(props) {
         }),
         [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
-            selectGarden, selectGardenAreas, saveAreasInFile, loadAreasFromFile,
+            selectGarden, saveAreasInFile, loadAreasFromFile,
             addArea, clearArea, isDirty,
             actions, addAction]);
 
@@ -170,13 +163,14 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//TODO go to / after loading file
+//OK  go to / after loading file
+//TODO after loading gardenIndex is not modified in localstorage?
+//TODO load from file: remember filename?? (for history)
 //TODO show area/plants -button in nav bar?
 //TODO area-id: unique per garden, not in general
 //TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO error when hovering area (to display plants -- shows too many sometimes)
-//TODO load from file: remember filename??
 //TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
