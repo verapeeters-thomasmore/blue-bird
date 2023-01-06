@@ -21,6 +21,7 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
 }
 
 export function GardenSelectorProvider(props) {
+    //indexSelectedGarden -1 means no predefined garden is active
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
     const [areas, setAreas] = useLocalStorage("gardenAreas", PREDEFINED_GARDENS[indexSelectedGarden]?.areas);
     const [isDirty, setIsDirty] = useLocalStorage("gardenAreasIsDirty", false);
@@ -29,8 +30,10 @@ export function GardenSelectorProvider(props) {
     // console.log(indexSelectedGarden, areas, isDirty);
     useEffect(
         () => {
-            if (indexSelectedGarden)
+            if (indexSelectedGarden!==-1)
                 addAction(`start with predefined garden "${propertiesSelectedGarden.name}"`);
+            else
+                addAction(`loaded garden from local storage`);
             if (isDirty)
                 addAction(`start with modified garden`);
         },
@@ -46,7 +49,7 @@ export function GardenSelectorProvider(props) {
         [areas]);
 
     const propertiesSelectedGarden = useMemo(
-        () => PREDEFINED_GARDENS[indexSelectedGarden],
+        () => PREDEFINED_GARDENS[indexSelectedGarden] ?? {},
         [indexSelectedGarden]);
 
     //array of objects for each plant in this garden
@@ -82,7 +85,7 @@ export function GardenSelectorProvider(props) {
             const blob = new Blob([areasAsJSON], {type: 'application/json'});
             const fileNameWithExtension = fileName.endsWith(".json") ? fileName : fileName + ".json";
             saveAs(blob, fileNameWithExtension);
-            setIndexSelectedGardenInternal(undefined);
+            setIndexSelectedGardenInternal(-1);
             setIsDirty(false);
             addAction(`saved as "${fileNameWithExtension}"`)
         },
@@ -94,7 +97,7 @@ export function GardenSelectorProvider(props) {
             const reader = new FileReader();
             reader.onload = e => {
                 setAreas(JSON.parse(e.target.result));
-                setIndexSelectedGardenInternal(undefined);
+                setIndexSelectedGardenInternal(-1);
                 setIsDirty(false);
                 addAction(`loaded from "${chosenFile.name}"`)
             };
@@ -164,7 +167,9 @@ export function GardenSelectorProvider(props) {
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK  go to / after loading file
-//TODO after loading gardenIndex is not modified in localstorage?
+//OK after loading gardenIndex is not modified in localstorage?
+//TODO default for showPlants when localStorage is empty
+//TODO load file: check isDirty
 //TODO load from file: remember filename?? (for history)
 //TODO show area/plants -button in nav bar?
 //TODO area-id: unique per garden, not in general
