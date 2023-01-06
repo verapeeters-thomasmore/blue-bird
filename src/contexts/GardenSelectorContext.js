@@ -168,8 +168,8 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK  go to / after loading file
 //OK after loading gardenIndex is not modified in localstorage?
-//TODO default for showPlants when localStorage is empty
 //TODO load file: check isDirty
+//TODO default for showPlants when localStorage is empty
 //TODO load from file: remember filename?? (for history)
 //TODO show area/plants -button in nav bar?
 //TODO area-id: unique per garden, not in general
