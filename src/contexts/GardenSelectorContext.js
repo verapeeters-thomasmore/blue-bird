@@ -180,11 +180,6 @@ export function GardenSelectorProvider(props) {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//OK  go to / after loading file
-//OK after loading gardenIndex is not modified in localstorage?
-//OK load file: check isDirty
-//OK show area/plants -button in nav bar?
-//OK default for showPlants when localStorage is empty
 //TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO error when hovering area (to display plants -- shows too many sometimes)
