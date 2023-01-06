@@ -5,6 +5,7 @@ import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
 import {ICON_SIZE} from "../constants/uiSizes";
 import {BsFillFileEarmarkArrowDownFill, BsFillFileEarmarkArrowUpFill} from "react-icons/bs";
 import {useState} from "react";
+import {useNavigate} from "react-router";
 
 function SaveGardenInFile() {
     const {saveAreasInFile} = useGardenSelectorContext();
@@ -38,11 +39,13 @@ function SaveGardenInFile() {
 function LoadGardenFromFile() {
     const {loadAreasFromFile} = useGardenSelectorContext();
     const [chosenFiles, setChosenFiles] = useState("");
+    const navigate = useNavigate();
 
     function load() {
         if (!chosenFiles) return;
         console.log("LOAD", chosenFiles[0].name);
         loadAreasFromFile(chosenFiles[0]);
+        navigate("/");
     }
 
     return (
@@ -82,12 +85,24 @@ function GardenSelectPredefined() {
     )
 }
 
+function Actions() {
+    const {actions} = useGardenSelectorContext();
+
+    return (
+        <>
+            <h3>Recent actions:</h3>
+            {actions.map(a => <div>{a}</div>)}
+        </>
+    );
+}
+
 export function GardenSelectionPage() {
     return (
         <Container>
             <GardenSelectPredefined/>
             <SaveGardenInFile/>
             <LoadGardenFromFile/>
+            <Actions/>
         </Container>
     )
 }

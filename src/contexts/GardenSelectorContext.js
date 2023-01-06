@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo} from 'react';
+import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
 import {getNextAreaId, PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -24,14 +24,15 @@ export function GardenSelectorProvider(props) {
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
     const [areas, setAreas] = useLocalStorage("gardenAreas", PREDEFINED_GARDENS[indexSelectedGarden]?.areas);
     const [isDirty, setIsDirty] = useLocalStorage("gardenAreasIsDirty", false);
+    const [actions, setActions] = useState([]);
 
-    console.log(indexSelectedGarden, areas, isDirty);
+    // console.log(indexSelectedGarden, areas, isDirty);
 
     //array of areas
     //contains plantinfo for each area
     const areasSelectedGarden = useMemo(
         () => {
-            console.log("useMemo areasSelectedGarden", indexSelectedGarden, areas)
+            // console.log("useMemo areasSelectedGarden", indexSelectedGarden, areas)
             return getGardenEnrichedWithPlants(areas, PLANT_DATA)
         },
         [areas]);
@@ -63,6 +64,7 @@ export function GardenSelectorProvider(props) {
             setIndexSelectedGardenInternal(index);
             setAreas(PREDEFINED_GARDENS[index].areas);
             setIsDirty(false);
+            addAction(`selected predefined garden "${gardenNameToSelect}"`)
         },
         []);
 
@@ -78,7 +80,11 @@ export function GardenSelectorProvider(props) {
         (fileName) => {
             const areasAsJSON = JSON.stringify(areas);
             const blob = new Blob([areasAsJSON], {type: 'application/json'});
-            saveAs(blob, fileName.endsWith(".json") ? fileName : fileName + ".json");
+            const fileNameWithExtension = fileName.endsWith(".json") ? fileName : fileName + ".json";
+            saveAs(blob, fileNameWithExtension);
+            setIndexSelectedGardenInternal(undefined);
+            setIsDirty(false);
+            addAction(`saved as "${fileNameWithExtension}"`)
         },
         [areas]
     );
@@ -88,6 +94,7 @@ export function GardenSelectorProvider(props) {
             reader.onload = e => {
                 const fileContentAsJson = JSON.parse(e.target.result);
                 selectGardenAreas(fileContentAsJson);
+                addAction(`loaded from "${chosenFile.name}"`)
             };
             // reader.onerror = (e) => dispatch(importGardenAsJsonOnErrorAction(e));
             reader.readAsText(chosenFile);
@@ -106,6 +113,7 @@ export function GardenSelectorProvider(props) {
                 };
                 setIsDirty(true);
                 setAreas([...areas, newArea]);
+                addAction(`add area (${x}, ${z}) with ${plantName}`)
             },
             [areas]
         )
@@ -114,8 +122,14 @@ export function GardenSelectorProvider(props) {
         (x, z) => {
             setIsDirty(true);
             setAreas(areas.filter(a => !(a.x === x && a.z === z)));
+            addAction(`clear area (${x}, ${z})`)
         },
         [areas]);
+
+    const addAction = useCallback(
+        a => setActions(actions => [...actions, a]),
+        []
+    );
 
     const api = useMemo(
         () => ({
@@ -132,11 +146,14 @@ export function GardenSelectorProvider(props) {
             addArea,
             clearArea,
             isDirty,
+            actions,
+            addAction
         }),
         [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
             selectGarden, selectGardenAreas, saveAreasInFile, loadAreasFromFile,
-            addArea, clearArea, isDirty]);
+            addArea, clearArea, isDirty,
+            actions, addAction]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
@@ -155,4 +172,3 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
-//TODO save: overwrite?
