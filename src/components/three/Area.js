@@ -14,6 +14,7 @@ function AreaPlane(props) {
     const ref = useRef()
 
     if (!isAreaItemShown(area.id)) return;
+    if (!area.x || !area.z) return;
 
     return (
         <mesh

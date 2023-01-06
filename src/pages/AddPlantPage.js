@@ -5,7 +5,8 @@ import {MdAdd} from "react-icons/md";
 import {ICON_SIZE} from "../constants/uiSizes";
 import {SmallButton} from "../components/SmallButtons";
 
-//TODO do not draw area without x,z
+//OK do not draw area without x,z
+//TODO do not show areaInfo for area without x,z
 //TODO: add expandButton as in GardenAreaListPage
 //TODO: + button in AreaInfoPage INTEGRATE!!!!
 //TODO: merge with PlantInfoHeader in GardenAreaListPage?
