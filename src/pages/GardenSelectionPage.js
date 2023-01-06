@@ -1,4 +1,4 @@
-import {Button, Container, FormControl} from "react-bootstrap";
+import {Accordion, Button, Container, FormControl} from "react-bootstrap";
 import {PREDEFINED_GARDENS} from "../data/area.data";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {SelectAndReturnButton} from "../components/SelectAndReturnButton";
@@ -19,12 +19,14 @@ function SaveGardenInFile() {
 
     return (
         <>
-            <h3>Save garden in file</h3>
+            <h6>Save garden in file</h6>
             <div className="d-flex my-1 ">
-                <FormControl type="text"
-                             placeholder="filename to save this garden (in downloads folder)"
-                             value={fileName}
-                             onChange={e => setFileName(e.target.value)}/>
+                <FormControl
+                    style={{height: "fit-content", margin: "auto"}}
+                    type="text"
+                    placeholder="filename to save this garden (in downloads folder)"
+                    value={fileName}
+                    onChange={e => setFileName(e.target.value)}/>
 
                 <Button className="my-2 ms-2"
                         title="save in file"
@@ -50,11 +52,13 @@ function LoadGardenFromFile() {
 
     return (
         <>
-            <h3>Load garden from file</h3>
+            <h6>Load garden from file</h6>
             <div className="d-flex my-1 ">
-                <FormControl type="file"
-                             accept=".json"
-                             onChange={e => setChosenFiles(e.target.files)}/>
+                <FormControl
+                    style={{height: "fit-content", margin: "auto"}}
+                    type="file"
+                    accept=".json"
+                    onChange={e => setChosenFiles(e.target.files)}/>
 
                 <Button className="my-2 ms-2"
                         title="load from file"
@@ -70,7 +74,6 @@ function GardenSelectPredefined() {
     const {selectGarden, indexSelectedGarden, isDirty} = useGardenSelectorContext();
     return (
         <>
-            <h3>Predefined gardens:</h3>
             <div className="py-2">
                 {PREDEFINED_GARDENS.map((g, index) =>
                     <SelectAndReturnButton
@@ -90,7 +93,6 @@ function Actions() {
 
     return (
         <>
-            <h3>Recent actions:</h3>
             {actions.map(a => <div>{a}</div>)}
         </>
     );
@@ -98,11 +100,28 @@ function Actions() {
 
 export function GardenSelectionPage() {
     return (
-        <Container>
-            <GardenSelectPredefined/>
-            <SaveGardenInFile/>
-            <LoadGardenFromFile/>
-            <Actions/>
+        <Container className="my-1">
+            <Accordion alwaysOpen>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>Predefined gardens</Accordion.Header>
+                    <Accordion.Body>
+                        <GardenSelectPredefined/>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header>Gardens in files</Accordion.Header>
+                    <Accordion.Body>
+                        <SaveGardenInFile/>
+                        <LoadGardenFromFile/>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header>History</Accordion.Header>
+                    <Accordion.Body>
+                        <Actions/>
+                    </Accordion.Body>
+                </Accordion.Item>
+            </Accordion>
         </Container>
     )
 }
