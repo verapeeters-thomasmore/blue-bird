@@ -78,7 +78,7 @@ export function GardenSelectorProvider(props) {
         (fileName) => {
             const areasAsJSON = JSON.stringify(areas);
             const blob = new Blob([areasAsJSON], {type: 'application/json'});
-            saveAs(blob, fileName + ".json");
+            saveAs(blob, fileName.endsWith(".json") ? fileName : fileName + ".json");
         },
         [areas]
     );
@@ -158,3 +158,4 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO catalog is broken - it should be a garden
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
+//TODO save: overwrite?
