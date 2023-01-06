@@ -5,8 +5,10 @@ import {MdAdd} from "react-icons/md";
 import {ICON_SIZE} from "../constants/uiSizes";
 import {SmallButton} from "../components/SmallButtons";
 
-//TODO: merge with PlantInfoHeader in GardenAreaListPage?
+//TODO do not draw area without x,z
 //TODO: add expandButton as in GardenAreaListPage
+//TODO: + button in AreaInfoPage INTEGRATE!!!!
+//TODO: merge with PlantInfoHeader in GardenAreaListPage?
 
 function PlantInfoHeader(props) {
     const {plant} = props;
