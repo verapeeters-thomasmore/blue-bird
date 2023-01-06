@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useMemo, useState} from 'react';
+import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {getNextAreaId, PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
@@ -27,6 +27,14 @@ export function GardenSelectorProvider(props) {
     const [actions, setActions] = useState([]);
 
     // console.log(indexSelectedGarden, areas, isDirty);
+    useEffect(
+        () => {
+            if (indexSelectedGarden)
+                addAction(`start with predefined garden "${propertiesSelectedGarden.name}"`);
+            if (isDirty)
+                addAction(`start with modified garden`);
+        },
+        []);
 
     //array of areas
     //contains plantinfo for each area

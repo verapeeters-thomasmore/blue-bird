@@ -93,7 +93,7 @@ function Actions() {
 
     return (
         <>
-            {actions.map(a => <div>{a}</div>)}
+            {actions.map((a, index) => <div key={index}>{a}</div>)}
         </>
     );
 }
@@ -102,20 +102,20 @@ export function GardenSelectionPage() {
     return (
         <Container className="my-1">
             <Accordion alwaysOpen>
-                <Accordion.Item eventKey="0">
+                <Accordion.Item eventKey="0" className="my-2">
                     <Accordion.Header>Predefined gardens</Accordion.Header>
                     <Accordion.Body>
                         <GardenSelectPredefined/>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
+                <Accordion.Item eventKey="1" className="my-2">
                     <Accordion.Header>Gardens in files</Accordion.Header>
                     <Accordion.Body>
                         <SaveGardenInFile/>
                         <LoadGardenFromFile/>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="2">
+                <Accordion.Item eventKey="2" className="my-2">
                     <Accordion.Header>History</Accordion.Header>
                     <Accordion.Body>
                         <Actions/>
