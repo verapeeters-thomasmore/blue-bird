@@ -3,6 +3,7 @@ import {getNextAreaId, PREDEFINED_GARDENS} from "../data/area.data";
 import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import {findPlantDataByShortName} from "../utils/plant_utils";
+import {saveAs} from 'file-saver';
 
 const GardenSelectorContext = createContext();
 
@@ -73,23 +74,11 @@ export function GardenSelectorProvider(props) {
         },
         []);
 
-    //TODO it must be possible to do this in a more "react" way
     const saveAreasInFile = useCallback(
         (fileName) => {
             const areasAsJSON = JSON.stringify(areas);
             const blob = new Blob([areasAsJSON], {type: 'application/json'});
-            const blobURL = window.URL.createObjectURL(blob);
-            const tempLink = document.createElement('a');
-            tempLink.style.display = 'none';
-            tempLink.href = blobURL;
-            tempLink.setAttribute('download', fileName + ".json");
-            if (typeof tempLink.download === 'undefined') {
-                tempLink.setAttribute('target', '_blank');
-            }
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
-            window.URL.revokeObjectURL(blobURL);
+            saveAs(blob, fileName + ".json");
         },
         [areas]
     );
