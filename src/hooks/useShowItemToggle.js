@@ -1,9 +1,9 @@
 import {useCallback, useMemo, useState} from "react";
 import {useLocalStorage} from "./useLocalStorage";
 
-export function useShowItemToggle(allItemsInitialValue, keyInLocalStorage) {
-    const [allItems, setAllItems] = useState(allItemsInitialValue);
-    const [shownItems, setShownItems] = useLocalStorage(keyInLocalStorage, []);
+export function useShowItemToggle(keyInLocalStorage, allItemsInitialValue, shownItemsInitialValue = []) {
+    const [allItems, setAllItems] = useState([...allItemsInitialValue]);
+    const [shownItems, setShownItems] = useLocalStorage(keyInLocalStorage, [...shownItemsInitialValue]);
 
     // console.log("useShowItemToggle hook", keyInLocalStorage, shownItems)
     const isItemShown = useCallback(
@@ -47,13 +47,15 @@ export function useShowItemToggle(allItemsInitialValue, keyInLocalStorage) {
             setShownItems(!!shownItems.length ? [] : [...allItems])
         }, [shownItems]);
 
-    //new items are toggled on (added to shownItems)
+    //new items are toggled-on (added to shownItems)
     //removed items are removed from shownItems
     const resetAllItems = useCallback(
         (newAllItems) => {
             const newItems = newAllItems.filter(id => !allItems.includes(id));
             const shownItemsWithNewItems = [...shownItems, ...newItems];
             const shownItemsWithoutRemovedItems = shownItemsWithNewItems.filter(id => newAllItems.includes(id));
+            console.log("resetAllItems", keyInLocalStorage,
+                {allItems, shownItems, newAllItems, newItems, shownItemsWithNewItems, shownItemsWithoutRemovedItems});
             setAllItems([...newAllItems]);
             setShownItems(shownItemsWithoutRemovedItems);
         }, [shownItems]);

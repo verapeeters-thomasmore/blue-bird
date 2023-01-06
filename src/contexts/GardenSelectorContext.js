@@ -30,14 +30,15 @@ export function GardenSelectorProvider(props) {
     // console.log(indexSelectedGarden, areas, isDirty);
     useEffect(
         () => {
-            if (indexSelectedGarden!==-1)
+            if (indexSelectedGarden !== -1)
                 addAction(`start with predefined garden "${propertiesSelectedGarden.name}"`);
             else
                 addAction(`loaded garden from local storage`);
             if (isDirty)
                 addAction(`start with modified garden`);
         },
-        []);
+        []
+    );
 
     //array of areas
     //contains plantinfo for each area
@@ -46,28 +47,37 @@ export function GardenSelectorProvider(props) {
             // console.log("useMemo areasSelectedGarden", indexSelectedGarden, areas)
             return getGardenEnrichedWithPlants(areas, PLANT_DATA)
         },
-        [areas]);
+        [areas]
+    );
+
+    const areaIdsForSelectedGarden = useMemo(
+        () => areas.map(a => a.id),
+        [areas]
+    );
 
     const propertiesSelectedGarden = useMemo(
         () => PREDEFINED_GARDENS[indexSelectedGarden] ?? {},
-        [indexSelectedGarden]);
+        [indexSelectedGarden]
+    );
 
     //array of objects for each plant in this garden
     //each object contains plantName, plant (plantinfo), array of areas
     const areasSelectedGardenGroupedByPlants = useMemo(
         () => getGardenGroupedByPlants(areasSelectedGarden),
-        [areasSelectedGarden]);
+        [areasSelectedGarden]
+    );
 
     //array of ids of each plant in this garde
     const plantIdsForSelectedGarden = useMemo(
         () => areasSelectedGardenGroupedByPlants.map(p => p.plant.id),
-        [areasSelectedGardenGroupedByPlants]);
-
+        [areasSelectedGardenGroupedByPlants]
+    );
 
     //array of data of each plant in this garde
     const plantDataForSelectedGarden = useMemo(
         () => areasSelectedGardenGroupedByPlants.map(p => p.plant),
-        [areasSelectedGardenGroupedByPlants]);
+        [areasSelectedGardenGroupedByPlants]
+    );
 
     const selectGarden = useCallback(
         gardenNameToSelect => {
@@ -77,7 +87,8 @@ export function GardenSelectorProvider(props) {
             setIsDirty(false);
             addAction(`selected predefined garden "${gardenNameToSelect}"`)
         },
-        []);
+        []
+    );
 
     const saveAreasInFile = useCallback(
         (fileName) => {
@@ -105,31 +116,33 @@ export function GardenSelectorProvider(props) {
             reader.readAsText(chosenFile);
         },
         []
-    )
+    );
+
     const addArea = useCallback(
-            (x, z, plantName) => {
-                if (!plantName) return;
-                if (areas.find(a => a.x === x && a.z === z && a.plantName === plantName)) return;
-                const newArea = {
-                    id: getNextAreaId(),
-                    x: x,
-                    z: z,
-                    plantName: plantName
-                };
-                setIsDirty(true);
-                setAreas([...areas, newArea]);
-                addAction(`add area (${x}, ${z}) with ${plantName}`)
-            },
-            [areas]
-        )
-    ;
+        (x, z, plantName) => {
+            if (!plantName) return;
+            if (areas.find(a => a.x === x && a.z === z && a.plantName === plantName)) return;
+            const newArea = {
+                id: getNextAreaId(),
+                x: x,
+                z: z,
+                plantName: plantName
+            };
+            setIsDirty(true);
+            setAreas([...areas, newArea]);
+            addAction(`add area (${x}, ${z}) with ${plantName}`)
+        },
+        [areas]
+    );
+
     const clearArea = useCallback(
         (x, z) => {
             setIsDirty(true);
             setAreas(areas.filter(a => !(a.x === x && a.z === z)));
             addAction(`clear area (${x}, ${z})`)
         },
-        [areas]);
+        [areas]
+    );
 
     const addAction = useCallback(
         a => setActions(actions => [...actions, a]),
@@ -140,6 +153,7 @@ export function GardenSelectorProvider(props) {
         () => ({
             areasSelectedGarden,
             indexSelectedGarden,
+            areaIdsForSelectedGarden,
             propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants,
             plantIdsForSelectedGarden,
@@ -153,7 +167,7 @@ export function GardenSelectorProvider(props) {
             actions,
             addAction
         }),
-        [areasSelectedGarden, indexSelectedGarden, propertiesSelectedGarden,
+        [areasSelectedGarden, indexSelectedGarden, areaIdsForSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
             selectGarden, saveAreasInFile, loadAreasFromFile,
             addArea, clearArea, isDirty,
@@ -170,12 +184,13 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //OK after loading gardenIndex is not modified in localstorage?
 //OK load file: check isDirty
 //OK show area/plants -button in nav bar?
-//TODO default for showPlants when localStorage is empty
-//TODO area-id: unique per garden, not in general
+//OK default for showPlants when localStorage is empty
 //TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO error when hovering area (to display plants -- shows too many sometimes)
 //TODO catalog is broken - it should be a garden
+//TODO mobile: edit-view entire garden is not visible
 //TODO save camera position after orbiting
 //TODO Area info does not work if area not visible - is that a problem???
 //TODO load from file: remember filename?? (for history)
+//TODO area-id: unique per garden, not in general ??? necessary??

@@ -13,7 +13,6 @@ function SaveGardenInFile() {
     const [fileName, setFileName] = useState("");
 
     function save() {
-        console.log("SAVE in ", fileName);
         if (!fileName) return;
         saveAreasInFile(fileName);
     }

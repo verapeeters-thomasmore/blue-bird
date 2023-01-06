@@ -21,19 +21,19 @@ const INITIAL_CONTROLS = {
 
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
-    const {areasSelectedGarden} = useGardenSelectorContext();
-    const areaIds = useMemo(() => areasSelectedGarden.map(a => a.id), [areasSelectedGarden]);
-    const showAreasToggleApi = useShowItemToggle(areaIds, "showAreas");
-    const showPlantsToggleApi = useShowItemToggle(areaIds, "showPlants");
+    const {areaIdsForSelectedGarden} = useGardenSelectorContext();
+    const showAreasToggleApi = useShowItemToggle("showAreas", areaIdsForSelectedGarden );
+    const showPlantsToggleApi = useShowItemToggle("showPlants", areaIdsForSelectedGarden,  areaIdsForSelectedGarden);
 
-    // console.log("ControlsProvider", areaIds);
+    // console.log("ControlsProvider", areaIdsForSelectedGarden);
 
     useEffect(
         () => {
-            showPlantsToggleApi.resetAllItems(areaIds);
-            showAreasToggleApi.resetAllItems(areaIds);
+            console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
+            showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
+            showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
         },
-        [areaIds]);
+        [areaIdsForSelectedGarden]);
 
     const getControlValue = useCallback(
         key => controls[key],
