@@ -118,6 +118,49 @@ PlantInfoWithAreas.propTypes = {
     plantWithAreas: plantWithAreasPropType,
 };
 
+function PlantWithoutAreas(props) {
+    const {plant} = props;
+
+    return (
+        <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
+            <Row className="bg-white p-1 position-relative">
+                <Col xs="auto" className="">
+                    <h6 className="pt-1">
+                        {plant.name}
+                    </h6>
+                </Col>
+                <PlantPicture plant={plant} absolute={true}/>
+            </Row>
+        </Container>
+    );
+}
+
+PlantWithoutAreas.propType = {
+    plant: plantDataPropType,
+}
+
+function ListOfPlantWithoutAreas(props) {
+    const {plants} = props;
+    // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
+
+    return (
+        <Container className="mx-auto">
+            <Row className="m-0">
+                {plants.map(p =>
+                    <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
+                        <PlantWithoutAreas plant={p}/>
+                    </Col>
+                )}
+            </Row>
+        </Container>
+    );
+}
+
+ListOfPlantWithoutAreas.propType = {
+    plants: PropTypes.arrayOf(plantDataPropType)
+}
+
+
 //TODO rename: areaInfoGroupedByPlant into plantWithAreaINfo (and areaInfo is possibly empty)
 /*
 areaInfoGroupedByPlant:
@@ -157,23 +200,13 @@ export function GardenAreaListPageBis(props) {
     } = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
-    const [filterOnlyPlantsInGarden, setFilterOnlyPlantsInGarden] = useState(true);
-    //TODO move to some context
-    const allPlantsEnriched = useMemo(
-        ()=> allPlants.map(p => ({plantName: p.shortName, plant: p, areas: []})),
-        [allPlants]
-    );
-    const plantsToShow = filterOnlyPlantsInGarden
-        ? areasSelectedGardenGroupedByPlants
-        : allPlantsEnriched;
+    const [showAllPlants, setShowAllPlants] = useState(false);
 
     return (
         <Container className="flex-column">
             <Row>
                 <Col className="d-flex">
-                    <h3 className="container">
-                        {filterOnlyPlantsInGarden ? "plants in garden:" : "all plants:"}
-                    </h3>
+                    <h3 className="container">"plants in garden:</h3>
                 </Col>
             </Row>
             <Row className="mx-1 px-0">
@@ -182,12 +215,20 @@ export function GardenAreaListPageBis(props) {
                     <EyeButton areas={areasSelectedGarden}/>
                     <FlowerButton areas={areasSelectedGarden}/>
                     <SmallButton
-                        onClick={() => setFilterOnlyPlantsInGarden(current => !current)}>{filterOnlyPlantsInGarden ? "all" : "garden"}</SmallButton>
+                        onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
                 </Col>
             </Row>
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={plantsToShow}/>
+                    <Col>
+                        <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areasSelectedGardenGroupedByPlants}/>
+                    </Col>
+                    {
+                        showAllPlants &&
+                        <Col>
+                            <ListOfPlantWithoutAreas plants={allPlants}/>
+                        </Col>
+                    }
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
