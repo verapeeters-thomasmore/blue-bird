@@ -86,11 +86,11 @@ PlantTimeline.propTypes = {
 
 function PlantName(props) {
     const {plant} = props;
-    return <Col xs="auto" className="">
-        <h6 className="pt-1">
+    return (
+        <h6 className="pt-1 ps-1">
             {plant.name}
         </h6>
-    </Col>;
+    );
 }
 
 PlantName.propTypes = {plant: PropTypes.any};
@@ -118,18 +118,18 @@ function PlantInfoWithAreas(props) {
         <Container className="bg-white"
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
             <Row className="p-0">
-                <Col>
+                <Col className="p-0">
                     <PlantName plant={plant}/>
                 </Col>
-                <Col xs="auto" className="me-auto">
+                <Col xs="auto" className="me-auto p-0">
                     <PlantPicture plant={plant}/>
                 </Col>
             </Row>
             <Row className="p-0">
-                <Col className="">
+                <Col className="p-0">
                     <PlantButtons plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
                 </Col>
-                <Col xs="auto" className="me-auto">
+                <Col xs="auto" className="p-0 me-auto">
                     <PlantTimeline plant={plantWithAreas.plant}/>
                 </Col>
             </Row>
@@ -161,14 +161,22 @@ function PlantInfoWithoutAreas(props) {
     return (
         <Container className="bg-white"
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
-            <Row className="p-1 position-relative">
-                <Col xs="auto" className="">
+            <Row className="p-0">
+                <Col className="p-0">
+                    <PlantName plant={plant}/>
+                </Col>
+                <Col xs="auto" className="me-auto p-0">
+                    <PlantPicture plant={plant}/>
+                </Col>
+            </Row>
+            <Row className="p-0">
+                <Col className="p-0">
                     <AddPlantButton plant={plant}/>
                 </Col>
-                <PlantName plant={plant}/>
-                <PlantPicture plant={plant}/>
+                <Col xs="auto" className="p-0 me-auto my-auto">
+                    <PlantTimeline plant={plant}/>
+                </Col>
             </Row>
-            <PlantTimeline plant={plant}/>
         </Container>
     );
 }
