@@ -6,15 +6,15 @@ import {GREEN} from "../constants/threeColors";
 import {PlantPicture} from "../components/PlantPicture";
 import {ExpandButton, EyeButton, FlowerButton, SmallButton} from "../components/SmallButtons";
 import PropTypes from "prop-types";
-import {plantDataPropType, plantWithAreasPropType} from "../types";
+import {areaPropType, plantDataPropType, plantWithAreasPropType} from "../types";
 import {MdAdd} from "react-icons/md";
 import {ICON_SIZE} from "../constants/uiSizes";
 
 
 function NumCol(props) {
     const {children} = props;
-    return <Col xs="2" className="text-end">
-        {children.toFixed(2)}
+    return <Col xs="3" className="text-end my-auto">
+        {children.toFixed(0)}
     </Col>;
 
 }
@@ -25,12 +25,13 @@ function AreaInfo(props) {
 
     return (
         <Row className="ms-1">
-            <Col xs="auto" className="">
+            <Col xs="auto" className="p-0">
                 <EyeButton areas={[area]}/>
                 <FlowerButton areas={[area]}/>
             </Col>
             <NumCol>{area.x}</NumCol>
             <NumCol>{area.z}</NumCol>
+            <Col xs="auto">{""}</Col>
         </Row>
     );
 }
@@ -38,22 +39,11 @@ function AreaInfo(props) {
 const GardenAreaListPageContext = createContext();
 const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
 
-function PlantFiche(props) {
-    const {plantWithAreas, showPlantInfo} = props;
-    const {plant, areas} = plantWithAreas;
-
+function PlantAreas(props) {
+    const {areas, showPlantInfo} = props;
     if (!showPlantInfo) return;
     return (
         <>
-            <Row className="bg-light px-1">
-                <Col xs={2} className="mx-0">{""}</Col>
-                <Col xs={1} className="m-auto p-0" style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</Col>
-                <Col xs="auto">{plant.timeLine.growStart}-{plant.timeLine.growFinal}</Col>
-                <Col xs={1} className="m-auto p-0"
-                     style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
-                <Col xs="auto">{plant.timeLine.flowerStart}-{plant.timeLine.flowerEnd}</Col>
-                <Col>{""}</Col>
-            </Row>
             <Row className="bg-white p-1">
                 <Col className="ms-3">
                     {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
@@ -63,9 +53,33 @@ function PlantFiche(props) {
     )
 }
 
-PlantFiche.propTypes = {
-    plantWithAreas: plantWithAreasPropType,
+PlantAreas.propTypes = {
+    areas: PropTypes.arrayOf(areaPropType),
     showPlantInfo: PropTypes.bool
+};
+
+function PlantTimeline(props) {
+    const {plant} = props;
+
+    return (
+        <>
+            <Row className="px-1 justify-content-end fs-6">
+                <Col className="mx-0">{""}</Col>
+                <Col xs={1} className="m-auto p-0"
+                     style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</Col>
+                <Col xs="auto" className="ps-0 pe-2">
+                    {plant.timeLine.growStart}-{plant.timeLine.growFinal}</Col>
+                <Col xs={1} className="m-auto p-0"
+                     style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
+                <Col xs="auto" className="ps-0 pe-0">
+                    {plant.timeLine.flowerStart}-{plant.timeLine.flowerEnd}</Col>
+            </Row>
+        </>
+    )
+}
+
+PlantTimeline.propTypes = {
+    plant: plantDataPropType
 };
 
 function PlantInfoHeader(props) {
@@ -75,7 +89,7 @@ function PlantInfoHeader(props) {
 
     return (
         <>
-            <Row className="bg-white p-1 position-relative">
+            <Row className="p-1 position-relative">
                 <Col xs="auto" className="">
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
@@ -88,7 +102,7 @@ function PlantInfoHeader(props) {
                 </Col>
                 <Col xs="auto" className="">
                 </Col>
-                <PlantPicture plant={plant} large={showPlantInfo} absolute={true}/>
+                <PlantPicture plant={plant} absolute={true}/>
             </Row>
         </>
     );
@@ -105,9 +119,11 @@ function PlantInfoWithAreas(props) {
     const showPlantInfo = useMemo(() => !!isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
 
     return (
-        <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
+        <Container className="bg-white"
+                   style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
             <PlantInfoHeader plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
-            <PlantFiche plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
+            <PlantTimeline plant={plantWithAreas.plant}/>
+            <PlantAreas areas={plantWithAreas.areas} showPlantInfo={showPlantInfo}/>
         </Container>
     );
 }
@@ -123,8 +139,9 @@ function PlantInfoWithoutAreas(props) {
     if (plantDataForSelectedGarden.includes(plant)) return;
 
     return (
-        <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
-            <Row className="bg-white p-1 position-relative">
+        <Container className="bg-white"
+                   style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
+            <Row className="p-1 position-relative">
                 <Col xs="auto" className="">
                     <SmallButton
                         onClick={() => addPlantInGarden(plant.shortName)}>
@@ -138,6 +155,7 @@ function PlantInfoWithoutAreas(props) {
                 </Col>
                 <PlantPicture plant={plant} absolute={true}/>
             </Row>
+            <PlantTimeline plant={plant}/>
         </Container>
     );
 }
@@ -226,12 +244,12 @@ export function GardenAreaListPageBis(props) {
             </Row>
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <Col>
+                    <Col className="p-0">
                         <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}/>
                     </Col>
                     {
                         showAllPlants &&
-                        <Col>
+                        <Col className="p-0">
                             <ListOfPlantWithoutAreas plants={allPlants}/>
                         </Col>
                     }

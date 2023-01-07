@@ -1,6 +1,7 @@
 import {UI_SKY_BLUE} from "../constants/uiColors";
 import {PLANT_PICTURE_SIZE_LARGE, PLANT_PICTURE_SIZE_SMALL} from "../constants/uiSizes";
 
+//TODOL picture large when hovering
 export function PlantPicture(props) {
     const {plant, large = false, absolute = false} = props;
     const size = large ? PLANT_PICTURE_SIZE_LARGE : PLANT_PICTURE_SIZE_SMALL;

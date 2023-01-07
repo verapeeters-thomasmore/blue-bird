@@ -18,7 +18,7 @@ export const plantDataPropType = PropTypes.shape({
     }
 );
 
-const areaPropType = PropTypes.shape({
+export const areaPropType = PropTypes.shape({
     id: PropTypes.number,
     x: PropTypes.number,
     z: PropTypes.number,
