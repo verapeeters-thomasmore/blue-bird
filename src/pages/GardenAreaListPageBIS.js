@@ -58,9 +58,14 @@ PlantAreas.propTypes = {
     showPlantInfo: PropTypes.bool
 };
 
+function twoDigits(n) {
+    return (""+n).padStart(2, "0");
+}
 function PlantTimeline(props) {
     const {plant} = props;
 
+    const growString = `${twoDigits(plant.timeLine.growStart)}-${twoDigits(plant.timeLine.growFinal)}`;
+    const flowerString = `${twoDigits(plant.timeLine.flowerStart)}-${twoDigits(plant.timeLine.flowerEnd)}`;
     return (
         <>
             <Row className="px-1 justify-content-end fs-6">
@@ -68,11 +73,11 @@ function PlantTimeline(props) {
                 <Col xs={1} className="m-auto p-0"
                      style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</Col>
                 <Col xs="auto" className="ps-0 pe-2">
-                    {plant.timeLine.growStart}-{plant.timeLine.growFinal}</Col>
+                    {growString}</Col>
                 <Col xs={1} className="m-auto p-0"
                      style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
                 <Col xs="auto" className="ps-0 pe-0">
-                    {plant.timeLine.flowerStart}-{plant.timeLine.flowerEnd}</Col>
+                    {flowerString}</Col>
             </Row>
         </>
     )
