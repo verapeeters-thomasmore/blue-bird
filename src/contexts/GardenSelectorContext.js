@@ -5,6 +5,7 @@ import {useLocalStorage} from "../hooks/useLocalStorage";
 import {findPlantDataByShortName} from "../utils/plant_utils";
 import {saveAs} from 'file-saver';
 import PropTypes from "prop-types";
+import {areaWithPlantDataPropType, plantDataPropType, plantWithAreasPropType} from "../types";
 
 const GardenSelectorContext = createContext();
 
@@ -198,13 +199,13 @@ export function GardenSelectorProvider(props) {
 
 GardenSelectorContext.Provider.propTypes = {
     value: PropTypes.shape({
-            areasSelectedGarden: PropTypes.array,
+            areasSelectedGarden: PropTypes.arrayOf(areaWithPlantDataPropType),
             indexSelectedGarden: PropTypes.number,
-            areaIdsForSelectedGarden : PropTypes.array,
+            areaIdsForSelectedGarden : PropTypes.arrayOf(PropTypes.number),
             propertiesSelectedGarden: PropTypes.shape(),
-            areasSelectedGardenGroupedByPlants: PropTypes.array,
-            plantIdsForSelectedGarden: PropTypes.array,
-            plantDataForSelectedGarden: PropTypes.array,
+            areasSelectedGardenGroupedByPlants: PropTypes.arrayOf(plantWithAreasPropType),
+            plantIdsForSelectedGarden: PropTypes.arrayOf(PropTypes.number),
+            plantDataForSelectedGarden : PropTypes.arrayOf(plantDataPropType),
             selectGarden: PropTypes.func,
             saveAreasInFile: PropTypes.func,
             loadAreasFromFile: PropTypes.func,
@@ -212,7 +213,7 @@ GardenSelectorContext.Provider.propTypes = {
             addPlantInGarden: PropTypes.func,
             clearArea: PropTypes.func,
             isDirty: PropTypes.bool,
-            actions: PropTypes.array,
+            actions: PropTypes.arrayOf(PropTypes.string),
             addAction: PropTypes.func
         }
     )

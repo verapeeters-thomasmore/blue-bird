@@ -25,6 +25,14 @@ const areaPropType = PropTypes.shape({
     plantName: PropTypes.string,
 });
 
+export const areaWithPlantDataPropType = PropTypes.shape({
+    id: PropTypes.number,
+    x: PropTypes.number,
+    z: PropTypes.number,
+    plantName: PropTypes.string,
+    plant: plantDataPropType,
+});
+
 export const plantWithAreasPropType = PropTypes.shape({
     plantName: PropTypes.string,
     plant: plantDataPropType,
