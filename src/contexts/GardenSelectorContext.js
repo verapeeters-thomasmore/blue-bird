@@ -4,6 +4,7 @@ import {PLANT_DATA} from "../data/plant.data";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import {findPlantDataByShortName} from "../utils/plant_utils";
 import {saveAs} from 'file-saver';
+import PropTypes from "prop-types";
 
 const GardenSelectorContext = createContext();
 
@@ -193,6 +194,28 @@ export function GardenSelectorProvider(props) {
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
     </GardenSelectorContext.Provider>
+}
+
+GardenSelectorContext.Provider.propTypes = {
+    value: PropTypes.shape({
+            areasSelectedGarden: PropTypes.array,
+            indexSelectedGarden: PropTypes.number,
+            areaIdsForSelectedGarden : PropTypes.array,
+            propertiesSelectedGarden: PropTypes.shape(),
+            areasSelectedGardenGroupedByPlants: PropTypes.array,
+            plantIdsForSelectedGarden: PropTypes.array,
+            plantDataForSelectedGarden: PropTypes.array,
+            selectGarden: PropTypes.func,
+            saveAreasInFile: PropTypes.func,
+            loadAreasFromFile: PropTypes.func,
+            addArea: PropTypes.func,
+            addPlantInGarden: PropTypes.func,
+            clearArea: PropTypes.func,
+            isDirty: PropTypes.bool,
+            actions: PropTypes.array,
+            addAction: PropTypes.func
+        }
+    )
 }
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
