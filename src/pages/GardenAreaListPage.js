@@ -200,6 +200,7 @@ GardenAreaListPage.propTypes = {
     )
 }
 
+//TODO OFWEL: lijst met plants in en lijst met plants NOT in
 //TODO in case of allPlants: areaInfo of garden is no longer there
 //TODO expandButton for all plants
 //TODO implement + button
