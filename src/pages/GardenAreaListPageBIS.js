@@ -88,46 +88,48 @@ PlantTimeline.propTypes = {
     plant: plantDataPropType
 };
 
-function PlantInfoHeader(props) {
+function PlantName(props) {
+    const {plant} = props;
+    return <Col xs="auto" className="">
+        <h6 className="pt-1">
+            {plant.name}
+        </h6>
+    </Col>;
+}
+
+PlantName.propTypes = {plant: PropTypes.any};
+
+function PlantButtons(props){
     const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
-
     return (
-        <>
-            <Row className="p-1 position-relative">
-                <Col xs="auto" className="">
-                    <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
-                    <EyeButton areas={areas}/>
-                    <FlowerButton areas={areas}/>
-                </Col>
-                <Col xs="auto" className="">
-                    <h6 className="pt-1">
-                        {plant.name}
-                    </h6>
-                </Col>
-                <Col xs="auto" className="">
-                </Col>
-                <PlantPicture plant={plant} absolute={true}/>
-            </Row>
-        </>
-    );
+        <Col xs="auto" className="">
+            <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
+            <EyeButton areas={areas}/>
+            <FlowerButton areas={areas}/>
+        </Col>
+    )
 }
-
-PlantInfoHeader.propType = {
-    plantWithAreas: plantWithAreasPropType,
-    showPlantInfo: PropTypes.bool,
-};
 
 function PlantInfoWithAreas(props) {
     const {plantWithAreas} = props;
+    const {plant} = plantWithAreas;
     const {isItemShown} = useGardenAreaListPageContext();
     const showPlantInfo = useMemo(() => !!isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
 
     return (
         <Container className="bg-white"
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
-            <PlantInfoHeader plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
+            <Row className="p-1 position-relative">
+                <PlantName plant={plant}/>
+                <Col xs="auto">
+                    <PlantPicture plant={plant}/>
+                </Col>
+                <PlantButtons plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
+                <Col xs="auto" className=""/>
+            </Row>
+
             <PlantTimeline plant={plantWithAreas.plant}/>
             <PlantAreas areas={plantWithAreas.areas} showPlantInfo={showPlantInfo}/>
         </Container>
@@ -138,11 +140,9 @@ PlantInfoWithAreas.propTypes = {
     plantWithAreas: plantWithAreasPropType,
 };
 
-//TODO: currently can only be used for plants not in garden - make more generic for clarity reasons?
 function PlantInfoWithoutAreas(props) {
     const {plant} = props;
-    const {plantDataForSelectedGarden, addPlantInGarden} = useGardenSelectorContext();
-    if (plantDataForSelectedGarden.includes(plant)) return;
+    const {addPlantInGarden} = useGardenSelectorContext();
 
     return (
         <Container className="bg-white"
