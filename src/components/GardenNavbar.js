@@ -36,6 +36,8 @@ export function GardenNavbar() {
             <EyeButton areas={areasSelectedGarden}/>
             <FlowerButton areas={areasSelectedGarden}/>
             <GardenNavbarLink to="/gardenarealist"><BsCardList size={ICON_SIZE}/></GardenNavbarLink>
+            <GardenNavbarLink to="/gardenarealist2">bis</GardenNavbarLink>
+            <GardenNavbarLink to="/addPlant">+</GardenNavbarLink>
             <GardenNavbarLink to="/cameraviewpoints"><BsCameraVideo size={ICON_SIZE}/></GardenNavbarLink>
             <GardenNavbarLink to="/gardenselection"><FaRegFolderOpen size={ICON_SIZE}/></GardenNavbarLink>
             <GardenNavbarLink to="/controls"><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
