@@ -1,7 +1,7 @@
 import {useMessageInfoContext} from "../contexts/MessageInfoContext";
 import {MENU_HEIGHT} from "../constants/uiSizes";
 
-export function AreaInfo() {
+export function AreaInfoPopup() {
     const {areaInfoMessages} = useMessageInfoContext();
 
     return (
