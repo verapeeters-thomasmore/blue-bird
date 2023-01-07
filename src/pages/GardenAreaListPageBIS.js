@@ -43,13 +43,11 @@ function PlantAreas(props) {
     const {areas, showPlantInfo} = props;
     if (!showPlantInfo) return;
     return (
-        <>
-            <Row className="bg-white p-1">
-                <Col className="ms-3">
-                    {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
-                </Col>
-            </Row>
-        </>
+        <Row className="bg-light mx-2 mb-1 p-0 border">
+            <Col className="">
+                {areas.map(a => <AreaInfo key={a.id} area={a}/>)}
+            </Col>
+        </Row>
     )
 }
 
@@ -68,19 +66,17 @@ function PlantTimeline(props) {
     const growString = `${twoDigits(plant.timeLine.growStart)}-${twoDigits(plant.timeLine.growFinal)}`;
     const flowerString = `${twoDigits(plant.timeLine.flowerStart)}-${twoDigits(plant.timeLine.flowerEnd)}`;
     return (
-        <>
-            <Row className="px-1 justify-content-end fs-6">
-                <Col className="mx-0">{""}</Col>
-                <Col xs={1} className="m-auto p-0"
-                     style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</Col>
-                <Col xs="auto" className="ps-0 pe-2">
-                    {growString}</Col>
-                <Col xs={1} className="m-auto p-0"
-                     style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</Col>
-                <Col xs="auto" className="ps-0 pe-0">
-                    {flowerString}</Col>
-            </Row>
-        </>
+        <div className="px-1 d-flex">
+            <div className="mx-0">{""}</div>
+            <div className="my-auto p-0"
+                 style={{backgroundColor: GREEN, width: 16, height: 16}}>{" "}</div>
+            <div className="ps-0 pe-2">
+                {growString}</div>
+            <div className="my-auto p-0"
+                 style={{backgroundColor: plant.flowerColor, width: 16, height: 16}}>{" "}</div>
+            <div className="ps-0 pe-0">
+                {flowerString}</div>
+        </div>
     )
 }
 
@@ -104,11 +100,11 @@ function PlantButtons(props) {
     const {plant, areas} = plantWithAreas;
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
     return (
-        <Col xs="auto" className="">
+        <>
             <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
             <EyeButton areas={areas}/>
             <FlowerButton areas={areas}/>
-        </Col>
+        </>
     )
 }
 
@@ -121,16 +117,23 @@ function PlantInfoWithAreas(props) {
     return (
         <Container className="bg-white"
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
-            <Row className="p-1 position-relative">
-                <PlantName plant={plant}/>
-                <Col xs="auto">
+            <Row className="p-0">
+                <Col>
+                    <PlantName plant={plant}/>
+                </Col>
+                <Col xs="auto" className="me-auto">
                     <PlantPicture plant={plant}/>
                 </Col>
-                <PlantButtons plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
-                <Col xs="auto" className=""/>
+            </Row>
+            <Row className="p-0">
+                <Col className="">
+                    <PlantButtons plantWithAreas={plantWithAreas} showPlantInfo={showPlantInfo}/>
+                </Col>
+                <Col xs="auto" className="me-auto">
+                    <PlantTimeline plant={plantWithAreas.plant}/>
+                </Col>
             </Row>
 
-            <PlantTimeline plant={plantWithAreas.plant}/>
             <PlantAreas areas={plantWithAreas.areas} showPlantInfo={showPlantInfo}/>
         </Container>
     );
@@ -163,7 +166,7 @@ function PlantInfoWithoutAreas(props) {
                     <AddPlantButton plant={plant}/>
                 </Col>
                 <PlantName plant={plant}/>
-                <PlantPicture plant={plant} />
+                <PlantPicture plant={plant}/>
             </Row>
             <PlantTimeline plant={plant}/>
         </Container>
