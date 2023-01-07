@@ -239,13 +239,15 @@ export function GardenAreaListPageBis(props) {
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <Col className="p-0">
                         <h3 className="container">plants in garden:</h3>
-                        <div className="ms-1">
+                        <div className="ms-2">
                             <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
                             <EyeButton areas={areasSelectedGarden}/>
                             <FlowerButton areas={areasSelectedGarden}/>
 
-                            {!showAllPlants && <SmallButton
-                                onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
+                            {!showAllPlants &&
+                                <SmallButton
+                                    onClick={() => setShowAllPlants(current => !current)}>
+                                    <MdAdd size={ICON_SIZE_SMALL}/></SmallButton>
                             }
                         </div>
                         <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}/>
@@ -253,8 +255,8 @@ export function GardenAreaListPageBis(props) {
                     {
                         showAllPlants &&
                         <Col className="p-0">
-                            <h3 className="container">new plants:</h3>
-                            <div className="ms-1">
+                            <h3 className="container">add new plants:</h3>
+                            <div className="ms-2">
                                 <SmallButton
                                     onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
                             </div>
