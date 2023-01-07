@@ -139,6 +139,7 @@ export function GardenSelectorProvider(props) {
 
     const addPlantInGarden = useCallback(
         (plantName) => {
+            console.log("addPlantInGarden", plantName)
             if (!plantName) return;
             //TODO if plant already in garden return
             const newArea = {

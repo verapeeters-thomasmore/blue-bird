@@ -7,6 +7,8 @@ import {PlantPicture} from "../components/PlantPicture";
 import {ExpandButton, EyeButton, FlowerButton, SmallButton} from "../components/SmallButtons";
 import PropTypes from "prop-types";
 import {plantDataPropType, plantWithAreasPropType} from "../types";
+import {MdAdd} from "react-icons/md";
+import {ICON_SIZE} from "../constants/uiSizes";
 
 
 function NumCol(props) {
@@ -67,7 +69,7 @@ PlantFiche.propTypes = {
 };
 
 function PlantInfoHeader(props) {
-    const {plantWithAreas, showPlantInfo, isInGarden} = props;
+    const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
 
@@ -78,9 +80,6 @@ function PlantInfoHeader(props) {
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
                     <FlowerButton areas={areas}/>
-                </Col>
-                <Col xs="auto">
-                    {isInGarden ? "" : "+"}
                 </Col>
                 <Col xs="auto" className="">
                     <h6 className="pt-1">
@@ -98,7 +97,6 @@ function PlantInfoHeader(props) {
 PlantInfoHeader.propType = {
     plantWithAreas: plantWithAreasPropType,
     showPlantInfo: PropTypes.bool,
-    isInGarden: PropTypes.bool,
 };
 
 function PlantInfoWithAreas(props) {
@@ -118,12 +116,21 @@ PlantInfoWithAreas.propTypes = {
     plantWithAreas: plantWithAreasPropType,
 };
 
-function PlantWithoutAreas(props) {
+//TODO: currently can only be used for plants not in garden - make more generic for clarity reasons?
+function PlantInfoWithoutAreas(props) {
     const {plant} = props;
+    const {plantDataForSelectedGarden, addPlantInGarden} = useGardenSelectorContext();
+    if (plantDataForSelectedGarden.includes(plant)) return;
 
     return (
         <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
             <Row className="bg-white p-1 position-relative">
+                <Col xs="auto" className="">
+                    <SmallButton
+                        onClick={() => addPlantInGarden(plant.shortName)}>
+                        <MdAdd size={ICON_SIZE}/>
+                    </SmallButton>
+                </Col>
                 <Col xs="auto" className="">
                     <h6 className="pt-1">
                         {plant.name}
@@ -135,7 +142,7 @@ function PlantWithoutAreas(props) {
     );
 }
 
-PlantWithoutAreas.propType = {
+PlantInfoWithoutAreas.propType = {
     plant: plantDataPropType,
 }
 
@@ -148,7 +155,7 @@ function ListOfPlantWithoutAreas(props) {
             <Row className="m-0">
                 {plants.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
-                        <PlantWithoutAreas plant={p}/>
+                        <PlantInfoWithoutAreas plant={p}/>
                     </Col>
                 )}
             </Row>
@@ -165,14 +172,14 @@ ListOfPlantWithoutAreas.propType = {
 /*
 areaInfoGroupedByPlant:
  */
-function AreaInfoGroupedByPlant(props) {
-    const {areaInfoGroupedByPlant} = props;
+function ListOfPlantWithAreas(props) {
+    const {plantsWithAreas} = props;
     // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
         <Container className="mx-auto">
             <Row className="m-0">
-                {areaInfoGroupedByPlant.map(p =>
+                {plantsWithAreas.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
                         <PlantInfoWithAreas plantWithAreas={p}/>
                     </Col>
@@ -182,8 +189,8 @@ function AreaInfoGroupedByPlant(props) {
     );
 }
 
-AreaInfoGroupedByPlant.propTypes = {
-    areaInfoGroupedByPlant: PropTypes.arrayOf(
+ListOfPlantWithAreas.propTypes = {
+    plantsWithAreas: PropTypes.arrayOf(
         plantWithAreasPropType
     )
 };
@@ -192,7 +199,6 @@ AreaInfoGroupedByPlant.propTypes = {
 
 export function GardenAreaListPageBis(props) {
     const {allPlants} = props;
-
     const {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
@@ -206,7 +212,7 @@ export function GardenAreaListPageBis(props) {
         <Container className="flex-column">
             <Row>
                 <Col className="d-flex">
-                    <h3 className="container">"plants in garden:</h3>
+                    <h3 className="container">plants in garden:</h3>
                 </Col>
             </Row>
             <Row className="mx-1 px-0">
@@ -221,7 +227,7 @@ export function GardenAreaListPageBis(props) {
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <Col>
-                        <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areasSelectedGardenGroupedByPlants}/>
+                        <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}/>
                     </Col>
                     {
                         showAllPlants &&
