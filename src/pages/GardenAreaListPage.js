@@ -17,6 +17,7 @@ function NumCol(props) {
 
 function AreaInfo(props) {
     const {area} = props;
+    if (!area.x || !area.z) return;
 
     return (
         <Row className="ms-1">
@@ -99,7 +100,7 @@ function PlantInfoWithAreas(props) {
 
 function AreaInfoGroupedByPlant(props) {
     const {areaInfoGroupedByPlant} = props;
-    console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
+    // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
         <Container className="mx-auto">

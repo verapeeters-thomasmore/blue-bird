@@ -54,8 +54,8 @@ export function useShowItemToggle(keyInLocalStorage, allItemsInitialValue, shown
             const newItems = newAllItems.filter(id => !allItems.includes(id));
             const shownItemsWithNewItems = [...shownItems, ...newItems];
             const shownItemsWithoutRemovedItems = shownItemsWithNewItems.filter(id => newAllItems.includes(id));
-            console.log("resetAllItems", keyInLocalStorage,
-                {allItems, shownItems, newAllItems, newItems, shownItemsWithNewItems, shownItemsWithoutRemovedItems});
+            // console.log("resetAllItems", keyInLocalStorage,
+            //     {allItems, shownItems, newAllItems, newItems, shownItemsWithNewItems, shownItemsWithoutRemovedItems});
             setAllItems([...newAllItems]);
             setShownItems(shownItemsWithoutRemovedItems);
         }, [shownItems]);

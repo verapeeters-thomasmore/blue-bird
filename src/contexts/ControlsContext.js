@@ -29,7 +29,7 @@ export function ControlsProvider(props) {
 
     useEffect(
         () => {
-            console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
+            // console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
             showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
             showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
         },
