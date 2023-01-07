@@ -8,7 +8,9 @@ import {ExpandButton, EyeButton, FlowerButton, SmallButton} from "../components/
 import PropTypes from "prop-types";
 import {areaPropType, plantDataPropType, plantWithAreasPropType} from "../types";
 import {MdAdd} from "react-icons/md";
+import {BiMinus} from "react-icons/bi";
 import {ICON_SIZE_SMALL} from "../constants/uiSizes";
+import {UI_SKY_BLUE_LIGHTER} from "../constants/uiColors";
 
 
 function NumCol(props) {
@@ -274,11 +276,13 @@ export function GardenAreaListPageBis(props) {
                     </Col>
                     {
                         showAllPlants &&
-                        <Col className="p-0">
+                        <Col className="p-0"
+                             style={{backgroundColor: UI_SKY_BLUE_LIGHTER}}>
                             <h3 className="container">add new plants:</h3>
                             <div className="ms-2">
                                 <SmallButton
-                                    onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
+                                    onClick={() => setShowAllPlants(current => !current)}>
+                                    <BiMinus size={ICON_SIZE_SMALL}/></SmallButton>
                             </div>
                             <ListOfPlantWithoutAreas plants={allPlants}/>
                         </Col>
