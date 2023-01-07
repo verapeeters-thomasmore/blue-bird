@@ -8,7 +8,7 @@ import {ExpandButton, EyeButton, FlowerButton, SmallButton} from "../components/
 import PropTypes from "prop-types";
 import {areaPropType, plantDataPropType, plantWithAreasPropType} from "../types";
 import {MdAdd} from "react-icons/md";
-import {ICON_SIZE} from "../constants/uiSizes";
+import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 
 
 function NumCol(props) {
@@ -59,8 +59,9 @@ PlantAreas.propTypes = {
 };
 
 function twoDigits(n) {
-    return (""+n).padStart(2, "0");
+    return ("" + n).padStart(2, "0");
 }
+
 function PlantTimeline(props) {
     const {plant} = props;
 
@@ -150,7 +151,7 @@ function PlantInfoWithoutAreas(props) {
                 <Col xs="auto" className="">
                     <SmallButton
                         onClick={() => addPlantInGarden(plant.shortName)}>
-                        <MdAdd size={ICON_SIZE}/>
+                        <MdAdd size={ICON_SIZE_SMALL}/>
                     </SmallButton>
                 </Col>
                 <Col xs="auto" className="">
@@ -171,15 +172,16 @@ PlantInfoWithoutAreas.propType = {
 
 function ListOfPlantWithoutAreas(props) {
     const {plants} = props;
-    // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
+    const {plantDataForSelectedGarden} = useGardenSelectorContext();
 
     return (
-        <Container className="mx-auto">
+        <Container className="mx-auto p-0">
             <Row className="m-0">
                 {plants.map(p =>
-                    <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
-                        <PlantInfoWithoutAreas plant={p}/>
-                    </Col>
+                    !plantDataForSelectedGarden.includes(p) &&
+                        <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
+                            <PlantInfoWithoutAreas plant={p}/>
+                        </Col>
                 )}
             </Row>
         </Container>
@@ -200,7 +202,7 @@ function ListOfPlantWithAreas(props) {
     // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
-        <Container className="mx-auto">
+        <Container className="mx-auto p-0">
             <Row className="m-0">
                 {plantsWithAreas.map(p =>
                     <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
