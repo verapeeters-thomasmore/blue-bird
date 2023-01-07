@@ -99,7 +99,7 @@ function PlantName(props) {
 
 PlantName.propTypes = {plant: PropTypes.any};
 
-function PlantButtons(props){
+function PlantButtons(props) {
     const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
@@ -140,26 +140,30 @@ PlantInfoWithAreas.propTypes = {
     plantWithAreas: plantWithAreasPropType,
 };
 
+function AddPlantButton(props) {
+    const {addPlantInGarden} = useGardenSelectorContext();
+    const {plant} = props;
+    return (
+        <SmallButton
+            onClick={() => addPlantInGarden(plant.shortName)}>
+            <MdAdd size={ICON_SIZE_SMALL}/>
+        </SmallButton>
+
+    );
+}
+
 function PlantInfoWithoutAreas(props) {
     const {plant} = props;
-    const {addPlantInGarden} = useGardenSelectorContext();
 
     return (
         <Container className="bg-white"
                    style={{borderWidth: "3px", borderStyle: "solid", borderColor: plant.flowerColor}}>
             <Row className="p-1 position-relative">
                 <Col xs="auto" className="">
-                    <SmallButton
-                        onClick={() => addPlantInGarden(plant.shortName)}>
-                        <MdAdd size={ICON_SIZE_SMALL}/>
-                    </SmallButton>
+                    <AddPlantButton plant={plant}/>
                 </Col>
-                <Col xs="auto" className="">
-                    <h6 className="pt-1">
-                        {plant.name}
-                    </h6>
-                </Col>
-                <PlantPicture plant={plant} absolute={true}/>
+                <PlantName plant={plant}/>
+                <PlantPicture plant={plant} />
             </Row>
             <PlantTimeline plant={plant}/>
         </Container>
