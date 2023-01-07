@@ -7,7 +7,7 @@ import {SmallButton} from "../components/SmallButtons";
 
 //OK do not draw area without x,z
 //OK do not show AreaInfo in GardenAreaListPage for area without x,z
-//TODO do not show areaInfo in EditPage for area without x,z
+//OK do not show areaInfo in EditPage for area without x,z
 //TODO: add expandButton as in GardenAreaListPage
 //TODO: + button in AreaInfoPage INTEGRATE!!!!
 //TODO: merge with PlantInfoHeader in GardenAreaListPage?

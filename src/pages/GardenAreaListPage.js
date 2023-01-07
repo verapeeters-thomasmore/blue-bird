@@ -1,10 +1,11 @@
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Col, Container, Row} from "react-bootstrap";
-import {createContext, useContext, useMemo} from "react";
+import {createContext, useContext, useMemo, useState} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {GREEN} from "../constants/threeColors";
 import {PlantPicture} from "../components/PlantPicture";
-import {ExpandButton, EyeButton, FlowerButton} from "../components/SmallButtons";
+import {ExpandButton, EyeButton, FlowerButton, SmallButton} from "../components/SmallButtons";
+import PropTypes from "prop-types";
 
 
 function NumCol(props) {
@@ -34,6 +35,35 @@ function AreaInfo(props) {
 const GardenAreaListPageContext = createContext();
 const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
 
+const plantDataPropType = PropTypes.shape({
+        id: PropTypes.number,
+        shortName: PropTypes.string,
+        textureWithoutFlower: PropTypes.string,
+        textureWithFlower: PropTypes.string,
+        flowerColor: PropTypes.string,
+        maxHeight: PropTypes.number,
+        plantsPerM2: PropTypes.number,
+        timeLine: PropTypes.shape({
+            growStart: PropTypes.number,
+            growFinal: PropTypes.number,
+            FlowerStart: PropTypes.number,
+            flowerEnd: PropTypes.number,
+            die: PropTypes.number,
+        }),
+    }
+);
+const areaPropType = PropTypes.shape({
+    id: PropTypes.number,
+    x: PropTypes.number,
+    z: PropTypes.number,
+    plantName: PropTypes.string,
+});
+const plantWithAreasPropType = PropTypes.shape({
+    plantName: PropTypes.string,
+    plant: plantDataPropType,
+    areas: PropTypes.arrayOf(areaPropType)
+});
+
 function PlantFiche(props) {
     const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
@@ -59,8 +89,13 @@ function PlantFiche(props) {
     )
 }
 
+PlantFiche.propTypes = {
+    plantWithAreas: plantWithAreasPropType,
+    showPlantInfo: PropTypes.bool
+};
+
 function PlantInfoHeader(props) {
-    const {plantWithAreas, showPlantInfo} = props;
+    const {plantWithAreas, showPlantInfo, isInGarden} = props;
     const {plant, areas} = plantWithAreas;
     const {toggleShowForOneItem} = useGardenAreaListPageContext();
 
@@ -71,6 +106,9 @@ function PlantInfoHeader(props) {
                     <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
                     <EyeButton areas={areas}/>
                     <FlowerButton areas={areas}/>
+                </Col>
+                <Col xs="auto">
+                    {isInGarden ? "" : "+"}
                 </Col>
                 <Col xs="auto" className="">
                     <h6 className="pt-1">
@@ -85,10 +123,16 @@ function PlantInfoHeader(props) {
     );
 }
 
+PlantInfoHeader.propType = {
+    plantWithAreas: plantWithAreasPropType,
+    showPlantInfo: PropTypes.bool,
+    isInGarden: PropTypes.bool,
+};
+
 function PlantInfoWithAreas(props) {
     const {plantWithAreas} = props;
     const {isItemShown} = useGardenAreaListPageContext();
-    const showPlantInfo = useMemo(() => isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
+    const showPlantInfo = useMemo(() => !!isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
 
     return (
         <Container style={{borderWidth: "3px", borderStyle: "solid", borderColor: plantWithAreas.plant.flowerColor}}>
@@ -98,6 +142,14 @@ function PlantInfoWithAreas(props) {
     );
 }
 
+PlantInfoWithAreas.propTypes = {
+    plantWithAreas: plantWithAreasPropType,
+};
+
+//TODO rename: areaInfoGroupedByPlant into plantWithAreaINfo (and areaInfo is possibly empty)
+/*
+areaInfoGroupedByPlant:
+ */
 function AreaInfoGroupedByPlant(props) {
     const {areaInfoGroupedByPlant} = props;
     // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
@@ -115,7 +167,17 @@ function AreaInfoGroupedByPlant(props) {
     );
 }
 
-export function GardenAreaListPage() {
+AreaInfoGroupedByPlant.propTypes = {
+    areaInfoGroupedByPlant: PropTypes.arrayOf(
+        plantWithAreasPropType
+    )
+};
+
+//TODO: filterOnlyPlantsInGarden button: a checkbox?
+
+export function GardenAreaListPage(props) {
+    const {allPlants} = props;
+
     const {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
@@ -123,13 +185,17 @@ export function GardenAreaListPage() {
     } = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
+    const [filterOnlyPlantsInGarden, setFilterOnlyPlantsInGarden] = useState(true);
+    const plantsToShow = filterOnlyPlantsInGarden
+        ? areasSelectedGardenGroupedByPlants
+        : allPlants;
 
     return (
         <Container className="flex-column">
             <Row>
                 <Col className="d-flex">
                     <h3 className="container">
-                        plants:
+                        {filterOnlyPlantsInGarden ? "plants in garden:" : "all plants:"}
                     </h3>
                 </Col>
             </Row>
@@ -138,13 +204,21 @@ export function GardenAreaListPage() {
                     <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
                     <EyeButton areas={areasSelectedGarden}/>
                     <FlowerButton areas={areasSelectedGarden}/>
+                    <SmallButton
+                        onClick={() => setFilterOnlyPlantsInGarden(current => !current)}>{filterOnlyPlantsInGarden ? "all" : "garden"}</SmallButton>
                 </Col>
             </Row>
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={areasSelectedGardenGroupedByPlants}/>
+                    <AreaInfoGroupedByPlant areaInfoGroupedByPlant={plantsToShow}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
+    )
+}
+
+GardenAreaListPage.propTypes = {
+    allPlants: PropTypes.arrayOf(
+        plantDataPropType
     )
 }

@@ -29,7 +29,7 @@ function ProvidedApp() {
                 <Route path="/addPlant" element={<AddPlantPage allPlants={PLANT_DATA}/>}/>
                 <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
-                <Route path="/gardenarealist" element={<GardenAreaListPage/>}/>
+                <Route path="/gardenarealist" element={<GardenAreaListPage allPlants={PLANT_DATA}/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 
