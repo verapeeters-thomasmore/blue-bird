@@ -158,9 +158,14 @@ export function GardenAreaListPage(props) {
     const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
     const [filterOnlyPlantsInGarden, setFilterOnlyPlantsInGarden] = useState(true);
+    //TODO move to some context
+    const allPlantsEnriched = useMemo(
+        ()=> allPlants.map(p => ({plantName: p.shortName, plant: p, areas: []})),
+        [allPlants]
+    );
     const plantsToShow = filterOnlyPlantsInGarden
         ? areasSelectedGardenGroupedByPlants
-        : allPlants;
+        : allPlantsEnriched;
 
     return (
         <Container className="flex-column">
@@ -194,3 +199,9 @@ GardenAreaListPage.propTypes = {
         plantDataPropType
     )
 }
+
+//TODO in case of allPlants: areaInfo of garden is no longer there
+//TODO expandButton for all plants
+//TODO implement + button
+//TODO eyeButton for all plants (no button if no areas)
+//TODO flowerButton for all plants (no button if no areas)
