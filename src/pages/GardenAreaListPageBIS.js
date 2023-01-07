@@ -179,9 +179,9 @@ function ListOfPlantWithoutAreas(props) {
             <Row className="m-0">
                 {plants.map(p =>
                     !plantDataForSelectedGarden.includes(p) &&
-                        <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
-                            <PlantInfoWithoutAreas plant={p}/>
-                        </Col>
+                    <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
+                        <PlantInfoWithoutAreas plant={p}/>
+                    </Col>
                 )}
             </Row>
         </Container>
@@ -236,27 +236,28 @@ export function GardenAreaListPageBis(props) {
     return (
         <Container className="flex-column">
             <Row>
-                <Col className="d-flex">
-                    <h3 className="container">plants in garden:</h3>
-                </Col>
-            </Row>
-            <Row className="mx-1 px-0">
-                <Col className="mx-0 px-0">
-                    <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
-                    <EyeButton areas={areasSelectedGarden}/>
-                    <FlowerButton areas={areasSelectedGarden}/>
-                    <SmallButton
-                        onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
-                </Col>
-            </Row>
-            <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <Col className="p-0">
+                        <h3 className="container">plants in garden:</h3>
+                        <div className="ms-1">
+                            <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
+                            <EyeButton areas={areasSelectedGarden}/>
+                            <FlowerButton areas={areasSelectedGarden}/>
+
+                            {!showAllPlants && <SmallButton
+                                onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
+                            }
+                        </div>
                         <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}/>
                     </Col>
                     {
                         showAllPlants &&
                         <Col className="p-0">
+                            <h3 className="container">new plants:</h3>
+                            <div className="ms-1">
+                                <SmallButton
+                                    onClick={() => setShowAllPlants(current => !current)}>{showAllPlants ? "hide" : "show"}</SmallButton>
+                            </div>
                             <ListOfPlantWithoutAreas plants={allPlants}/>
                         </Col>
                     }
