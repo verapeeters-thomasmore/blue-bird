@@ -194,7 +194,7 @@ function ListOfPlantWithoutAreas(props) {
             <Row className="m-0">
                 {plants.map(p =>
                     !plantDataForSelectedGarden.includes(p) &&
-                    <Col xs={12} md={6} lg={4} xl={3} key={p.id} className="p-1">
+                    <Col xs={12} lg={6} xl={4} key={p.id} className="p-1">
                         <PlantInfoWithoutAreas plant={p}/>
                     </Col>
                 )}
@@ -213,14 +213,18 @@ ListOfPlantWithoutAreas.propType = {
 areaInfoGroupedByPlant:
  */
 function ListOfPlantWithAreas(props) {
-    const {plantsWithAreas} = props;
+    const {plantsWithAreas, isOnlyColumn} = props;
     // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
         <Container className="mx-auto p-0">
             <Row className="m-0">
                 {plantsWithAreas.map(p =>
-                    <Col xs={12} md={6} lg={4} xl={3} key={p.plant.id} className="p-1">
+                    <Col xs={12}
+                         md={isOnlyColumn ? 6 : 12}
+                         lg={isOnlyColumn ? 4 : 6}
+                         xl={isOnlyColumn ? 3 : 4}
+                         key={p.plant.id} className="p-1">
                         <PlantInfoWithAreas plantWithAreas={p}/>
                     </Col>
                 )}
@@ -265,7 +269,8 @@ export function GardenAreaListPageBis(props) {
                                     <MdAdd size={ICON_SIZE_SMALL}/></SmallButton>
                             }
                         </div>
-                        <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}/>
+                        <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}
+                                              isOnlyColumn={!showAllPlants}/>
                     </Col>
                     {
                         showAllPlants &&
