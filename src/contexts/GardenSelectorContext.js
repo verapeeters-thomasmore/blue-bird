@@ -63,9 +63,14 @@ export function GardenSelectorProvider(props) {
     );
 
     //array of objects for each plant in this garden
-    //each object contains plantName, plant (plantinfo), array of areas
+    //each object contains plantName (shortName), plant (plantinfo), array of areas
     const areasSelectedGardenGroupedByPlants = useMemo(
         () => getGardenGroupedByPlants(areasSelectedGarden),
+        [areasSelectedGarden]
+    );
+
+    const isPlantInGarden = useCallback(
+        plantShortName => areasSelectedGarden.some(p => p.plantName === plantShortName),
         [areasSelectedGarden]
     );
 
@@ -141,7 +146,7 @@ export function GardenSelectorProvider(props) {
         (plantName) => {
             console.log("addPlantInGarden", plantName)
             if (!plantName) return;
-            //TODO if plant already in garden return
+            if (isPlantInGarden(plantName)) return;
             const newArea = {
                 id: getNextAreaId(),
                 x: undefined,
@@ -202,11 +207,11 @@ GardenSelectorContext.Provider.propTypes = {
     value: PropTypes.shape({
             areasSelectedGarden: PropTypes.arrayOf(areaWithPlantDataPropType),
             indexSelectedGarden: PropTypes.number,
-            areaIdsForSelectedGarden : PropTypes.arrayOf(PropTypes.number),
+            areaIdsForSelectedGarden: PropTypes.arrayOf(PropTypes.number),
             propertiesSelectedGarden: PropTypes.shape(),
             areasSelectedGardenGroupedByPlants: PropTypes.arrayOf(plantWithAreasPropType),
             plantIdsForSelectedGarden: PropTypes.arrayOf(PropTypes.number),
-            plantDataForSelectedGarden : PropTypes.arrayOf(plantDataPropType),
+            plantDataForSelectedGarden: PropTypes.arrayOf(plantDataPropType),
             selectGarden: PropTypes.func,
             saveAreasInFile: PropTypes.func,
             loadAreasFromFile: PropTypes.func,
