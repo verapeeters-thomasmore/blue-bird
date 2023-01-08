@@ -235,14 +235,13 @@ ListOfPlantWithAreas.propTypes = {
     )
 };
 
-export function PlantListLeftColumn(props) {
-    const {showAllPlants, setShowAllPlants} = props;
+export function PlantListLeftColumn() {
     const {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
     } = useGardenSelectorContext();
     const {isAtLeastOneItemShown, toggleAllShownItems} = useGardenAreaListPageContext();
-
+    const {showAllPlants, setShowAllPlants} = useGardenAreaListPageContext();
     return (
         <Col className="p-0">
             <h3 className="container">plants in garden:</h3>
@@ -264,7 +263,8 @@ export function PlantListLeftColumn(props) {
 }
 
 export function PlantListRightColumn(props) {
-    const {allPlants, showAllPlants, setShowAllPlants} = props;
+    const {allPlants} = props;
+    const {showAllPlants, setShowAllPlants} = useGardenAreaListPageContext();
     if (!showAllPlants) return;
     return (
         <Col className="p-0"
@@ -287,13 +287,17 @@ export function PlantListPage(props) {
     } = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
     const [showAllPlants, setShowAllPlants] = useState(false);
+
+    const contextProviderApi = useMemo(
+        () => ({showAllPlants, setShowAllPlants, ...showPlantInfoToggleApi}),
+        [showAllPlants, setShowAllPlants, ...Object.values(showPlantInfoToggleApi)]
+    );
     return (
         <Container className="flex-column">
             <Row>
-                <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <PlantListLeftColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}/>
-                    <PlantListRightColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}
-                                          allPlants={allPlants}/>
+                <GardenAreaListPageContext.Provider value={contextProviderApi}>
+                    <PlantListLeftColumn/>
+                    <PlantListRightColumn allPlants={allPlants}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
