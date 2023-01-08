@@ -26,7 +26,7 @@ export function ConfirmationModal(props) {
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {messages.map(m => <div>{m}</div>)}
+                {messages.map((m, i) => <div key={i}>{m}</div>)}
                 <div>
                     <ConfirmationModalButton onClick={handleClose}>cancel</ConfirmationModalButton>
                     <ConfirmationModalButton onClick={onOk}>ok</ConfirmationModalButton>
