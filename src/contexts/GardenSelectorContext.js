@@ -13,13 +13,29 @@ function getGardenEnrichedWithPlants(selectedGarden, plants) {
     return selectedGarden.map(area => ({...area, plant: findPlantDataByShortName(plants, area.plantName)}))
 }
 
+//generates warnings on console
+function checkGardenAreas(plantsWithAreas) {
+    plantsWithAreas.forEach(p => {
+            const areaCoordinateStrings = p.areas.map(a => "(" + a.x + "," + a.z+")").sort();
+            const found = areaCoordinateStrings.find((s, index) => index > 0 && s === areaCoordinateStrings[index - 1]);
+            if (found)
+                console.warn(`${p.plantName} has areas with duplicate coord
+                inates: ${found}`);
+        }
+    )
+}
+
+// const sortedAreas = [...p.areas].sort((al, ar) => ar.x - al.x || ar.z - al.z);
+
 function getGardenGroupedByPlants(areasSelectedGarden) {
     const uniquePlantNames = [...new Set(areasSelectedGarden.map(a => a.plantName))];
-    return uniquePlantNames.map(p => ({
+    const plantsWithAreas = uniquePlantNames.map(p => ({
         plantName: p,
         plant: areasSelectedGarden.find(a => a.plantName === p).plant,
         areas: areasSelectedGarden.filter(a => a.plantName === p)
     }));
+    checkGardenAreas(plantsWithAreas);
+    return plantsWithAreas;
 }
 
 export function GardenSelectorProvider(props) {
@@ -235,3 +251,6 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO save camera position after orbiting
 //TODO area-id: unique per garden, not in general ??? necessary??
 //TODO check area.data: er zijn hardcoded ids - is dat een probleem of niet???
+//TODO never add 2 same areas to a garden (warning?)
+//TODO split up GardenSelectorContext
+//TODO formatting of file when saving garden
