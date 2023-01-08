@@ -243,7 +243,7 @@ ListOfPlantWithAreas.propTypes = {
 
 //TODO: filterOnlyPlantsInGarden button: a checkbox?
 
-export function GardenAreaListPageBis(props) {
+export function GardenAreaListPage(props) {
     const {allPlants} = props;
     const {
         areasSelectedGarden,
@@ -293,15 +293,17 @@ export function GardenAreaListPageBis(props) {
     )
 }
 
-GardenAreaListPageBis.propTypes = {
+GardenAreaListPage.propTypes = {
     allPlants: PropTypes.arrayOf(
         plantDataPropType
     )
 }
 
-//TODO OFWEL: lijst met plants in en lijst met plants NOT in
-//TODO in case of allPlants: areaInfo of garden is no longer there
-//TODO expandButton for all plants
-//TODO implement + button
-//TODO eyeButton for all plants (no button if no areas)
-//TODO flowerButton for all plants (no button if no areas)
+//TODO FIX expandButton for all plants!!!!
+//TODO GardenAreaListPage: rename GardenPlantListPage
+//TODO split in components
+//OK OFWEL: lijst met plants in en lijst met plants NOT in
+//OK in case of allPlants: areaInfo of garden is no longer there
+//OK implement + button
+//OK eyeButton for all plants (no button if no areas)
+//OK flowerButton for all plants (no button if no areas)

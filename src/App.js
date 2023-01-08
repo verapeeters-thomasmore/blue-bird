@@ -15,7 +15,7 @@ import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
 import {EditPage} from "./pages/EditPage";
 import {MessageInfoProvider} from "./contexts/MessageInfoContext";
 import {PLANT_DATA} from "./data/plant.data";
-import {GardenAreaListPageBis} from "./pages/GardenAreaListPageBIS";
+import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 
 function ProvidedApp() {
     return (
@@ -27,7 +27,7 @@ function ProvidedApp() {
                 <Route path="/edit" element={<EditPage/>}/>
                 <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
-                <Route path="/gardenarealist" element={<GardenAreaListPageBis allPlants={PLANT_DATA}/>}/>
+                <Route path="/gardenarealist" element={<GardenAreaListPage allPlants={PLANT_DATA}/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 
@@ -57,7 +57,7 @@ export default function App() {
 
 /*
 -- issues
-TODO issue -- select new garden --> controls to show areas/plants are broken
+TODO issue -- FIX select new garden --> controls to show areas/plants are broken
 TODO issue -- logo
 OK issue -- proptypes voor area en plant
 TODO issue -- alle afmetingen *100?
