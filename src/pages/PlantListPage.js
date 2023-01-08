@@ -1,6 +1,6 @@
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {Col, Container, Row} from "react-bootstrap";
-import {createContext, useContext, useMemo, useState} from "react";
+import {createContext, useCallback, useContext, useMemo} from "react";
 import {useShowItemToggle} from "../hooks/useShowItemToggle";
 import {GREEN} from "../constants/threeColors";
 import {PlantPicture} from "../components/PlantPicture";
@@ -11,6 +11,7 @@ import {MdAdd} from "react-icons/md";
 import {BiMinus} from "react-icons/bi";
 import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {UI_SKY_BLUE_LIGHTER} from "../constants/uiColors";
+import {useLocation, useNavigate} from "react-router";
 
 
 function NumCol(props) {
@@ -261,7 +262,7 @@ export function PlantListLeftColumn() {
 
                 {!showAllPlants &&
                     <SmallButton
-                        onClick={() => setShowAllPlants(current => !current)}>
+                        onClick={() => setShowAllPlants(true)}>
                         <MdAdd size={ICON_SIZE_SMALL}/></SmallButton>
                 }
             </div>
@@ -281,7 +282,7 @@ export function PlantListRightColumn(props) {
             <h3 className="container">add new plants:</h3>
             <div className="ms-2">
                 <SmallButton
-                    onClick={() => setShowAllPlants(current => !current)}>
+                    onClick={() => setShowAllPlants(false)}>
                     <BiMinus size={ICON_SIZE_SMALL}/></SmallButton>
             </div>
             <ListOfPlantWithoutAreas plants={allPlants}/>
@@ -291,16 +292,25 @@ export function PlantListRightColumn(props) {
 
 export function PlantListPage(props) {
     const {allPlants} = props;
-    const {
-        plantIdsForSelectedGarden
-    } = useGardenSelectorContext();
+    const {plantIdsForSelectedGarden} = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
-    const [showAllPlants, setShowAllPlants] = useState(false);
+    const query = new URLSearchParams(useLocation().search);
+    const showAllPlants = JSON.parse(query.get("showAllPlants"));
+    const navigate = useNavigate();
+
+    //TODO modify url to plantlist
+
+    const setShowAllPlants = useCallback(
+        newValue => {
+            navigate(`/gardenarealist?showAllPlants=${newValue}`);
+        },
+        []);
 
     const contextProviderApi = useMemo(
         () => ({showAllPlants, setShowAllPlants, ...showPlantInfoToggleApi}),
         [showAllPlants, setShowAllPlants, ...Object.values(showPlantInfoToggleApi)]
     );
+
     return (
         <Container className="flex-column">
             <Row>

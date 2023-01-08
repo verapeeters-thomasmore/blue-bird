@@ -37,7 +37,7 @@ function AddButton() {
         <Button size="sm"
                 variant=""
                 className="m-1 p-0 bg-light text-info"
-                onClick={() => navigate("/gardenarealist")}>
+                onClick={() => navigate("/gardenarealist?showAllPlants=true")}>
             <MdAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );
