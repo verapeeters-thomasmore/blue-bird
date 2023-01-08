@@ -294,19 +294,7 @@ export function PlantListPage(props) {
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <PlantListLeftColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}/>
-                    {
-                        showAllPlants &&
-                        <Col className="p-0"
-                             style={{backgroundColor: UI_SKY_BLUE_LIGHTER}}>
-                            <h3 className="container">add new plants:</h3>
-                            <div className="ms-2">
-                                <SmallButton
-                                    onClick={() => setShowAllPlants(current => !current)}>
-                                    <BiMinus size={ICON_SIZE_SMALL}/></SmallButton>
-                            </div>
-                            <ListOfPlantWithoutAreas plants={allPlants}/>
-                        </Col>
-                    }
+                    <PlantListRightColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants} allPlants={allPlants}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
