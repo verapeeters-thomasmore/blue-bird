@@ -234,3 +234,4 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 //TODO PlantListPage: order plants
 //TODO save camera position after orbiting
 //TODO area-id: unique per garden, not in general ??? necessary??
+//TODO check area.data: er zijn hardcoded ids - is dat een probleem of niet???
