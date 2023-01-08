@@ -1,18 +1,13 @@
 import {Col, Container, Row} from "react-bootstrap";
 import {ControlsCheckBox, ControlsCheckBoxSpecialAction} from "../components/ControlsCheckBox";
-import {
-    SHOW_AXES,
-    SHOW_CATALOG,
-    SHOW_FLOOR,
-    SHOW_GARDEN,
-    SHOW_WORLD,
-    useControlsContext
-} from "../contexts/ControlsContext";
+import {SHOW_AXES, SHOW_CATALOG, SHOW_FLOOR, SHOW_GARDEN, SHOW_WORLD} from "../contexts/ControlsContext";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
 function ControlsCheckBoxCol(props) {
     return <Col xs="6" sm="4" className="p-1">
         <ControlsCheckBox {...props}/>
+
+
     </Col>
 }
 
@@ -24,7 +19,7 @@ function ControlsCheckBoxSpecialActionCol(props) {
 
 export function ControlsPage() {
     const {areasSelectedGarden} = useGardenSelectorContext();
-    const {showAreasToggleApi, showPlantsToggleApi} = useControlsContext();
+    const {showAreasToggleApi, showPlantsToggleApi} = useGardenSelectorContext();
     const {isAtLeastOneItemShown: isAtLeastOneAreaItemShown, toggleShowForSomeItems: toggleShowForSomeAreaItems} = showAreasToggleApi;
     const {isAtLeastOneItemShown: isAtLeastOnePlantsItemShown, toggleShowForSomeItems: toggleShowForSomePlantItems} = showPlantsToggleApi;
 

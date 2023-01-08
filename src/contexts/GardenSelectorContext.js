@@ -6,6 +6,7 @@ import {findPlantDataByShortName} from "../utils/plant_utils";
 import {saveAs} from 'file-saver';
 import PropTypes from "prop-types";
 import {areaWithPlantDataPropType, plantDataPropType, plantWithAreasPropType} from "../types";
+import {useShowItemToggle} from "../hooks/useShowItemToggle";
 
 const GardenSelectorContext = createContext();
 
@@ -16,7 +17,7 @@ function getGardenEnrichedWithPlants(selectedGarden, plants) {
 //generates warnings on console
 function checkGardenAreas(plantsWithAreas) {
     plantsWithAreas.forEach(p => {
-            const areaCoordinateStrings = p.areas.map(a => "(" + a.x + "," + a.z+")").sort();
+            const areaCoordinateStrings = p.areas.map(a => "(" + a.x + "," + a.z + ")").sort();
             const found = areaCoordinateStrings.find((s, index) => index > 0 && s === areaCoordinateStrings[index - 1]);
             if (found)
                 console.warn(`${p.plantName} has areas with duplicate coordinates: ${found}`);
@@ -75,6 +76,9 @@ export function GardenSelectorProvider(props) {
         () => areas.map(a => a.id),
         [areas]
     );
+
+    const showPlantsToggleApi = useShowItemToggle("showPlants", areaIdsForSelectedGarden, areaIdsForSelectedGarden);
+    const showAreasToggleApi = useShowItemToggle("showAreas", areaIdsForSelectedGarden);
 
     const propertiesSelectedGarden = useMemo(
         () => PREDEFINED_GARDENS[indexSelectedGarden] ?? {},
@@ -192,6 +196,14 @@ export function GardenSelectorProvider(props) {
         []
     );
 
+    useEffect(
+        () => {
+            // console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
+            showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
+            showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
+        },
+        [areaIdsForSelectedGarden]);
+
     const api = useMemo(
         () => ({
             areasSelectedGarden,
@@ -209,13 +221,17 @@ export function GardenSelectorProvider(props) {
             clearArea,
             isDirty,
             actions,
-            addAction
+            addAction,
+            showPlantsToggleApi,
+            showAreasToggleApi,
         }),
         [areasSelectedGarden, indexSelectedGarden, areaIdsForSelectedGarden, propertiesSelectedGarden,
             areasSelectedGardenGroupedByPlants, plantIdsForSelectedGarden, plantDataForSelectedGarden,
             selectGarden, saveAreasInFile, loadAreasFromFile,
             addArea, addPlantInGarden, clearArea, isDirty,
-            actions, addAction]);
+            actions, addAction,
+            showPlantsToggleApi, showAreasToggleApi,
+        ]);
 
     return <GardenSelectorContext.Provider value={api}>
         {props.children}
@@ -239,7 +255,10 @@ GardenSelectorContext.Provider.propTypes = {
             clearArea: PropTypes.func,
             isDirty: PropTypes.bool,
             actions: PropTypes.arrayOf(PropTypes.string),
-            addAction: PropTypes.func
+            addAction: PropTypes.func,
+            showPlantsToggleApi: PropTypes.shape(),
+            showAreasToggleApi: PropTypes.shape(),
+
         }
     )
 }

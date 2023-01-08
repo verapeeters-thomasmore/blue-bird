@@ -1,10 +1,10 @@
 import {Button} from "react-bootstrap";
-import {useControlsContext} from "../contexts/ControlsContext";
 import {useMemo} from "react";
 import {TbFlower, TbFlowerOff} from "react-icons/tb";
 import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {VscTriangleDown, VscTriangleRight} from "react-icons/vsc";
+import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 
 export function SmallButton(props) {
     const {onClick, children} = props;
@@ -20,7 +20,7 @@ export function SmallButton(props) {
 
 export function EyeButton(props) {
     const {areas} = props;
-    const {showAreasToggleApi} = useControlsContext();
+    const {showAreasToggleApi} = useGardenSelectorContext();
     const {isAtLeastOneOfTheseItemsShown, toggleShowForSomeItems} = showAreasToggleApi;
     const areaIds = useMemo(() => areas.map(a => a.id), [areas]);
     return (
@@ -36,7 +36,7 @@ export function EyeButton(props) {
 
 export function FlowerButton(props) {
     const {areas} = props;
-    const {showPlantsToggleApi} = useControlsContext();
+    const {showPlantsToggleApi} = useGardenSelectorContext();
     const {isAtLeastOneOfTheseItemsShown, toggleShowForSomeItems} = showPlantsToggleApi;
     const areaIds = useMemo(() => areas.map(a => a.id), [areas]);
     return (

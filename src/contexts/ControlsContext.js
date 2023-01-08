@@ -1,7 +1,5 @@
-import React, {createContext, useCallback, useContext, useEffect, useMemo} from 'react';
+import React, {createContext, useCallback, useContext, useMemo} from 'react';
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import {useShowItemToggle} from "../hooks/useShowItemToggle";
-import {useGardenSelectorContext} from "./GardenSelectorContext";
 
 const ControlsContext = createContext();
 
@@ -21,19 +19,6 @@ const INITIAL_CONTROLS = {
 
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
-    const {areaIdsForSelectedGarden} = useGardenSelectorContext();
-    const showPlantsToggleApi = useShowItemToggle("showPlants", areaIdsForSelectedGarden,  areaIdsForSelectedGarden);
-    const showAreasToggleApi = useShowItemToggle("showAreas", areaIdsForSelectedGarden );
-
-    // console.log("ControlsProvider", areaIdsForSelectedGarden);
-
-    useEffect(
-        () => {
-            // console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
-            showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
-            showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
-        },
-        [areaIdsForSelectedGarden]);
 
     const getControlValue = useCallback(
         key => controls[key],
@@ -47,10 +32,8 @@ export function ControlsProvider(props) {
             ({
                 getControlValue,
                 toggleControlValue,
-                showPlantsToggleApi,
-                showAreasToggleApi,
             }),
-        [getControlValue, toggleControlValue, showPlantsToggleApi, showAreasToggleApi]);
+        [getControlValue, toggleControlValue,]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}

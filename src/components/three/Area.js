@@ -2,12 +2,12 @@ import {AREA_LENGTH, AREA_WIDTH, AREA_Y} from "../../constants/dimensions";
 import {useMemo, useRef} from "react";
 import {Plant} from "./Plant";
 import {calculatePlantPositions} from "../../utils/area_utils";
-import {useControlsContext} from "../../contexts/ControlsContext";
 import {useMessageInfoContext} from "../../contexts/MessageInfoContext";
+import {useGardenSelectorContext} from "../../contexts/GardenSelectorContext";
 
 function AreaPlane(props) {
     const {area} = props;
-    const {showAreasToggleApi} = useControlsContext();
+    const {showAreasToggleApi} = useGardenSelectorContext();
     const {addAreaInfoMessage, clearAreaInfoMessage} = useMessageInfoContext();
     const {isItemShown: isAreaItemShown} = showAreasToggleApi;
     const {plant, x, z} = area;
@@ -39,7 +39,7 @@ export function Area(props) {
     const nrOfPlants = Math.floor(plant.plantsPerM2); //because area_width==area_length==1
     const plantPositions = useMemo(() => calculatePlantPositions(nrOfPlants), [nrOfPlants]);
     // console.log(plant.shortName, area, areaSize, nrOfPlants, plantPositions)
-    const {showPlantsToggleApi} = useControlsContext();
+    const {showPlantsToggleApi} = useGardenSelectorContext();
     const {isItemShown: isPlantsItemShown} = showPlantsToggleApi;
 
     return (
