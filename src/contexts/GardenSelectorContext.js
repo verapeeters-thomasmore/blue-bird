@@ -37,6 +37,10 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
     return plantsWithAreas;
 }
 
+function formatAreasAsString(areas) {
+    return JSON.stringify(areas);
+}
+
 export function GardenSelectorProvider(props) {
     //indexSelectedGarden -1 means no predefined garden is active
     const [indexSelectedGarden, setIndexSelectedGardenInternal] = useLocalStorage("indexSelectedGarden", 2);
@@ -114,7 +118,7 @@ export function GardenSelectorProvider(props) {
 
     const saveAreasInFile = useCallback(
         (fileName) => {
-            const areasAsJSON = JSON.stringify(areas);
+            const areasAsJSON = formatAreasAsString(areas);
             const blob = new Blob([areasAsJSON], {type: 'application/json'});
             const fileNameWithExtension = fileName.endsWith(".json") ? fileName : fileName + ".json";
             saveAs(blob, fileNameWithExtension);
@@ -243,13 +247,10 @@ GardenSelectorContext.Provider.propTypes = {
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //TODO te veel planten in PlantSelectionButtons (scroll?)
-//TODO error when hovering area (to display plants -- shows too many sometimes)
 //TODO catalog is broken - it should be a garden
 //TODO mobile: edit-view entire garden is not visible
 //TODO PlantListPage: order plants
-//TODO save camera position after orbiting
+//TODO save camera position after orbiting (necessarY??)
 //TODO area-id: unique per garden, not in general ??? necessary??
-//TODO check area.data: er zijn hardcoded ids - is dat een probleem of niet???
-//TODO never add 2 same areas to a garden (warning?)
-//TODO split up GardenSelectorContext
+//TODO split up GardenSelectorContext (hoe???)
 //TODO formatting of file when saving garden

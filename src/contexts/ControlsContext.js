@@ -22,8 +22,8 @@ const INITIAL_CONTROLS = {
 export function ControlsProvider(props) {
     const [controls, setControls] = useLocalStorage("controls", INITIAL_CONTROLS);
     const {areaIdsForSelectedGarden} = useGardenSelectorContext();
-    const showAreasToggleApi = useShowItemToggle("showAreas", areaIdsForSelectedGarden );
     const showPlantsToggleApi = useShowItemToggle("showPlants", areaIdsForSelectedGarden,  areaIdsForSelectedGarden);
+    const showAreasToggleApi = useShowItemToggle("showAreas", areaIdsForSelectedGarden );
 
     // console.log("ControlsProvider", areaIdsForSelectedGarden);
 
@@ -47,10 +47,10 @@ export function ControlsProvider(props) {
             ({
                 getControlValue,
                 toggleControlValue,
+                showPlantsToggleApi,
                 showAreasToggleApi,
-                showPlantsToggleApi
             }),
-        [getControlValue, toggleControlValue, showAreasToggleApi, showPlantsToggleApi]);
+        [getControlValue, toggleControlValue, showPlantsToggleApi, showAreasToggleApi]);
 
     return <ControlsContext.Provider value={api}>
         {props.children}
