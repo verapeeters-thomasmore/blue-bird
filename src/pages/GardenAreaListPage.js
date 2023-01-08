@@ -209,14 +209,8 @@ ListOfPlantWithoutAreas.propType = {
     plants: PropTypes.arrayOf(plantDataPropType)
 }
 
-
-//TODO rename: areaInfoGroupedByPlant into plantWithAreaINfo (and areaInfo is possibly empty)
-/*
-areaInfoGroupedByPlant:
- */
 function ListOfPlantWithAreas(props) {
     const {plantsWithAreas, isOnlyColumn} = props;
-    // console.log("AreaInfoGroupedByPlant", areaInfoGroupedByPlant);
 
     return (
         <Container className="mx-auto p-0">
@@ -240,8 +234,6 @@ ListOfPlantWithAreas.propTypes = {
         plantWithAreasPropType
     )
 };
-
-//TODO: filterOnlyPlantsInGarden button: a checkbox?
 
 export function GardenAreaListPage(props) {
     const {allPlants} = props;
