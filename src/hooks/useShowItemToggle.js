@@ -60,6 +60,13 @@ export function useShowItemToggle(keyInLocalStorage, allItemsInitialValue, shown
             setShownItems(shownItemsWithoutRemovedItems);
         }, [shownItems]);
 
+    //allItems and shownItems are replaced
+    const replaceAllItems = useCallback(
+        (newAllItems, newShownItems) => {
+            setAllItems([...newAllItems]);
+            setShownItems([...newShownItems]);
+        }, [shownItems]);
+
 
     return useMemo(() => ({
             isItemShown,
@@ -68,7 +75,8 @@ export function useShowItemToggle(keyInLocalStorage, allItemsInitialValue, shown
             toggleShowForOneItem,
             toggleShowForSomeItems,
             toggleAllShownItems,
-            resetAllItems
+            resetAllItems,
+            replaceAllItems
         }),
-        [isItemShown, isAtLeastOneItemShown, isAtLeastOneItemShown, isAtLeastOneOfTheseItemsShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems, resetAllItems]);
+        [isItemShown, isAtLeastOneItemShown, isAtLeastOneItemShown, isAtLeastOneOfTheseItemsShown, toggleShowForOneItem, toggleShowForSomeItems, toggleAllShownItems, resetAllItems, replaceAllItems]);
 }

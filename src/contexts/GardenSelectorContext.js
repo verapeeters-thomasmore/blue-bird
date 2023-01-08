@@ -177,7 +177,7 @@ export function GardenSelectorProvider(props) {
                 plantName: plantName
             };
             setAreas([...areas, newArea]);
-            addAction(`add plant ${plantName}`)
+            addAction(`add plant ${plantName}`);
         },
         [areas]
     );
