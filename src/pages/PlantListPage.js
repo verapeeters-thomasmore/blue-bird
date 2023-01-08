@@ -235,8 +235,8 @@ ListOfPlantWithAreas.propTypes = {
     )
 };
 
-export function GardenAreaListPage(props) {
-    const {allPlants} = props;
+export function PlantListLeftColumn(props) {
+    const {showAllPlants, setShowAllPlants} = props;
     const {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
@@ -244,28 +244,56 @@ export function GardenAreaListPage(props) {
     } = useGardenSelectorContext();
     const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
-    const [showAllPlants, setShowAllPlants] = useState(false);
 
+    return (
+        <Col className="p-0">
+            <h3 className="container">plants in garden:</h3>
+            <div className="ms-2">
+                <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
+                <EyeButton areas={areasSelectedGarden}/>
+                <FlowerButton areas={areasSelectedGarden}/>
+
+                {!showAllPlants &&
+                    <SmallButton
+                        onClick={() => setShowAllPlants(current => !current)}>
+                        <MdAdd size={ICON_SIZE_SMALL}/></SmallButton>
+                }
+            </div>
+            <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}
+                                  isOnlyColumn={!showAllPlants}/>
+        </Col>
+    )
+}
+
+export function PlantListRightColumn(props) {
+    const {allPlants, showAllPlants, setShowAllPlants} = props;
+    if (!showAllPlants) return;
+    return (
+        <Col className="p-0"
+             style={{backgroundColor: UI_SKY_BLUE_LIGHTER}}>
+            <h3 className="container">add new plants:</h3>
+            <div className="ms-2">
+                <SmallButton
+                    onClick={() => setShowAllPlants(current => !current)}>
+                    <BiMinus size={ICON_SIZE_SMALL}/></SmallButton>
+            </div>
+            <ListOfPlantWithoutAreas plants={allPlants}/>
+        </Col>
+    )
+}
+
+export function PlantListPage(props) {
+    const {allPlants} = props;
+    const {
+        plantIdsForSelectedGarden
+    } = useGardenSelectorContext();
+    const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
+    const [showAllPlants, setShowAllPlants] = useState(false);
     return (
         <Container className="flex-column">
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
-                    <Col className="p-0">
-                        <h3 className="container">plants in garden:</h3>
-                        <div className="ms-2">
-                            <ExpandButton show={isAtLeastOneItemShown} toggleShow={toggleAllShownItems}/>
-                            <EyeButton areas={areasSelectedGarden}/>
-                            <FlowerButton areas={areasSelectedGarden}/>
-
-                            {!showAllPlants &&
-                                <SmallButton
-                                    onClick={() => setShowAllPlants(current => !current)}>
-                                    <MdAdd size={ICON_SIZE_SMALL}/></SmallButton>
-                            }
-                        </div>
-                        <ListOfPlantWithAreas plantsWithAreas={areasSelectedGardenGroupedByPlants}
-                                              isOnlyColumn={!showAllPlants}/>
-                    </Col>
+                    <PlantListLeftColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}/>
                     {
                         showAllPlants &&
                         <Col className="p-0"
@@ -285,13 +313,13 @@ export function GardenAreaListPage(props) {
     )
 }
 
-GardenAreaListPage.propTypes = {
+PlantListPage.propTypes = {
     allPlants: PropTypes.arrayOf(
         plantDataPropType
     )
 }
 
-//TODO GardenAreaListPage: rename GardenPlantListPage
+//OK GardenAreaListPage: rename GardenPlantListPage
 //TODO split in components
 //OK FIX expandButton for all plants!!!!
 //OK OFWEL: lijst met plants in en lijst met plants NOT in
