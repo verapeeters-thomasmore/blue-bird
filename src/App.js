@@ -11,11 +11,9 @@ import {NoMatchPage} from "./pages/NoMatchPage";
 import {HomePage} from "./pages/HomePage";
 import {ControlsPage} from "./pages/ControlsPage";
 import {GardenSelectionPage} from "./pages/GardenSelectionPage";
-import {GardenAreaListPage} from "./pages/GardenAreaListPage";
 import {CameraViewpointsPage} from "./pages/CameraViewpointsPage";
 import {EditPage} from "./pages/EditPage";
 import {MessageInfoProvider} from "./contexts/MessageInfoContext";
-import {AddPlantPage} from "./pages/AddPlantPage";
 import {PLANT_DATA} from "./data/plant.data";
 import {GardenAreaListPageBis} from "./pages/GardenAreaListPageBIS";
 
@@ -27,11 +25,9 @@ function ProvidedApp() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/controls" element={<ControlsPage/>}/>
                 <Route path="/edit" element={<EditPage/>}/>
-                <Route path="/addPlant" element={<AddPlantPage allPlants={PLANT_DATA}/>}/>
                 <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
                 <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
-                <Route path="/gardenarealist" element={<GardenAreaListPage allPlants={PLANT_DATA}/>}/>
-                <Route path="/gardenarealist2" element={<GardenAreaListPageBis allPlants={PLANT_DATA}/>}/>
+                <Route path="/gardenarealist" element={<GardenAreaListPageBis allPlants={PLANT_DATA}/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 

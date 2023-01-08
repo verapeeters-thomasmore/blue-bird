@@ -30,13 +30,14 @@ function SelectPlantButton(props) {
     );
 }
 
+//TODO AddButton: go to GardenSelectionPage with par so that + view is active
 function AddButton() {
     const navigate = useNavigate();
     return (
         <Button size="sm"
                 variant=""
                 className="m-1 p-0 bg-light text-info"
-                onClick={() => navigate("/addPlant")}>
+                onClick={() => navigate("/gardenarealist")}>
             <MdAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );
@@ -49,7 +50,6 @@ function ClearButton(props) {
         <MdOutlineDelete size={PLANT_PICTURE_SIZE_SMALL}/>
     </SelectButton>;
 }
-
 
 export function PlantSelectionButtons(props) {
     const {flowerToEdit, setFlowerToEdit} = props;
