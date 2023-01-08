@@ -250,7 +250,7 @@ export function GardenAreaListPage(props) {
         areasSelectedGardenGroupedByPlants,
         plantIdsForSelectedGarden
     } = useGardenSelectorContext();
-    const showPlantInfoToggleApi = useShowItemToggle(plantIdsForSelectedGarden, "showPlantInfo");
+    const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
     const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
     const [showAllPlants, setShowAllPlants] = useState(false);
 
@@ -299,9 +299,9 @@ GardenAreaListPage.propTypes = {
     )
 }
 
-//TODO FIX expandButton for all plants!!!!
 //TODO GardenAreaListPage: rename GardenPlantListPage
 //TODO split in components
+//OK FIX expandButton for all plants!!!!
 //OK OFWEL: lijst met plants in en lijst met plants NOT in
 //OK in case of allPlants: areaInfo of garden is no longer there
 //OK implement + button
