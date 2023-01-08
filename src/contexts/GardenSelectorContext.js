@@ -19,8 +19,7 @@ function checkGardenAreas(plantsWithAreas) {
             const areaCoordinateStrings = p.areas.map(a => "(" + a.x + "," + a.z+")").sort();
             const found = areaCoordinateStrings.find((s, index) => index > 0 && s === areaCoordinateStrings[index - 1]);
             if (found)
-                console.warn(`${p.plantName} has areas with duplicate coord
-                inates: ${found}`);
+                console.warn(`${p.plantName} has areas with duplicate coordinates: ${found}`);
         }
     )
 }
