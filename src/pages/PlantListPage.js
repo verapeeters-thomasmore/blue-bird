@@ -38,8 +38,8 @@ function AreaInfo(props) {
     );
 }
 
-const GardenAreaListPageContext = createContext();
-const useGardenAreaListPageContext = () => useContext(GardenAreaListPageContext);
+const PlantListPageContext = createContext();
+const usePlantListPageContext = () => useContext(PlantListPageContext);
 
 function PlantAreas(props) {
     const {areas, showPlantInfo} = props;
@@ -95,12 +95,16 @@ function PlantName(props) {
     );
 }
 
+PlantName.propTypes = {
+    plant: plantDataPropType
+};
+
 PlantName.propTypes = {plant: PropTypes.any};
 
 function PlantButtons(props) {
     const {plantWithAreas, showPlantInfo} = props;
     const {plant, areas} = plantWithAreas;
-    const {toggleShowForOneItem} = useGardenAreaListPageContext();
+    const {toggleShowForOneItem} = usePlantListPageContext();
     return (
         <>
             <ExpandButton show={showPlantInfo} toggleShow={() => toggleShowForOneItem(plant.id)}/>
@@ -110,10 +114,15 @@ function PlantButtons(props) {
     )
 }
 
+PlantButtons.propTypes = {
+    plantWithAreas: plantWithAreasPropType,
+    showPlantInfo: PropTypes.bool
+};
+
 function PlantInfoWithAreas(props) {
     const {plantWithAreas} = props;
     const {plant} = plantWithAreas;
-    const {isItemShown} = useGardenAreaListPageContext();
+    const {isItemShown} = usePlantListPageContext();
     const showPlantInfo = useMemo(() => !!isItemShown(plantWithAreas.plant.id), [plantWithAreas, isItemShown]);
 
     return (
@@ -240,8 +249,8 @@ export function PlantListLeftColumn() {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
     } = useGardenSelectorContext();
-    const {isAtLeastOneItemShown, toggleAllShownItems} = useGardenAreaListPageContext();
-    const {showAllPlants, setShowAllPlants} = useGardenAreaListPageContext();
+    const {isAtLeastOneItemShown, toggleAllShownItems} = usePlantListPageContext();
+    const {showAllPlants, setShowAllPlants} = usePlantListPageContext();
     return (
         <Col className="p-0">
             <h3 className="container">plants in garden:</h3>
@@ -264,7 +273,7 @@ export function PlantListLeftColumn() {
 
 export function PlantListRightColumn(props) {
     const {allPlants} = props;
-    const {showAllPlants, setShowAllPlants} = useGardenAreaListPageContext();
+    const {showAllPlants, setShowAllPlants} = usePlantListPageContext();
     if (!showAllPlants) return;
     return (
         <Col className="p-0"
@@ -295,10 +304,10 @@ export function PlantListPage(props) {
     return (
         <Container className="flex-column">
             <Row>
-                <GardenAreaListPageContext.Provider value={contextProviderApi}>
+                <PlantListPageContext.Provider value={contextProviderApi}>
                     <PlantListLeftColumn/>
                     <PlantListRightColumn allPlants={allPlants}/>
-                </GardenAreaListPageContext.Provider>
+                </PlantListPageContext.Provider>
             </Row>
         </Container>
     )
