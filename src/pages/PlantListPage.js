@@ -240,10 +240,8 @@ export function PlantListLeftColumn(props) {
     const {
         areasSelectedGarden,
         areasSelectedGardenGroupedByPlants,
-        plantIdsForSelectedGarden
     } = useGardenSelectorContext();
-    const showPlantInfoToggleApi = useShowItemToggle("showPlantInfo", plantIdsForSelectedGarden);
-    const {isAtLeastOneItemShown, toggleAllShownItems} = showPlantInfoToggleApi;
+    const {isAtLeastOneItemShown, toggleAllShownItems} = useGardenAreaListPageContext();
 
     return (
         <Col className="p-0">
@@ -294,7 +292,8 @@ export function PlantListPage(props) {
             <Row>
                 <GardenAreaListPageContext.Provider value={showPlantInfoToggleApi}>
                     <PlantListLeftColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}/>
-                    <PlantListRightColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants} allPlants={allPlants}/>
+                    <PlantListRightColumn showAllPlants={showAllPlants} setShowAllPlants={setShowAllPlants}
+                                          allPlants={allPlants}/>
                 </GardenAreaListPageContext.Provider>
             </Row>
         </Container>
