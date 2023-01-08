@@ -7,6 +7,7 @@ import {BsFillFileEarmarkArrowDownFill, BsFillFileEarmarkArrowUpFill} from "reac
 import {useState} from "react";
 import {useNavigate} from "react-router";
 import {ConfirmationModal} from "../components/ConfirmationModal";
+import {NAV_HOME} from "../constants/navigation";
 
 function SaveGardenInFile() {
     const {saveAreasInFile} = useGardenSelectorContext();
