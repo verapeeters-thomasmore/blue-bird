@@ -318,12 +318,3 @@ PlantListPage.propTypes = {
         plantDataPropType
     )
 }
-
-//OK GardenAreaListPage: rename GardenPlantListPage
-//TODO split in components
-//OK FIX expandButton for all plants!!!!
-//OK OFWEL: lijst met plants in en lijst met plants NOT in
-//OK in case of allPlants: areaInfo of garden is no longer there
-//OK implement + button
-//OK eyeButton for all plants (no button if no areas)
-//OK flowerButton for all plants (no button if no areas)

@@ -222,13 +222,10 @@ GardenSelectorContext.Provider.propTypes = {
 
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
-//TODO add plant in garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO error when hovering area (to display plants -- shows too many sometimes)
 //TODO catalog is broken - it should be a garden
 //TODO mobile: edit-view entire garden is not visible
-//TODO GardenAreaListPage: order plants
+//TODO PlantListPage: order plants
 //TODO save camera position after orbiting
-//TODO Area info does not work if area not visible - is that a problem???
-//TODO load from file: remember filename?? (for history)
 //TODO area-id: unique per garden, not in general ??? necessary??

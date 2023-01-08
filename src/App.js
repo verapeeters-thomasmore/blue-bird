@@ -57,13 +57,9 @@ export default function App() {
 
 /*
 -- issues
-TODO issue -- FIX select new garden --> controls to show areas/plants are broken
 TODO issue -- logo
-OK issue -- proptypes voor area en plant
 TODO issue -- alle afmetingen *100?
-TODO issue -- gardenarealist - meerdere cards/row is niet ok want cards zijn niet even hoog - zie https://www.npmjs.com/package/react-masonry-css
-TODO issue -- gardenarealist - buttons and text not on same line
-TODO issue -- gardenselectionpage: which garden is selected? - is it edited?
+TODO issue -- plantlist - meerdere cards/row is niet ok want cards zijn niet even hoog - zie https://www.npmjs.com/package/react-masonry-css
 
 --- bigger stories
 TODO bigger stories -- plant topview
