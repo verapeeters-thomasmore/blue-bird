@@ -299,8 +299,6 @@ export function PlantListPage(props) {
     const showAllPlants = JSON.parse(query.get("showAllPlants"));
     const navigate = useNavigate();
 
-    //TODO modify url to plantlist
-
     const setShowAllPlants = useCallback(
         newValue => {
             navigate(`${NAV_PLANTLIST_ADDPLANT_VAR}${newValue}`);
