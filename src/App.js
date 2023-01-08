@@ -16,18 +16,27 @@ import {EditPage} from "./pages/EditPage";
 import {MessageInfoProvider} from "./contexts/MessageInfoContext";
 import {PLANT_DATA} from "./data/plant.data";
 import {PlantListPage} from "./pages/PlantListPage";
+import {
+    NAV_CAMERAVIEWPOINTS,
+    NAV_CONTROLS,
+    NAV_EDIT,
+    NAV_GARDENSELECTION,
+    NAV_HOME,
+    NAV_PLANTLIST
+} from "./constants/navigation";
 
 function ProvidedApp() {
+
     return (
         <div className="d-flex flex-column h-100">
             <GardenNavbar/>
             <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/controls" element={<ControlsPage/>}/>
-                <Route path="/edit" element={<EditPage/>}/>
-                <Route path="/cameraviewpoints" element={<CameraViewpointsPage/>}/>
-                <Route path="/gardenselection" element={<GardenSelectionPage/>}/>
-                <Route path="/gardenarealist" element={<PlantListPage allPlants={PLANT_DATA}/>}/>
+                <Route path={NAV_HOME} element={<HomePage/>}/>
+                <Route path={NAV_CONTROLS} element={<ControlsPage/>}/>
+                <Route path={NAV_EDIT} element={<EditPage/>}/>
+                <Route path={NAV_CAMERAVIEWPOINTS} element={<CameraViewpointsPage/>}/>
+                <Route path={NAV_GARDENSELECTION} element={<GardenSelectionPage/>}/>
+                <Route path={NAV_PLANTLIST} element={<PlantListPage allPlants={PLANT_DATA}/>}/>
                 <Route path="*" element={<NoMatchPage/>}/>
             </Routes>
 

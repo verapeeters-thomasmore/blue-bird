@@ -8,6 +8,14 @@ import {Link} from "react-router-dom";
 import {TbSettings} from "react-icons/tb";
 import {EyeButton, FlowerButton} from "./SmallButtons";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
+import {
+    NAV_CAMERAVIEWPOINTS,
+    NAV_CONTROLS,
+    NAV_EDIT,
+    NAV_GARDENSELECTION,
+    NAV_HOME,
+    NAV_PLANTLIST
+} from "../constants/navigation";
 
 function GardenIcon() {
     return <BsFlower1 size={BRAND_ICON_SIZE} className="text-info my-2 ms-0"/>;
@@ -29,16 +37,16 @@ export function GardenNavbar() {
             style={{maxHeight: '35px', backgroundColor: UI_WHITE}}>
             <Container>
                 <Navbar.Brand>
-                    <Link to="/"><GardenIcon/></Link>
-                    <GardenNavbarLink to="/edit"><MdOutlineEdit size={ICON_SIZE}/></GardenNavbarLink>
+                    <Link to={NAV_HOME}><GardenIcon/></Link>
+                    <GardenNavbarLink to={NAV_EDIT}><MdOutlineEdit size={ICON_SIZE}/></GardenNavbarLink>
                 </Navbar.Brand>
             </Container>
             <EyeButton areas={areasSelectedGarden}/>
             <FlowerButton areas={areasSelectedGarden}/>
-            <GardenNavbarLink to="/gardenarealist"><BsCardList size={ICON_SIZE}/></GardenNavbarLink>
-            <GardenNavbarLink to="/cameraviewpoints"><BsCameraVideo size={ICON_SIZE}/></GardenNavbarLink>
-            <GardenNavbarLink to="/gardenselection"><FaRegFolderOpen size={ICON_SIZE}/></GardenNavbarLink>
-            <GardenNavbarLink to="/controls"><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
+            <GardenNavbarLink to={NAV_PLANTLIST}><BsCardList size={ICON_SIZE}/></GardenNavbarLink>
+            <GardenNavbarLink to={NAV_CAMERAVIEWPOINTS}><BsCameraVideo size={ICON_SIZE}/></GardenNavbarLink>
+            <GardenNavbarLink to={NAV_GARDENSELECTION}><FaRegFolderOpen size={ICON_SIZE}/></GardenNavbarLink>
+            <GardenNavbarLink to={NAV_CONTROLS}><TbSettings size={ICON_SIZE}/></GardenNavbarLink>
         </Navbar>
     );
 

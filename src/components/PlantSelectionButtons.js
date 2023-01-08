@@ -4,6 +4,7 @@ import {Button} from "react-bootstrap";
 import {PlantPicture} from "./PlantPicture";
 import {useGardenSelectorContext} from "../contexts/GardenSelectorContext";
 import {useNavigate} from "react-router";
+import {NAV_PLANTLIST_ADDPLANT} from "../constants/navigation";
 
 function SelectButton(props) {
     const {children, onClick, isSelected, title} = props;
@@ -30,14 +31,13 @@ function SelectPlantButton(props) {
     );
 }
 
-//TODO AddButton: go to GardenSelectionPage with par so that + view is active
 function AddButton() {
     const navigate = useNavigate();
     return (
         <Button size="sm"
                 variant=""
                 className="m-1 p-0 bg-light text-info"
-                onClick={() => navigate("/gardenarealist?showAllPlants=true")}>
+                onClick={() => navigate(NAV_PLANTLIST_ADDPLANT)}>
             <MdAdd size={PLANT_PICTURE_SIZE_SMALL}/>
         </Button>
     );

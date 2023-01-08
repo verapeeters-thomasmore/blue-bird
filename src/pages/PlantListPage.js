@@ -12,6 +12,7 @@ import {BiMinus} from "react-icons/bi";
 import {ICON_SIZE_SMALL} from "../constants/uiSizes";
 import {UI_SKY_BLUE_LIGHTER} from "../constants/uiColors";
 import {useLocation, useNavigate} from "react-router";
+import {NAV_PLANTLIST_ADDPLANT_VAR} from "../constants/navigation";
 
 
 function NumCol(props) {
@@ -302,7 +303,7 @@ export function PlantListPage(props) {
 
     const setShowAllPlants = useCallback(
         newValue => {
-            navigate(`/gardenarealist?showAllPlants=${newValue}`);
+            navigate(`${NAV_PLANTLIST_ADDPLANT_VAR}${newValue}`);
         },
         []);
 

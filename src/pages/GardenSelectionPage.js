@@ -47,7 +47,7 @@ function LoadGardenFromFile() {
     function handleConfirmation() {
         if (!chosenFiles) return;
         loadAreasFromFile(chosenFiles[0]);
-        navigate("/");
+        navigate(NAV_HOME);
     }
 
     return (

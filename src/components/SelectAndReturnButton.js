@@ -5,6 +5,7 @@ import {TbDownload} from "react-icons/tb";
 import {RxReload} from "react-icons/rx";
 import {useState} from "react";
 import {ConfirmationModal} from "./ConfirmationModal";
+import {NAV_HOME} from "../constants/navigation";
 
 export function SelectAndReturnButton(props) {
     const {title, isSelected, isDirty, onSelect, needConfirmationModal = isDirty} = props;
@@ -13,7 +14,7 @@ export function SelectAndReturnButton(props) {
 
     function handleConfirmation() {
         onSelect();
-        navigate("/");
+        navigate(NAV_HOME);
     }
 
     return (
