@@ -198,11 +198,16 @@ export function GardenSelectorProvider(props) {
 
     useEffect(
         () => {
-            // console.log("ControlsProvider useEffect", areaIdsForSelectedGarden);
-            showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
-            showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
+            console.log("GardenSelectorContext useEffect", areaIdsForSelectedGarden, isDirty);
+            if (isDirty) {
+                showPlantsToggleApi.resetAllItems(areaIdsForSelectedGarden);
+                showAreasToggleApi.resetAllItems(areaIdsForSelectedGarden);
+            } else {
+                showPlantsToggleApi.replaceAllItems(areaIdsForSelectedGarden, areaIdsForSelectedGarden);
+                showAreasToggleApi.replaceAllItems(areaIdsForSelectedGarden, []);
+            }
         },
-        [areaIdsForSelectedGarden]);
+        [isDirty, areaIdsForSelectedGarden]);
 
     const api = useMemo(
         () => ({
