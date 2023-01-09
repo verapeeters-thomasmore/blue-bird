@@ -271,8 +271,8 @@ GardenSelectorContext.Provider.propTypes = {
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK bij openen nieuwe Garden (GardenSelectorContext) moet de area-useShowItemToggle op leeg staan en de plant- op alles. Bij editeren bestaande garden (CurrentGardenCobtext) moeten nieuwe areas toegevoegd worden aan allebei??
+//OK mobile: edit-view entire garden is not visible - zie opties OrbitControls
 //TODO te veel planten in PlantSelectionButtons (scroll?)
-//TODO mobile: edit-view entire garden is not visible - zie opties OrbitControls
 //TODO PlantListPage: sort/filter plants
 //TODO formatting of file when saving garden
 //TODO area-id: unique per garden, not in general ??? necessary?? test!
