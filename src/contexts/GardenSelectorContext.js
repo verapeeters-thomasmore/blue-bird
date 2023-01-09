@@ -266,10 +266,11 @@ GardenSelectorContext.Provider.propTypes = {
 export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //TODO te veel planten in PlantSelectionButtons (scroll?)
-//TODO catalog is broken - it should be a garden
-//TODO mobile: edit-view entire garden is not visible
-//TODO PlantListPage: order plants
-//TODO save camera position after orbiting (necessarY??)
-//TODO area-id: unique per garden, not in general ??? necessary??
-//TODO split up GardenSelectorContext (hoe???)
+//TODO catalog is broken - it should be a garden - or remove?
+//TODO mobile: edit-view entire garden is not visible - zie opties OrbitControls
+//TODO PlantListPage: sort/filter plants
+//TODO save camera position after orbiting (necessary??)
+//TODO area-id: unique per garden, not in general ??? necessary?? test!
+//TODO split up GardenSelectorContext (hoe???) GardenSelectorContext en CurrentGardenContext?
+//TODO bij openen nieuwe Garden (GardenSelectorContext) moet de area-useShowItemToggle op leeg staan en de plant- op alles. Bij editeren bestaande garden (CurrentGardenCobtext) moeten nieuwe areas toegevoegd worden aan allebei??
 //TODO formatting of file when saving garden
