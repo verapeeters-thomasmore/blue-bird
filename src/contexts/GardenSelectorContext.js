@@ -39,7 +39,7 @@ function getGardenGroupedByPlants(areasSelectedGarden) {
 }
 
 function formatAreasAsString(areas) {
-    return JSON.stringify(areas);
+    return `[${areas.map(JSON.stringify).join(',\n ')}]`;
 }
 
 export function GardenSelectorProvider(props) {
@@ -272,9 +272,9 @@ export const useGardenSelectorContext = () => useContext(GardenSelectorContext);
 
 //OK bij openen nieuwe Garden (GardenSelectorContext) moet de area-useShowItemToggle op leeg staan en de plant- op alles. Bij editeren bestaande garden (CurrentGardenCobtext) moeten nieuwe areas toegevoegd worden aan allebei??
 //OK mobile: edit-view entire garden is not visible - zie opties OrbitControls
+//OK formatting of file when saving garden
 //TODO te veel planten in PlantSelectionButtons (scroll?)
 //TODO PlantListPage: sort/filter plants
-//TODO formatting of file when saving garden
 //TODO area-id: unique per garden, not in general ??? necessary?? test!
 //TODO unique id probleem: selecteer garden, add area, refresh, add area
 //TODO catalog is broken - it should be a garden - or remove?
