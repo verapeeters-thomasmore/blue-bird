@@ -15,3 +15,14 @@ body,
 body {
   /*background: #f0f0f0;*/
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: grey;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+}

@@ -56,8 +56,8 @@ export function PlantSelectionButtons(props) {
     const {plantDataForSelectedGarden} = useGardenSelectorContext();
 
     return (
-        <div className="position-absolute ms-1 mt-2 d-flex flex-column"
-             style={{top: MENU_HEIGHT}}>
+        <div className="position-absolute ms-1 mt-2 d-flex flex-column overflow-auto"
+             style={{top: MENU_HEIGHT, maxHeight: "-webkit-fill-available"}}>
             {plantDataForSelectedGarden.map(p =>
                 <SelectPlantButton key={p.id} plant={p} flowerToEdit={flowerToEdit}
                                    setFlowerToEdit={setFlowerToEdit}/>)
